@@ -1,4 +1,4 @@
-# Python
+<!-- # Python
 
 ## Windows 설치
 https://docs.djangoproject.com/ko/2.1/howto/windows/
@@ -24,7 +24,7 @@ python3 -m pip install -U pip
 ## pylint 설치
 ```sh
 python3 -m pip install -U pylint --user
-```
+``` -->
 
 # Django
 
@@ -34,20 +34,20 @@ https://docs.djangoproject.com/ko/2.1/faq/install/#faq-python-version-support
 ## Django 설치
 https://www.djangoproject.com/download/
 ```sh
-pip install Django==2.1.3
+pip install Django==3.2
 ```
 
 ## Django 확인
 https://docs.djangoproject.com/ko/2.1/intro/install/
 ```sh
-python3
+python
 >>>
 import django
 print(django.get_version())
 ```
 
 ```sh
-python3 -m django --version
+python -m django --version
 ```
 
 ## 프로젝트 생성
@@ -79,12 +79,12 @@ db.sqlite3
 
 ## 서버 실행
 ```sh
-python3 manage.py runserver
+python manage.py runserver
 ```
 
 ## Polls 앱 생성
 ```sh
-python3 manage.py startapp polls
+python manage.py startapp polls
 ```
 
 ## Polls 앱 라우터 설정
@@ -158,7 +158,7 @@ DATABASES = {
 ## Migrate 실행
 https://docs.djangoproject.com/ko/2.1/intro/tutorial02/
 ```sh
-python3 manage.py migrate
+python manage.py migrate
 
 # mysql>
 SHOW DATABASES;
@@ -191,23 +191,23 @@ INSTALLED_APPS = [
 
 migrations 등록
 ```sh
-python3 manage.py makemigrations polls
+python manage.py makemigrations polls
 ```
 
 실행될 SQL문 확인
 ```sh
-python3 manage.py sqlmigrate polls 0001
+python manage.py sqlmigrate polls 0001
 ```
 
 Migrate 실행
 ```sh
-python3 manage.py migrate
+python manage.py migrate
 ```
 
 ## Terminal에서 django 명령 실행 시키기
 ```sh
 # /django_tutorial/settings.py 파일을 import 하고 python을 실행한 것과 같다.
-python3 manage.py shell
+python manage.py shell
 ```
 
 ```python
@@ -261,7 +261,7 @@ class Choice(models.Model):
 ```
 
 ```sh
-python3 manage.py shell
+python manage.py shell
 ```
 
 ```python
@@ -304,7 +304,7 @@ c.delete() # DB 해당 레코드 삭제
 
 ### Admin user 등록
 ```sh
-python3 manage.py createsuperuser
+python manage.py createsuperuser
 ```
 ```sql
 # mysql>
@@ -584,7 +584,7 @@ class QuestionModelTests(TestCase):
 
 실행
 ```sh
-python3 manage.py test polls
+python manage.py test polls
 ```
 
 ## Polls fixup was_published_recently
@@ -597,7 +597,7 @@ python3 manage.py test polls
 
 실행
 ```sh
-python3 manage.py test polls
+python manage.py test polls
 ```
 
 ## Polls test more
@@ -625,7 +625,7 @@ python3 manage.py test polls
 
 실행
 ```sh
-python3 manage.py test polls
+python manage.py test polls
 ```
 
 ## Polls view 개선시키기
@@ -851,7 +851,7 @@ TEMPLATES = [
 
 Django 소스 파일 경로 찾기
 ```sh
-python3 -c "import django; print(django.__path__)"
+python -c "import django; print(django.__path__)"
 ```
 
 Django Admin 소스 파일 경로 이동
