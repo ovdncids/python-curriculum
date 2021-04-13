@@ -405,7 +405,7 @@ def detail(request, question_id):
     return render(request, 'polls/detail.html', {'question': question})
 ```
 
-/polls/template/detail.html
+/polls/template/polls/detail.html
 ```python
 <h1>{{ question.question_text }}</h1>
 <ul>
@@ -506,7 +506,7 @@ def vote(request, question_id):
 
 ```
 
-/polls/template/results.html
+/polls/template/polls/results.html
 ```python
 <h1>{{ question.question_text }}</h1>
 
