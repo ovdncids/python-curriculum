@@ -524,6 +524,71 @@ members/templates/members.html
 <button onclick=this.form.action='{% url "members_delete" forloop.counter0 %}'>Delete</button>
 ```
 
+## Members Database 생성
+members/models.py
+```py
+class Members(models.Model):
+    name = models.CharField(max_length=200)
+    age = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name + ', ' + str(self.age)
+```
+
+### Members Database Migration
+```sh
+python manage.py makemigrations members
+```
+* members/migrations/0001_initial.py 파일이 생성됨
+
+```sh
+python manage.py migrate
+```
+* `members/migrations/0001_initial.py`을 바탕으로 Database정보를 `db.sqlite3` 파일에 입력함
+* ❕ 만약 Migration 도중 에러가 난다면 `db.sqlite3` 또는 `members/migrations/0001_initial.py` 파일을 지우고 다시 실행 해야함
+
+### Members Database Terminal에서 CRUD
+```sh
+# /django_tutorial/settings.py 파일을 import 하고 python을 실행한 것과 같다.
+python manage.py shell
+```
+```py
+from members.models import Members
+
+# All Members
+Members.objects.all()
+
+# Create
+member = Members(name='홍길동', age='20')
+member.save()
+member = Members(name='춘향이', age='16')
+member.save()
+
+# Read
+member = Members.objects.get(id=1)
+member.name
+member.age
+
+# Update
+member.name = '이순신'
+member.age = 32
+member.save()
+
+# Delete
+member.delete()
+```
+
+* VSCode에서 SQLite 설치
+```
+Ctrl(Command) + p
+>SQLite: Open Database
+# db.sqlite3 선택
+# 왼쪽 SQLITE EXPLORER > db.sqlite3 > members_members > Show Table
+
+>SQLite: Close Database
+```
+
+
 
 
 
