@@ -98,12 +98,12 @@ python manage.py startapp members
 ```
 
 ### Members 앱 페이지 만들기
-/members/views.py
+members/views.py
 ```py
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-def index(request):
+def members(request):
     return HttpResponse("Hello, world.")
 
 def root(request):
@@ -111,37 +111,37 @@ def root(request):
 ```
 
 ### Members 앱 페이지와 라우터 연결
-/django_study/urls.py
+django_study/urls.py
 ```py
-from members import views as members
+from members import views as views
 
 urlpatterns = [
-    path('members/', members.index),
-    path('', members.root),
+    path('members/', views.members, name='members'),
+    path('', views.root),
 ```
 
 ### Members 앱 페이지와 HTML 연결
-/members/views.py
+members/views.py
 ```diff
 - return HttpResponse("Hello, world.")
 ```
 ```py
-return render(request, 'index.html')
+return render(request, 'members.html')
 ```
 
-/members/templates/index.html
+members/templates/members.html
 ```html
 Hello, world.
 ```
 
-/django_study/settings.py
+django_study/settings.py
 ```py
 INSTALLED_APPS = [
     'members',
 ```
 
 ### Members 앱 Markup
-/members/templates/index.html
+members/templates/members.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +180,7 @@ INSTALLED_APPS = [
 </html>
 ```
 
-/members/static/index.css
+members/static/index.css
 ```css
 * {
   margin: 0;
@@ -253,7 +253,7 @@ input[type=text] {
 ```
 
 ### Members 앱 Header, Nav, Footer 나누기
-/members/templates/index.html
+members/templates/members.html
 ```diff
 - <header>
 -   <h1>Django study</h1>
@@ -268,16 +268,86 @@ input[type=text] {
 
 - <footer>Copyright</footer>
 ```
-```html
+```py
 {% include "include/header.html" %}
 ```
 
-/members/templates/include/header.html
+members/templates/include/header.html
 ```html
 <header>
   <h1>Django study</h1>
 </header>
 ```
+
+### Members 앱 Search 페이지 만들기
+members/views.py
+```py
+def search(request):
+    return render(request, 'search.html')
+```
+
+members/templates/search.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django study</title>
+  {% load static %}
+  <link href="{% static 'index.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div>
+    {% include "include/header.html" %}
+    <hr />
+    <div class="container">
+      {% include "include/nav.html" %}
+      <hr />
+      <section class="contents">
+        <div>
+          <h3>Search</h3>
+          <p>Contents</p>
+        </div>
+      </section>
+      <hr />
+    </div>
+    {% include "include/footer.html" %}
+  </div>
+</body>
+</html>
+```
+
+django_study/urls.py
+```py
+urlpatterns = [
+    path('search/', views.search, name='search'),
+```
+
+**주소 창에서 URL 경로 바꾸어 보기**
+
+members/views.py
+```diff
+- return render(request, 'members.html')
+- return render(request, 'search.html')
+```
+```py
+return render(request, 'members.html', {'active_members': 'active'})
+return render(request, 'search.html', {'active_search': 'active'})
+```
+
+members/templates/include/nav.html
+```html
+<li><h2><a href="{% url 'members' %}" class="{{active_members}}">Members</a></h2></li>
+<li><h2><a href="{% url 'search' %}" class="{{active_search}}">Search</a></h2></li>
+```
+
+
+
+
+
+
+
 
 ## Database Setting
 https://docs.djangoproject.com/ko/2.1/ref/settings/#std:setting-DATABASES
