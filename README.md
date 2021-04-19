@@ -342,6 +342,77 @@ members/templates/include/nav.html
 <li><h2><a href="{% url 'search' %}" class="{{active_search}}">Search</a></h2></li>
 ```
 
+### Members 앱 Create
+members/views.py
+```py
+Members = []
+
+def members_create(request):
+    Members.append({
+      'name': request.POST['name'],
+      'age': request.POST['age'],
+    })
+    print('Done members_create', Members)
+    return redirect('members/')
+```
+
+django_study/urls.py
+```py
+urlpatterns = [
+    path('members_create', views.members_create, name='members_create'),
+```
+
+members/templates/members.html
+```diff
+- <div>
+-   <h3>Members</h3>
+-   <p>Contents</p>
+- </div>
+```
+```html
+<div>
+  <h3>Members</h3>
+  <hr class="d-block" />
+  <div>
+    <h4>Read</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Modify</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>홍길동</td>
+          <td>20</td>
+          <td>
+            <button>Update</button>
+            <button>Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr class="d-block" />
+  <form method="post" action="{% url 'members_create' %}">
+    {% csrf_token %}
+    <h4>Create</h4>
+    <input type="text" name="name" placeholder="Name" />
+    <input type="text" name="age" placeholder="Age" />
+    <button>Create</button>
+  </form>
+</div>
+```
+
+
+
+
+
+
+
+
 
 
 
