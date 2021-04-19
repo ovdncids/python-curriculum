@@ -35,6 +35,8 @@ https://docs.djangoproject.com/ko/2.1/faq/install/#faq-python-version-support
 https://www.djangoproject.com/download/
 ```sh
 pip install Django==3.2
+# OR
+pipenv install django
 ```
 
 ## Django 확인
@@ -48,15 +50,23 @@ print(django.get_version())
 
 ```sh
 python -m django --version
+# OR
+django-admin --version
 ```
 
 ## 프로젝트 생성
 https://docs.djangoproject.com/ko/2.1/intro/tutorial01/
 ```sh
-django-admin startproject django_tutorial
+django-admin startproject django_study
+cd django_study
 ```
 
-## .gitignore
+## GIT
+```sh
+git init
+```
+
+.gitignore
 ```gitignore
 .DS_Store
 
