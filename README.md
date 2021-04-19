@@ -103,7 +103,7 @@ members/views.py
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-def members(request):
+def members_read(request):
     return HttpResponse("Hello, world.")
 
 def root(request):
@@ -116,7 +116,7 @@ django_study/urls.py
 from members import views as views
 
 urlpatterns = [
-    path('members/', views.members, name='members'),
+    path('members/', views.members_read, name='members'),
     path('', views.root),
 ```
 
@@ -142,7 +142,7 @@ INSTALLED_APPS = [
 
 ### Members 앱 Markup
 members/templates/members.html
-```html
+```py
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -287,7 +287,7 @@ def search(request):
 ```
 
 members/templates/search.html
-```html
+```py
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -337,7 +337,7 @@ return render(request, 'search.html', {'active_search': 'active'})
 ```
 
 members/templates/include/nav.html
-```html
+```py
 <li><h2><a href="{% url 'members' %}" class="{{active_members}}">Members</a></h2></li>
 <li><h2><a href="{% url 'search' %}" class="{{active_search}}">Search</a></h2></li>
 ```
@@ -345,14 +345,14 @@ members/templates/include/nav.html
 ### Members 앱 Create
 members/views.py
 ```py
-Members = []
+members = []
 
 def members_create(request):
-    Members.append({
+    members.append({
       'name': request.POST['name'],
       'age': request.POST['age'],
     })
-    print('Done members_create', Members)
+    print('Done members_create', members)
     return redirect('members/')
 ```
 
@@ -369,7 +369,7 @@ members/templates/members.html
 -   <p>Contents</p>
 - </div>
 ```
-```html
+```py
 <div>
   <h3>Members</h3>
   <hr class="d-block" />
@@ -406,11 +406,123 @@ members/templates/members.html
 </div>
 ```
 
+### Members 앱 Read
+members/views.py
+```diff
+- members = []
+```
+```py
+members = [{
+    'name': '홍길동',
+    'age': 20
+}, {
+    'name': '춘향이',
+    'age': 16
+}]
+```
+```diff
+- return render(request, 'members.html', {'active_members': 'active'})
+```
+```py
+return render(request, 'members.html', {
+    'active_members': 'active',
+    'members': members,
+})
+```
 
+members/templates/members.html
+```diff
+- <tr>
+-   <td>홍길동</td>
+-   <td>20</td>
+-   <td>
+-     <button>Update</button>
+-     <button>Delete</button>
+-   </td>
+- </tr>
+```
+```py
+{% for member in members %}
+<tr>
+  <td>{{member.name}}</td>
+  <td>{{member.age}}</td>
+  <td>
+    <button>Update</button>
+    <button>Delete</button>
+  </td>
+</tr>
+{% endfor %}
+```
 
+### Members 앱 Update
+members/views.py
+```py
+def members_update(request, index):
+    members[index] = {
+      'name': request.POST['name'],
+      'age': request.POST['age'],
+    }
+    print('Done members_update', members)
+    return redirect('/members/')
+```
 
+django_study/urls.py
+```py
+urlpatterns = [
+    path('members_update/<int:index>', views.members_update, name='members_update'),
+```
 
+members/templates/members.html
+```diff
+- {% for member in members %}
+- <tr>
+-   <td>{{member.name}}</td>
+-   <td>{{member.age}}</td>
+-   <td>
+-     <button>Update</button>
+-     <button>Delete</button>
+-   </td>
+- </tr>
+- {% endfor %}
+```
+```py
+{% for member in members %}
+<form method="post">
+  {% csrf_token %}
+  <tr>
+    <td><input type="text" name="name" value="{{member.name}}" placeholder="Name" /></td>
+    <td><input type="text" name="age" value="{{member.age}}" placeholder="Age" /></td>
+    <td>
+      <button onclick=this.form.action='{% url "members_update" forloop.counter0 %}'>Update</button>
+      <button>Delete</button>
+    </td>
+  </tr>
+</form>
+{% endfor %}
+```
 
+### Members 앱 Delete
+members/views.py
+```py
+def members_delete(request, index):
+    del members[index]
+    print('Done members_delete', members)
+    return redirect('/members/')
+```
+
+django_study/urls.py
+```py
+urlpatterns = [
+    path('members_delete/<int:index>', views.members_delete, name='members_delete'),
+```
+
+members/templates/members.html
+```diff
+- <button>Delete</button>
+```
+```py
+<button onclick=this.form.action='{% url "members_delete" forloop.counter0 %}'>Delete</button>
+```
 
 
 
