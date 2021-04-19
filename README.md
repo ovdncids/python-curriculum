@@ -59,6 +59,7 @@ https://docs.djangoproject.com/ko/2.1/intro/tutorial01/
 ```sh
 django-admin startproject django_study
 cd django_study
+code .
 ```
 
 ## GIT
@@ -84,7 +85,6 @@ __pycache__
 
 # db.sqlite3
 db.sqlite3
-
 ```
 
 ## 서버 실행
@@ -92,40 +92,41 @@ db.sqlite3
 python manage.py runserver
 ```
 
-## Polls 앱 생성
+## Members 앱 생성
 ```sh
-python manage.py startapp polls
+python manage.py startapp members
 ```
 
-## Polls 앱 라우터 설정
-/polls/views.py
-```python
+### Members 앱 페이지 만들기
+/members/views.py
+```py
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("Hello, world.")
 
+def root(request):
+    return redirect('members/')
 ```
 
-/polls/urls.py
-```python
-from django.urls import path
-from . import views
+### Members 앱 페이지와 라우터 연결
+/django_study/urls.py
+```py
+from members import views as members
 
 urlpatterns = [
-    path('', views.index, name='index')
-]
-
+    path('members/', members.index),
+    path('', members.root),
 ```
 
-/django_tutorial/urls.py
+### Members 앱 페이지와 HTML 연결
+/members/views.py
 ```diff
-- from django.urls import path
-+ from django.urls import include, path
+- return HttpResponse("Hello, world.")
 ```
-
-```python
-    path('polls/', include('polls.urls')),
+```py
+return render(request, 'index.html')
 ```
 
 ## Database Setting
@@ -150,8 +151,8 @@ python이 32비트인지 64인지 확인 후에 mysqlclient-1.3.13-cp37-cp37m-wi
 pip install mysqlclient-1.3.13-cp37-cp37m-win32.whl
 ```
 
-/django_tutorial/settings.py
-```python
+/django_study/settings.py
+```py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -172,41 +173,41 @@ python manage.py migrate
 
 # mysql>
 SHOW DATABASES;
-USE DJANGO_TUTORIAL;
+USE django_study;
 SHOW TABLES;
 # mysql>
 ```
 
-## Polls 모델 생성
-/polls/models.py
-```python
+## Members 모델 생성
+/members/models.py
+```py
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-      # models.CASCADE는 부모인 Question 레코드가 지워지면 자식인 Choice 레코드 모두를 지우겠다는 뜻이다.
+        # models.CASCADE는 부모인 Question 레코드가 지워지면 자식인 Choice 레코드 모두를 지우겠다는 뜻이다.
     choice_text = models.CharField(max_length=200)
     votes = models.IntegerField(default=0)
 
 ```
 
-## Polls 모델 활성화
-/django_tutorial/settings.py
-```python
+## Members 모델 활성화
+/django_study/settings.py
+```py
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
+    'members.apps.MembersConfig',
 ```
 
 migrations 등록
 ```sh
-python manage.py makemigrations polls
+python manage.py makemigrations members
 ```
 
 실행될 SQL문 확인
 ```sh
-python manage.py sqlmigrate polls 0001
+python manage.py sqlmigrate members 0001
 ```
 
 Migrate 실행
@@ -216,12 +217,12 @@ python manage.py migrate
 
 ## Terminal에서 django 명령 실행 시키기
 ```sh
-# /django_tutorial/settings.py 파일을 import 하고 python을 실행한 것과 같다.
+# /django_study/settings.py 파일을 import 하고 python을 실행한 것과 같다.
 python manage.py shell
 ```
 
-```python
-from polls.models import Choice, Question
+```py
+from members.models import Choice, Question
 
 # question 개수 0개
 Question.objects.all()
@@ -233,7 +234,7 @@ q
 q.save() # DB 해당 레코드 생성
 
 # mysql>
-SELECT * FROM polls_question;
+SELECT * FROM members_question;
 # mysql>
 
 q.id
@@ -243,16 +244,16 @@ q.question_text = "What's up?"
 q.save()
 
 # mysql>
-SELECT * FROM polls_question;
+SELECT * FROM members_question;
 # mysql>
 
 # question 개수 1개
 Question.objects.all()
 ```
 
-### Polls 모델에서 사용가능한 함수 추가
-/polls/models.py
-```python
+### Members 모델에서 사용가능한 함수 추가
+/members/models.py
+```py
 import datetime
 from django.utils import timezone
 
@@ -274,8 +275,8 @@ class Choice(models.Model):
 python manage.py shell
 ```
 
-```python
-from polls.models import Choice, Question
+```py
+from members.models import Choice, Question
 
 Question.objects.all()
 Question.objects.filter(id=1)
@@ -295,7 +296,7 @@ q.choice_set.all()
 q.choice_set.create(choice_text='Not much', votes=0)
 
 # mysql>
-SELECT * FROM polls_choice;
+SELECT * FROM members_choice;
 # mysql>
 
 q.choice_set.create(choice_text='The sky', votes=0)
@@ -310,7 +311,7 @@ c = q.choice_set.filter(choice_text__startswith='Just hacking')
 c.delete() # DB 해당 레코드 삭제
 ```
 
-## Polls Admin에 등록
+## Members Admin에 등록
 
 ### Admin user 등록
 ```sh
@@ -321,8 +322,8 @@ python manage.py createsuperuser
 SELECT * FROM auth_user;
 ```
 
-/polls/admin.py
-```python
+/members/admin.py
+```py
 from .models import Question
 
 admin.site.register(Question)
@@ -330,9 +331,9 @@ admin.site.register(Question)
 
 http://127.0.0.1:8000/admin
 
-## Polls views.py 라우터 등록
-/polls/views.py
-```python
+## Members views.py 라우터 등록
+/members/views.py
+```py
 def detail(request, question_id):
     return HttpResponse("You're lokking at question %s." % question_id)
 
@@ -345,24 +346,24 @@ def vote(request, question_id):
 
 ```
 
-/polls/urls.py
-```python
+/members/urls.py
+```py
 urlpatterns = [
-    # ex: /polls/
+    # ex: /members/
     path('', views.index, name='index'),
-    # ex: /polls/5/
+    # ex: /members/5/
     path('<int:question_id>/', views.detail, name='detail'),
-    # ex: /polls/5/results/
+    # ex: /members/5/results/
     path('<int:question_id>/results/', views.results, name='results'),
-    # ex: /polls/5/vote/
+    # ex: /members/5/vote/
     path('<int:question_id>/vote/', views.vote, name='vote'),
 ]
 
 ```
 
-## Polls template view 적용
-/polls/views.py
-```python
+## Members template view 적용
+/members/views.py
+```py
 from django.template import loader
 from .models import Question
 
@@ -371,7 +372,7 @@ def index(request):
         # '-pub_date' = 내림차순(DESC), 'pub_date' = 오름차순(ASC)
         # [:5] = 정렬순서에서 5개까지 레코드를 읽는다.
         # [0] = 첫번째 레코드만 읽는다.
-    template = loader.get_template('polls/index.html')
+    template = loader.get_template('members/index.html')
     context = {
         'latest_question_list': lastes_question_list,
     }
@@ -379,32 +380,32 @@ def index(request):
 
 ```
 
-/polls/templates/polls/index.html
-```python
+/members/templates/members/index.html
+```py
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+        <li><a href="/members/{{ question.id }}/">{{ question.question_text }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>No members are available.</p>
 {% endif %}
 
 ```
 
-## Polls shortcuts render 적용
-/polls/views.py
+## Members shortcuts render 적용
+/members/views.py
 ```diff
 - from django.template import loader
-- template = loader.get_template('polls/index.html')
+- template = loader.get_template('members/index.html')
 - return HttpResponse(template.render(context, request))
-+ return render(request, 'polls/index.html', context)
++ return render(request, 'members/index.html', context)
 ```
 
-## Polls http404
-/polls/views.py
-```python
+## Members http404
+/members/views.py
+```py
 from django.http import Http404
 
 def detail(request, question_id):
@@ -412,11 +413,11 @@ def detail(request, question_id):
         question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
         raise Http404('Question does not exist')
-    return render(request, 'polls/detail.html', {'question': question})
+    return render(request, 'members/detail.html', {'question': question})
 ```
 
-/polls/template/polls/detail.html
-```python
+/members/template/members/detail.html
+```py
 <h1>{{ question.question_text }}</h1>
 <ul>
 {% for choice in question.choice_set.all %}
@@ -426,8 +427,8 @@ def detail(request, question_id):
 
 ```
 
-## Polls shortcuts 404
-/polls/views.py
+## Members shortcuts 404
+/members/views.py
 ```diff
 - from django.shortcuts import render
 + from django.shortcuts import get_object_or_404, render
@@ -440,41 +441,41 @@ def detail(request, question_id):
 + question = get_object_or_404(Question, pk=question_id)
 ```
 
-## Polls remove URL: /polls
-/polls/template/index.html
+## Members remove URL: /members
+/members/template/index.html
 ```diff
-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+- <li><a href="/members/{{ question.id }}/">{{ question.question_text }}</a></li>
 + <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
-/polls/urls.py
+/members/urls.py
 ```diff
 - path('<int:question_id>/', views.detail, name='detail'),
 + path('detail/<int:question_id>/', views.detail, name='detail'),
     # 확인 후에 path('<int:question_id>/', views.detail, name='detail'), 되돌린다.
 ```
 
-## Polls route namespace 적용
-/polls/urls.py
-```python
-app_name = 'polls'
+## Members route namespace 적용
+/members/urls.py
+```py
+app_name = 'members'
 # urlpatterns = [ ...
 ```
 
-/polls/template/index.html
+/members/template/index.html
 ```diff
 - <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li>
-+ <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
++ <li><a href="{% url 'members:detail' question.id %}">{{ question.question_text }}</a></li>
 ```
 
-## Polls detail form 만들기
-/polls/template/detail.html
-```python
+## Members detail form 만들기
+/members/template/detail.html
+```py
 <h1>{{ question.question_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
+<form action="{% url 'members:vote' question.id %}" method="post">
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
@@ -485,8 +486,8 @@ app_name = 'polls'
 
 ```
 
-## Polls vote, results 만들기
-/polls/views.py
+## Members vote, results 만들기
+/members/views.py
 ```diff
 - from django.http import HttpResponse
 + from django.http import HttpResponseRedirect
@@ -494,10 +495,10 @@ app_name = 'polls'
 - from .models import Question
 + from .models import Choice, Question
 ```
-```python
+```py
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/results.html', {'question': question})
+    return render(request, 'members/results.html', {'question': question})
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
@@ -505,19 +506,19 @@ def vote(request, question_id):
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay the question voting form.
-        return render(request, 'polls/detail.html', {
+        return render(request, 'members/detail.html', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('members:results', args=(question.id,)))
 
 ```
 
-/polls/template/polls/results.html
-```python
+/members/template/members/results.html
+```py
 <h1>{{ question.question_text }}</h1>
 
 <ul>
@@ -526,14 +527,14 @@ def vote(request, question_id):
 {% endfor %}
 </ul>
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<a href="{% url 'members:detail' question.id %}">Vote again?</a>
 
 ```
 
-## Polls generic view
-/polls/views.py 안에 함수를 클래스화 한다.
+## Members generic view
+/members/views.py 안에 함수를 클래스화 한다.
 
-/polls/urls.py
+/members/urls.py
 ```diff
 - path('', views.index, name='index'),
 + path('', views.IndexView.as_view(), name='index'),
@@ -545,8 +546,8 @@ def vote(request, question_id):
 + path('<int:pk>/results/', views.ResultsView.as_view(), name='results'),
 ```
 
-/polls/views.py
-```python
+/members/views.py
+```py
 from django.views import generic
 
 # def index(request):
@@ -554,7 +555,7 @@ from django.views import generic
 # def results(request, question_id):
 
 class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
+    template_name = 'members/index.html'
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
@@ -562,20 +563,20 @@ class IndexView(generic.ListView):
         return Question.objects.order_by('-pub_date')[:5]
 
 class DetailView(generic.DeleteView):
-    template_name = 'polls/detail.html'
+    template_name = 'members/detail.html'
     model = Question
 
 class ResultsView(generic.DetailView):
-    template_name = 'polls/results.html'
+    template_name = 'members/results.html'
     model = Question
 
 ```
 
 [generic view 예시](https://docs.djangoproject.com/ko/2.1/ref/class-based-views/generic-display/#listview)
 
-## Polls make test bug
-/polls/tests.py
-```python
+## Members make test bug
+/members/tests.py
+```py
 import datetime
 from django.utils import timezone
 from .models import Question
@@ -594,11 +595,11 @@ class QuestionModelTests(TestCase):
 
 실행
 ```sh
-python manage.py test polls
+python manage.py test members
 ```
 
-## Polls fixup was_published_recently
-/polls/models.py
+## Members fixup was_published_recently
+/members/models.py
 ```diff
 - return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 + now = timezone.now()
@@ -607,12 +608,12 @@ python manage.py test polls
 
 실행
 ```sh
-python manage.py test polls
+python manage.py test members
 ```
 
-## Polls test more
-/polls/tests.py
-```python
+## Members test more
+/members/tests.py
+```py
     def test_was_published_recently_with_old_question(self):
         """
         was_published_recently() returns False for questions whose pub_date
@@ -635,12 +636,12 @@ python manage.py test polls
 
 실행
 ```sh
-python manage.py test polls
+python manage.py test members
 ```
 
-## Polls view 개선시키기
-/polls/views.py
-```python
+## Members view 개선시키기
+/members/views.py
+```py
 from django.utils import timezone
 
 class IndexView(generic.ListView):
@@ -665,8 +666,8 @@ class DetailView(generic.DetailView):
 
 [__lte 또는 다른 조건 키워드](http://brownbears.tistory.com/63)
 
-/polls/tests.py
-```python
+/members/tests.py
+```py
 from django.urls import reverse
 
 def create_question(question_text, days):
@@ -683,9 +684,9 @@ class QuestionIndexViewTests(TestCase):
         """
         If no questions exist, an appropriate message is displayed.
         """
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse('members:index'))
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "No polls are available.")
+        self.assertContains(response, "No members are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
     def test_past_question(self):
@@ -694,7 +695,7 @@ class QuestionIndexViewTests(TestCase):
         index page.
         """
         create_question(question_text="Past question.", days=-30)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse('members:index'))
         self.assertQuerysetEqual(
             response.context['latest_question_list'],
             ['<Question: Past question.>']
@@ -706,8 +707,8 @@ class QuestionIndexViewTests(TestCase):
         the index page.
         """
         create_question(question_text="Future question.", days=30)
-        response = self.client.get(reverse('polls:index'))
-        self.assertContains(response, "No polls are available.")
+        response = self.client.get(reverse('members:index'))
+        self.assertContains(response, "No members are available.")
         self.assertQuerysetEqual(response.context['latest_question_list'], [])
 
     def test_future_question_and_past_question(self):
@@ -717,7 +718,7 @@ class QuestionIndexViewTests(TestCase):
         """
         create_question(question_text="Past question.", days=-30)
         create_question(question_text="Future question.", days=30)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse('members:index'))
         self.assertQuerysetEqual(
             response.context['latest_question_list'],
             ['<Question: Past question.>']
@@ -729,7 +730,7 @@ class QuestionIndexViewTests(TestCase):
         """
         create_question(question_text="Past question 1.", days=-30)
         create_question(question_text="Past question 2.", days=-5)
-        response = self.client.get(reverse('polls:index'))
+        response = self.client.get(reverse('members:index'))
         self.assertQuerysetEqual(
             response.context['latest_question_list'],
             ['<Question: Past question 2.>', '<Question: Past question 1.>']
@@ -742,7 +743,7 @@ class QuestionDetailViewTests(TestCase):
         returns a 404 not found.
         """
         future_question = create_question(question_text='Future question.', days=5)
-        url = reverse('polls:detail', args=(future_question.id,))
+        url = reverse('members:detail', args=(future_question.id,))
         response = self.client.get(url)
         self.assertEqual(response.status_code, 404)
 
@@ -752,25 +753,25 @@ class QuestionDetailViewTests(TestCase):
         displays the question's text.
         """
         past_question = create_question(question_text='Past Question.', days=-5)
-        url = reverse('polls:detail', args=(past_question.id,))
+        url = reverse('members:detail', args=(past_question.id,))
         response = self.client.get(url)
         self.assertContains(response, past_question.question_text)
 
 ```
 
-## Polls static assetes
-/polls/templates/polls/index.html
-```python
+## Members static assetes
+/members/templates/members/index.html
+```py
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'members/style.css' %}">
 ```
 
-/polls/static/polls/style.css
+/members/static/members/style.css
 ```css
 body {
     background: white url("images/background.gif") no-repeat;
 }
-/* 이미지 파일 /polls/static/polls/images/background.gif */
+/* 이미지 파일 /members/static/members/images/background.gif */
 li a {
     color: green;
 }
@@ -779,9 +780,9 @@ li a {
 
 재시작 하고 확인
 
-## Polls Admin fields order change
-/polls/admin.py
-```python
+## Members Admin fields order change
+/members/admin.py
+```py
 class QuestionAdmin(admin.ModelAdmin):
     fields = ['pub_date', 'question_text']
 
@@ -793,7 +794,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 Admin Question 확인
 
-```python
+```py
 class QuestionAdmin(admin.ModelAdmin):
     # fields = ['pub_date', 'question_text']
     fieldsets = [
@@ -805,7 +806,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 Admin Question 확인
 
-## Polls Admin register Choice
+## Members Admin register Choice
 ```diff
 - from .models import Question
 + from .models import Choice, Question
@@ -814,9 +815,9 @@ admin.site.register(Choice)
 
 ```
 
-## Polls Admin Question에서 Choice 등록 하기
-/polls/admin.py
-```python
+## Members Admin Question에서 Choice 등록 하기
+/members/admin.py
+```py
 # class ChoiceInline(admin.StackedInline):
 class ChoiceInline(admin.TabularInline):
     model = Choice
@@ -830,9 +831,9 @@ class QuestionAdmin(admin.ModelAdmin):
 - admin.site.register(Choice)
 ```
 
-## Polls Admin Question change list
-/polls/admin.py
-```python
+## Members Admin Question change list
+/members/admin.py
+```py
 class QuestionAdmin(admin.ModelAdmin):
     # ...
     list_display = ('question_text', 'pub_date', 'was_published_recently')
@@ -840,8 +841,8 @@ class QuestionAdmin(admin.ModelAdmin):
     search_fields = ['question_text']
 ```
 
-/polls/models.py
-```python
+/members/models.py
+```py
 class Question(models.Model):
     # ...
     was_published_recently.admin_order_field = 'pub_date'
@@ -850,7 +851,7 @@ class Question(models.Model):
 ```
 
 ## Admin change template path
-/django_tutorial/settings.py
+/django_study/settings.py
 ```diff
 TEMPLATES = [
     {
