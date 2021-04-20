@@ -522,9 +522,13 @@ from members.models import Members
 
 # Create
 member = Members(name='홍길동', age='20')
+member
 member.save()
 member = Members(name='춘향이', age='16')
 member.save()
+
+# 현재 DB의 정보 받아 오기
+Members.objects.all()
 
 # Read
 member = Members.objects.get(id=1)
@@ -540,11 +544,11 @@ member.save()
 member.delete()
 
 # Search Members
-Members.objects.all()
-Members.objects.filter(name=춘향이)
-Members.objects.filter(name__contains=향)
+Members.objects.filter(name='춘향이')
+Members.objects.filter(name__contains='향').count()
 ```
 
+* ❕ `.save()` 또는 `.delete()` 메소드를 실행해야 DB에 적용됨
 * VSCode에서 SQLite 설치
 ```
 Ctrl(Command) + p
@@ -624,8 +628,6 @@ def members_delete(request, index):
     return redirect('/members/')
 ```
 
-Members.objects.filter(name='홍').count()
-
 ### Search Database
 members/views.py
 ```diff
@@ -645,39 +647,39 @@ def search(request):
 members/templates/search.html
 ```diff
 - <div>
--   <h3>Search</h3>
--   <p>Contents</p>
+-     <h3>Search</h3>
+-     <p>Contents</p>
 - </div>
 ```
 ```py
 <div>
-  <h3>Search</h3>
-  <hr class="d-block" />
-  <div>
-    <form>
-      <input type="text" placeholder="Search" name="q" value="{{q}}" />
-      <button>Search</button>
-    </form>
-  </div>
-  <hr class="d-block" />
-  <div>
-    <table class="table-search">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for member in members %}
-        <tr>
-          <td>{{member.name}}</td>
-          <td>{{member.age}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
+    <h3>Search</h3>
+    <hr class="d-block" />
+    <div>
+        <form>
+            <input type="text" placeholder="Search" name="q" value="{{q}}" />
+            <button>Search</button>
+        </form>
+    </div>
+    <hr class="d-block" />
+    <div>
+        <table class="table-search">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in members %}
+                <tr>
+                    <td>{{member.name}}</td>
+                    <td>{{member.age}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 ```
 
@@ -693,4 +695,4 @@ from .models import Members
 admin.site.register(Members)
 ```
 
-http://127.0.0.1/:8000/admin
+http://127.0.0.1:8000/admin
