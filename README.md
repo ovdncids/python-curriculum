@@ -111,36 +111,36 @@ members/templates/members.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Django study</title>
-  {% load static %}
-  <link href="{% static 'index.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django study</title>
+    {% load static %}
+    <link href="{% static 'index.css' %}" rel="stylesheet">
 </head>
 <body>
-  <div>
-    <header>
-      <h1>Django study</h1>
-    </header>
-    <hr />
-    <div class="container">
-      <nav class="nav">
-        <ul>
-          <li><h2>Members</h2></li>
-          <li><h2>Search</h2></li>
-        </ul>
-      </nav>
-      <hr />
-      <section class="contents">
-        <div>
-          <h3>Members</h3>
-          <p>Contents</p>
+    <div>
+        <header>
+            <h1>Django study</h1>
+        </header>
+        <hr />
+        <div class="container">
+            <nav class="nav">
+                <ul>
+                    <li><h2>Members</h2></li>
+                    <li><h2>Search</h2></li>
+                </ul>
+            </nav>
+            <hr />
+            <section class="contents">
+                <div>
+                    <h3>Members</h3>
+                    <p>Contents</p>
+                </div>
+            </section>
+            <hr />
         </div>
-      </section>
-      <hr />
+        <footer>Copyright</footer>
     </div>
-    <footer>Copyright</footer>
-  </div>
 </body>
 </html>
 ```
@@ -148,67 +148,67 @@ members/templates/members.html
 members/static/index.css
 ```css
 * {
-  margin: 0;
-  font-family: -apple-system,BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 a:link, a:visited {
-  text-decoration: none;
-  color: black;
+    text-decoration: none;
+    color: black;
 }
 a.active {
-  color: white;
+    color: white;
 }
 hr {
-  display: none;
+    display: none;
 }
 h1, footer, .nav ul {
-  padding: 0.5rem;
+    padding: 0.5rem;
 }
 h4, li {
-  margin: 0.5rem 0;
+    margin: 0.5rem 0;
 }
 hr {
-  margin: 1rem 0;
+    margin: 1rem 0;
 }
 hr {
-  border: 0;
-  border-top: 1px solid #ccc;
+    border: 0;
+    border-top: 1px solid #ccc;
 }
 input[type=text] {
-  width: 120px;
+    width: 120px;
 }
 
 .d-block {
-  display: block;
+    display: block;
 }
 .container {
-  display: flex;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+    display: flex;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 .nav {
-  min-height: 300px;
-  background-color: #4285F4;
+    min-height: 300px;
+    background-color: #4285F4;
 }
 .nav ul {
-  list-style: none;
+    list-style: none;
 }
 .contents {
-  flex: 1;
-  padding: 1rem;
+    flex: 1;
+    padding: 1rem;
 }
 
 .table-search {
-  border: 1px solid rgb(118, 118, 118);
-  border-collapse: collapse;
-  text-align: center;
+    border: 1px solid rgb(118, 118, 118);
+    border-collapse: collapse;
+    text-align: center;
 }
 .table-search th, .table-search td {
-  padding: 0.2rem;
+    padding: 0.2rem;
 }
 .table-search td {
-  border-top: 1px solid rgb(118, 118, 118);
-  min-width: 100px;
+    border-top: 1px solid rgb(118, 118, 118);
+    min-width: 100px;
 }
 ```
 
@@ -221,14 +221,14 @@ input[type=text] {
 members/templates/members.html
 ```diff
 - <header>
--   <h1>Django study</h1>
+-     <h1>Django study</h1>
 - </header>
 
 - <nav class="nav">
--   <ul>
--     <li><h2>Members</h2></li>
--     <li><h2>Search</h2></li>
--   </ul>
+-     <ul>
+-         <li><h2>Members</h2></li>
+-         <li><h2>Search</h2></li>
+-     </ul>
 - </nav>
 
 - <footer>Copyright</footer>
@@ -240,7 +240,7 @@ members/templates/members.html
 members/templates/include/header.html
 ```html
 <header>
-  <h1>Django study</h1>
+    <h1>Django study</h1>
 </header>
 ```
 
@@ -256,29 +256,29 @@ members/templates/search.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Django study</title>
-  {% load static %}
-  <link href="{% static 'index.css' %}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django study</title>
+    {% load static %}
+    <link href="{% static 'index.css' %}" rel="stylesheet">
 </head>
 <body>
-  <div>
-    {% include "include/header.html" %}
-    <hr />
-    <div class="container">
-      {% include "include/nav.html" %}
-      <hr />
-      <section class="contents">
-        <div>
-          <h3>Search</h3>
-          <p>Contents</p>
+    <div>
+        {% include "include/header.html" %}
+        <hr />
+        <div class="container">
+            {% include "include/nav.html" %}
+            <hr />
+            <section class="contents">
+                <div>
+                    <h3>Search</h3>
+                    <p>Contents</p>
+                </div>
+            </section>
+            <hr />
         </div>
-      </section>
-      <hr />
+        {% include "include/footer.html" %}
     </div>
-    {% include "include/footer.html" %}
-  </div>
 </body>
 </html>
 ```
@@ -330,44 +330,44 @@ urlpatterns = [
 members/templates/members.html
 ```diff
 - <div>
--   <h3>Members</h3>
--   <p>Contents</p>
+-     <h3>Members</h3>
+-     <p>Contents</p>
 - </div>
 ```
 ```py
 <div>
-  <h3>Members</h3>
-  <hr class="d-block" />
-  <div>
-    <h4>Read</h4>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Modify</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>홍길동</td>
-          <td>20</td>
-          <td>
-            <button>Update</button>
-            <button>Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <hr class="d-block" />
-  <form method="post" action="{% url 'members_create' %}">
-    {% csrf_token %}
-    <h4>Create</h4>
-    <input type="text" name="name" placeholder="Name" />
-    <input type="text" name="age" placeholder="Age" />
-    <button>Create</button>
-  </form>
+    <h3>Members</h3>
+    <hr class="d-block" />
+    <div>
+        <h4>Read</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>홍길동</td>
+                    <td>20</td>
+                    <td>
+                        <button>Update</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr class="d-block" />
+    <form method="post" action="{% url 'members_create' %}">
+        {% csrf_token %}
+        <h4>Create</h4>
+        <input type="text" name="name" placeholder="Name" />
+        <input type="text" name="age" placeholder="Age" />
+        <button>Create</button>
+    </form>
 </div>
 ```
 
@@ -398,23 +398,23 @@ return render(request, 'members.html', {
 members/templates/members.html
 ```diff
 - <tr>
--   <td>홍길동</td>
--   <td>20</td>
--   <td>
--     <button>Update</button>
--     <button>Delete</button>
--   </td>
+-     <td>홍길동</td>
+-     <td>20</td>
+-     <td>
+-         <button>Update</button>
+-         <button>Delete</button>
+-     </td>
 - </tr>
 ```
 ```py
 {% for member in members %}
 <tr>
-  <td>{{member.name}}</td>
-  <td>{{member.age}}</td>
-  <td>
-    <button>Update</button>
-    <button>Delete</button>
-  </td>
+    <td>{{member.name}}</td>
+    <td>{{member.age}}</td>
+    <td>
+        <button>Update</button>
+        <button>Delete</button>
+    </td>
 </tr>
 {% endfor %}
 ```
@@ -441,27 +441,27 @@ members/templates/members.html
 ```diff
 - {% for member in members %}
 - <tr>
--   <td>{{member.name}}</td>
--   <td>{{member.age}}</td>
--   <td>
--     <button>Update</button>
--     <button>Delete</button>
--   </td>
+-     <td>{{member.name}}</td>
+-     <td>{{member.age}}</td>
+-     <td>
+-         <button>Update</button>
+-         <button>Delete</button>
+-     </td>
 - </tr>
 - {% endfor %}
 ```
 ```py
 {% for member in members %}
 <form method="post">
-  {% csrf_token %}
-  <tr>
-    <td><input type="text" name="name" value="{{member.name}}" placeholder="Name" /></td>
-    <td><input type="text" name="age" value="{{member.age}}" placeholder="Age" /></td>
-    <td>
-      <button onclick=this.form.action='{% url "members_update" forloop.counter0 %}'>Update</button>
-      <button>Delete</button>
-    </td>
-  </tr>
+    {% csrf_token %}
+    <tr>
+        <td><input type="text" name="name" value="{{member.name}}" placeholder="Name" /></td>
+        <td><input type="text" name="age" value="{{member.age}}" placeholder="Age" /></td>
+        <td>
+            <button onclick=this.form.action='{% url "members_update" forloop.counter0 %}'>Update</button>
+            <button>Delete</button>
+        </td>
+    </tr>
 </form>
 {% endfor %}
 ```
@@ -626,7 +626,7 @@ def members_delete(request, index):
 
 Members.objects.filter(name='홍').count()
 
-### Search 페이지 만들기
+### Search Database
 members/views.py
 ```diff
 - def search(request):
@@ -693,4 +693,4 @@ from .models import Members
 admin.site.register(Members)
 ```
 
-http://localhost:8000/admin
+http://127.0.0.1/:8000/admin
