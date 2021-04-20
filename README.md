@@ -1,31 +1,3 @@
-<!-- # Python
-
-## Windows 설치
-https://docs.djangoproject.com/ko/2.1/howto/windows/
-
-## Homebrew 설치
-https://brew.sh/index_ko
-```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-
-## Python3 설치
-```sh
-brew install python3
-```
-
-## pip (Python Index Package) 설치
-https://pip.pypa.io/en/stable/installing/#upgrading-pip
-```sh
-# pip 버전 올리기 (현재 버전 18.1)
-python3 -m pip install -U pip
-```
-
-## pylint 설치
-```sh
-python3 -m pip install -U pylint --user
-``` -->
-
 # Django
 
 ## Django 추천 버전
@@ -41,13 +13,6 @@ pipenv install django
 
 ## Django 확인
 https://docs.djangoproject.com/ko/2.1/intro/install/
-```sh
-python
->>>
-import django
-print(django.get_version())
-```
-
 ```sh
 python -m django --version
 # OR
@@ -555,9 +520,6 @@ python manage.py shell
 ```py
 from members.models import Members
 
-# All Members
-Members.objects.all()
-
 # Create
 member = Members(name='홍길동', age='20')
 member.save()
@@ -576,6 +538,11 @@ member.save()
 
 # Delete
 member.delete()
+
+# Search Members
+Members.objects.all()
+Members.objects.filter(name=춘향이)
+Members.objects.filter(name__contains=향)
 ```
 
 * VSCode에서 SQLite 설치
@@ -656,3 +623,74 @@ def members_delete(request, index):
     print('Done members_delete', member)
     return redirect('/members/')
 ```
+
+Members.objects.filter(name='홍').count()
+
+### Search 페이지 만들기
+members/views.py
+```diff
+- def search(request):
+```
+```py
+def search(request):
+    q = request.GET.get('q', '')
+    print(q)
+    return render(request, 'search.html', {
+      'active_search': 'active',
+      'q': q,
+      'members': Members.objects.filter(name__contains=q),
+    })
+```
+
+members/templates/search.html
+```diff
+- <div>
+-   <h3>Search</h3>
+-   <p>Contents</p>
+- </div>
+```
+```py
+<div>
+  <h3>Search</h3>
+  <hr class="d-block" />
+  <div>
+    <form>
+      <input type="text" placeholder="Search" name="q" value="{{q}}" />
+      <button>Search</button>
+    </form>
+  </div>
+  <hr class="d-block" />
+  <div>
+    <table class="table-search">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for member in members %}
+        <tr>
+          <td>{{member.name}}</td>
+          <td>{{member.age}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+```
+
+## Admin 페이지 만들기
+```sh
+python manage.py createsuperuser
+```
+
+members/admin.py
+```py
+from .models import Members
+
+admin.site.register(Members)
+```
+
+http://localhost:8000/admin
