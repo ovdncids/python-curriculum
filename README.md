@@ -1,8 +1,5 @@
 # Django
 
-## Django 추천 버전
-https://docs.djangoproject.com/ko/2.1/faq/install/#faq-python-version-support
-
 ## Django 설치
 https://www.djangoproject.com/download/
 ```sh
