@@ -192,7 +192,7 @@ todos/templates/edit.html
                 </tr>
             </tbody>
         </table>
-        <button type="submit">작성하기</button>
+        <button type="submit">수정하기</button>
     </form>
 </body>
 </html>
