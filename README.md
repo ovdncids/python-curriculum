@@ -500,6 +500,8 @@ class Members(models.Model):
 ### Members Database Migration
 ```sh
 python manage.py makemigrations members
+# Migration 적용 확인
+python manage.py showmigrations members
 ```
 * members/migrations/0001_initial.py 파일이 생성됨
 
