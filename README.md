@@ -47,6 +47,10 @@ __pycache__
 
 # db.sqlite3
 db.sqlite3
+
+# pipenv
+Pipfile
+Pipfile.lock
 ```
 
 ## 서버 실행
@@ -489,7 +493,7 @@ members/templates/members.html
 ## Members Database 생성
 members/models.py
 ```py
-class Members(models.Model):
+class Member(models.Model):
     name = models.CharField(max_length=200)
     age = models.IntegerField(default=0)
 
@@ -500,13 +504,13 @@ class Members(models.Model):
 ### Members Database Migration
 ```sh
 python manage.py makemigrations members
-# Migration 적용 확인
-python manage.py showmigrations members
 ```
 * members/migrations/0001_initial.py 파일이 생성됨
 
 ```sh
 python manage.py migrate
+# Migration 적용 확인
+python manage.py showmigrations members
 ```
 * `members/migrations/0001_initial.py`을 바탕으로 Database정보를 `db.sqlite3` 파일에 입력함
 * ❕ 만약 Migration 도중 에러가 난다면 `db.sqlite3` 또는 `members/migrations/0001_initial.py` 파일을 지우고 다시 실행 해야함
@@ -517,20 +521,20 @@ python manage.py migrate
 python manage.py shell
 ```
 ```py
-from members.models import Members
+from members.models import Member
 
 # Create
-member = Members(name='홍길동', age='20')
+member = Member(name='홍길동', age='20')
 member
 member.save()
-member = Members(name='춘향이', age='16')
+member = Member(name='춘향이', age='16')
 member.save()
 
 # 현재 DB의 정보 받아 오기
-Members.objects.all()
+Member.objects.all()
 
 # Read
-member = Members.objects.get(id=1)
+member = Member.objects.get(id=1)
 member.name
 member.age
 
@@ -543,8 +547,8 @@ member.save()
 member.delete()
 
 # Search Members
-Members.objects.filter(name='춘향이')
-Members.objects.filter(name__contains='향').count()
+Member.objects.filter(name='춘향이')
+Member.objects.filter(name__contains='향').count()
 ```
 
 * ❕ `.save()` 또는 `.delete()` 메소드를 실행해야 DB에 적용됨
@@ -570,12 +574,12 @@ members/views.py
 - }]
 ```
 ```py
-from .models import Members
+from .models import Member
 ```
 ```diff
 def members_read(request):
 -   'members': members,
-+   'members': Members.objects.all(),
++   'members': Member.objects.all(),
 ```
 
 ### Members Database Create
@@ -585,11 +589,11 @@ members/views.py
 ```
 ```py
 def members_create(request):
-    id = Members.objects.create(
+    id = Member.objects.create(
       name = request.POST['name'],
       age = request.POST['age'],
     )
-    print('Done members_create', Members.objects.get(id=id.pk))
+    print('Done members_create', Member.objects.get(id=id.pk))
     return redirect('members/')
 ```
 
@@ -600,7 +604,7 @@ members/views.py
 ```
 ```py
 def members_update(request, index):
-    member = Members.objects.get(id=index)
+    member = Member.objects.get(id=index)
     member.name = request.POST['name']
     member.age = request.POST['age']
     member.save()
@@ -621,7 +625,7 @@ members/views.py
 ```
 ```py
 def members_delete(request, index):
-    member = Members.objects.get(id=index)
+    member = Member.objects.get(id=index)
     member.delete()
     print('Done members_delete', member)
     return redirect('/members/')
@@ -639,7 +643,7 @@ def search(request):
     return render(request, 'search.html', {
       'active_search': 'active',
       'q': q,
-      'members': Members.objects.filter(name__contains=q),
+      'members': Member.objects.filter(name__contains=q),
     })
 ```
 
@@ -689,9 +693,9 @@ python manage.py createsuperuser
 
 members/admin.py
 ```py
-from .models import Members
+from .models import Member
 
-admin.site.register(Members)
+admin.site.register(Member)
 ```
 
 http://127.0.0.1:8000/admin
