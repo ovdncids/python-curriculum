@@ -1,5 +1,12 @@
 # Django
 
+## 자주쓰는 명령어
+```py
+python manage.py runserver
+python manage.py makemigrations
+python manage.py migrate
+```
+
 ## Django 설치
 https://www.djangoproject.com/download/
 ```sh
