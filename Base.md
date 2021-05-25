@@ -9,8 +9,8 @@ base.html
     <title>Title</title>
     {% load static %}
     <link href="{% static 'base.css' %}" rel="stylesheet">
-    {% block css %}
-    {% endblock css %}
+    {% block static %}
+    {% endblock static %}
 </head>
 <body>
     <div class="wrap">
@@ -25,9 +25,9 @@ home.py
 ```py
 {% extends 'base.html' %}
 
-{% block css %}{% load static %}
+{% block static %}{% load static %}
 <!-- <link href="{% static 'home.css' %}" rel="stylesheet"> -->
-{% endblock css %}
+{% endblock static %}
 
 {% block content %}
 Home
