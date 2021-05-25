@@ -28,3 +28,32 @@ smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepte
 https://myaccount.google.com/lesssecureapps
   # 보안 수준이 낮은 앱 허용: 사용
 ```
+
+## Django
+urls.py
+```py
+urlpatterns = [
+    path('email/opt', views.email_opt, name='email_opt'),
+]
+```
+views.py
+```py
+from django.http import HttpResponse
+import random
+
+def email_opt(request):
+    try:
+        opt = str(random.randrange(0, 10))
+        opt += str(random.randrange(0, 10))
+        opt += str(random.randrange(0, 10))
+        opt += str(random.randrange(0, 10))
+        opt += str(random.randrange(0, 10))
+        opt += str(random.randrange(0, 10))
+        print(opt)
+        email = EmailMessage('OTP Code Message', opt, to=['xxx@gmail.com'])
+        email.send()
+        result = '{"done": true, "opt": ' + opt +'}'
+    except:
+        result = '{"done": false}'
+    return HttpResponse(result)
+```
