@@ -12,27 +12,6 @@ pip install djangorestframework
 django-admin startproject djangoRestTutorial
 ```
 
-.gitignore
-```gitignore
-.DS_Store
-
-# Editor directories and files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw*
-
-# __pycache__
-__pycache__
-
-# db.sqlite3
-db.sqlite3
-
-```
-
 ## Startapp: CRUD
 ```sh
 python3 manage.py startapp crud
@@ -52,7 +31,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAdminUser',
     ]
 }
-
 ```
 
 ## Models
@@ -73,7 +51,6 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Person
         fields = ('first_name', 'last_name')
-
 ```
 
 ## Viewer
@@ -86,7 +63,6 @@ from crud.models import Person
 class PersonViewSet(viewsets.ModelViewSet):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
-
 ```
 
 ## URLs
