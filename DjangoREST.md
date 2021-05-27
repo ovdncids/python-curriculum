@@ -18,7 +18,7 @@ python3 manage.py startapp crud
 ```
 
 ## Settings
-/djangoRestTutorial/settings.py
+djangoRestTutorial/settings.py
 ```py
 INSTALLED_APPS = [
     # ...
@@ -34,7 +34,7 @@ REST_FRAMEWORK = {
 ```
 
 ## Models
-/crud/models.py
+crud/models.py
 ```py
 class Person(models.Model):
     first_name = models.CharField(max_length=30)
@@ -42,7 +42,7 @@ class Person(models.Model):
 ```
 
 ## Serializers
-/crud/serializers.py
+crud/serializers.py
 ```py
 from crud.models import Person
 from rest_framework import serializers
@@ -54,7 +54,7 @@ class PersonSerializer(serializers.HyperlinkedModelSerializer):
 ```
 
 ## Viewer
-/crud/viewes.py
+crud/viewes.py
 ```py
 from rest_framework import viewsets
 from crud.serializers import PersonSerializer
@@ -66,7 +66,7 @@ class PersonViewSet(viewsets.ModelViewSet):
 ```
 
 ## URLs
-/djangoRestTutorial/urls.py
+djangoRestTutorial/urls.py
 ```py
 from django.conf.urls import url, include
 from rest_framework import routers
@@ -89,7 +89,7 @@ python3 manage.py migrate
 ```
 
 ## Set: Default JSON
-/djangoRestTutorial/settings.py
+djangoRestTutorial/settings.py
 ```py
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
