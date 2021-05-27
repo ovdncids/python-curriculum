@@ -31,6 +31,31 @@ cd django_study
 code .
 ```
 
+## GIT
+```sh
+git init
+```
+
+.gitignore
+```gitignore
+.DS_Store
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+# __pycache__
+__pycache__
+# db.sqlite3
+db.sqlite3
+# pipenv
+Pipfile
+Pipfile.lock
+```
+
 ## 서버 실행
 ```sh
 python manage.py runserver
