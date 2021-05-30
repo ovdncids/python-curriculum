@@ -39,6 +39,7 @@ git init
 .gitignore
 ```gitignore
 .DS_Store
+
 # Editor directories and files
 .idea
 .vscode
@@ -47,10 +48,16 @@ git init
 *.njsproj
 *.sln
 *.sw*
+
 # __pycache__
 __pycache__
+
 # db.sqlite3
 db.sqlite3
+
+# pyenv
+.python-version
+
 # pipenv
 Pipfile
 Pipfile.lock
