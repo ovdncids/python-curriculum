@@ -83,3 +83,9 @@ pipenv install django
 exit
   # 가상환경 종료
 ```
+
+### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
+https://github.com/pypa/pipenv/issues/876
+```sh
+python -m pipenv shell
+```
