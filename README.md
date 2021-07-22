@@ -68,6 +68,16 @@ Pipfile.lock
 python manage.py runserver
 ```
 
+<!--
+## VSCode debug
+https://code.visualstudio.com/docs/python/tutorial-django
+
+```
+VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> (Pipenv가 적용된 해당 버전 선택)
+디버그 탭 -> 실행 및 디버그 -> Django
+```
+-->
+
 ## Members 앱 생성
 ```sh
 python manage.py startapp members
