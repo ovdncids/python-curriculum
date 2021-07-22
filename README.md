@@ -73,6 +73,7 @@ python manage.py runserver
 https://code.visualstudio.com/docs/python/tutorial-django
 
 ```
+python -m venv env (폴더가 생기는데 지워도 되는거 같음)
 VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> (Pipenv가 적용된 해당 버전 선택)
 디버그 탭 -> 실행 및 디버그 -> Django
 ```
