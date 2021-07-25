@@ -77,6 +77,8 @@ pip install pipenv
 ```sh
 pipenv --venv
   # 가상 경로를 볼 수 있다.
+pipenv --python 3.8.3
+  # python 버전을 선택 할 수 있다.
 pipenv shell
   # 해당 경로를 가상환경으로 선택한다.
   # 새로운 shell이 시작 된다.
