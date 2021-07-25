@@ -75,6 +75,8 @@ pip install pipenv
   # Pipenv 설치
 ```
 ```sh
+pipenv --venv
+  # 가상경로를 볼 수 있다.
 pipenv shell
   # 해당 경로를 가상환경으로 선택한다.
   # 새로운 shell이 시작 된다.
