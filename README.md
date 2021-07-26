@@ -74,7 +74,7 @@ https://code.visualstudio.com/docs/python/tutorial-django
 
 ```
 Python 확장 프로그램 설치
-python -m venv env (폴더가 생기는데 지워도 되는거 같음)
+python -m venv env (폴더가 생기는데 디버깅 후에는 지워도 되는거 같음)
 VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> (Pipenv가 적용된 해당 버전 선택)
 디버그 탭 -> 실행 및 디버그 -> python -> Django
 ```
