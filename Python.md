@@ -72,3 +72,118 @@ print(a, b, c)
   a, b, c = 1, 2, 3
   ```
 </details>
+
+## 상수 (Constant)
+### 상수를 사용하는 이유
+1. 한번 선언된 값의 변경을 막기 위해 사용 한다.
+* <details><summary>설명</summary>
+
+  ```
+  하지만 python은 상수가 없다
+  ```
+</details>
+
+## 연산자 (Operator)
+operator.py
+
+1. 문자에 대한 사칙 연산자 (`+, -, *, /`)
+```py
+type1 = 1
+type2 = 2
+result1 = type1 + type2
+result2 = type1 - type2
+result3 = type1 * type2
+result4 = type1 / type2
+print(result1, result2, result3, result4)
+```
+* ❔ `type1` 값을 숫자 True로 바꾼다면
+* ❔ `type1` 값을 숫자 False로 바꾼다면
+* ❔ `type1` 값을 '1'로 바꾼다면
+* ❕ int 함수 적용
+* ❔ `type2` 값을 '2'로 바꾼다면
+* ❕ `type2` 값을 2로 바꾼다면 후 str 함수 적용
+* ❔ 문제: 다음의 `r` 값이 '21a'를 만들기 위해, int 또는 str 함수를 적용
+  ```py
+  r = 2 + '1' + 'a'
+  ```
+* <details><summary>정답</summary>
+
+  ```py
+  r = str(2) + '1' + 'a'
+  ```
+</details>
+
+* ❔ 문제: 프리랜서 개발자가 월 500만원을 받고 있다. 3.3% 원천징수를 때고 받는 실수령액과 세금을 계산하라.
+  ```py
+  salary = 5000000
+  rate = 3.3
+  tax = ??
+  realSalary = ??
+
+  힌트: 세금 계산식 = 급여 * 원천징수 / 100
+  ```
+* <details><summary>정답</summary>
+
+  ```py
+  salary = 5000000
+  rate = 3.3
+  tax = salary * rate / 100
+  realSalary = salary - tax
+  ```
+</details>
+
+2. ==(동등 연산자) 연산자와 ===(일치 연산자) 연산자의 차이
+```py
+oNum1 = 1 == '1'
+oNum2 = 1 === '1'
+true1 = 1 == true
+true2 = 1 === true
+true3 = 1 != true
+true4 = 1 !== true
+false1 = 0 == false
+false2 = 0 === false
+char1 = true == 'true'
+char2 = true === 'true'
+```
+* ❕ 연산이 끝나면 `Boolean` 형식으로 결과를 반환한다.
+* ❕ 위와 같은 이유로 `동등 연산자`는 사용하지 않는다.
+* ❔ 문제: `1`과 `2`를 `일치 연산자`로 비교 후에 상수 `x`에 넣고, `x`를 `print`로 찍어 보기
+* <details><summary>정답</summary>
+
+  ```py
+  x = 1 === 2
+  print(x)
+  ```
+</details>
+
+3. 비교 연산자 (<, <=, >, >=)
+```py
+compare1 = 1 < 1
+compare2 = 2 <= 2
+compare3 = 3 > 3
+compare4 = 4 >= 4
+```
+
+4. 논리 연산자 (&&, ||)
+```py
+logical1 = true && true
+logical2 = false || false
+```
+* `&&`를 사용하는 상황: 로그인이 되어 있고, 글수정 권한이 있는 아이디인 경우, 글수정 버튼 활성화
+* `||`를 사용하는 상황: 프리미엄 회원이거나 광고를 본 경우, 영상 시청 가능
+
+5. 소괄호() 연산자
+```py
+roundBracket1 = 1 + 2 * 3
+roundBracket2 = (1 + 2) * 3
+roundBracket3 = ((1 + 2) * 3)
+```
+* ❕ `소괄호 연산자`는 `사칙 연산자`보다 우선 순위를 갖는다.
+* ❔ 문제: `소괄호 연산자` 안에서 `true`와 `false`를 `일치 연산자`로 연산 후에 상수 `y`에 넣고, `y`를 `print`로 찍어 보기
+* <details><summary>정답</summary>
+
+  ```py
+  y = (true === false)
+  print(y)
+  ```
+</details>
