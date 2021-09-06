@@ -129,25 +129,22 @@ print(result1, result2, result3, result4)
   rate = 3.3
   tax = salary * rate / 100
   realSalary = salary - tax
+  print(tax, realSalary)
   ```
 </details>
 
-2. ==(동등 연산자) 연산자와 ===(일치 연산자) 연산자의 차이
+2. ==(동등 연산자) 연산자
 ```py
 oNum1 = 1 == '1'
-oNum2 = 1 === '1'
-true1 = 1 == true
-true2 = 1 === true
-true3 = 1 != true
-true4 = 1 !== true
-false1 = 0 == false
-false2 = 0 === false
-char1 = true == 'true'
-char2 = true === 'true'
+True1 = 1 == True
+True2 = 1 != True
+False1 = 0 == False
+False2 = 0 != False
+char1 = True == 'True'
+print(oNum1, True1, True2, False1, False2, char1)
 ```
 * ❕ 연산이 끝나면 `Boolean` 형식으로 결과를 반환한다.
-* ❕ 위와 같은 이유로 `동등 연산자`는 사용하지 않는다.
-* ❔ 문제: `1`과 `2`를 `일치 연산자`로 비교 후에 상수 `x`에 넣고, `x`를 `print`로 찍어 보기
+* ❔ 문제: `1`과 `2`를 `동등 연산자`로 비교 후에 변수 `x`에 넣고, `x`를 `print`로 찍어 보기
 * <details><summary>정답</summary>
 
   ```py
@@ -162,28 +159,31 @@ compare1 = 1 < 1
 compare2 = 2 <= 2
 compare3 = 3 > 3
 compare4 = 4 >= 4
+print(compare1, compare2, compare3, compare4)
 ```
 
-4. 논리 연산자 (&&, ||)
+4. 논리 연산자 (and, or)
 ```py
-logical1 = true && true
-logical2 = false || false
+logical1 = True and True
+logical2 = False or False
+print(logical1, logical2)
 ```
-* `&&`를 사용하는 상황: 로그인이 되어 있고, 글수정 권한이 있는 아이디인 경우, 글수정 버튼 활성화
-* `||`를 사용하는 상황: 프리미엄 회원이거나 광고를 본 경우, 영상 시청 가능
+* `and`를 사용하는 상황: 로그인이 되어 있고, 글수정 권한이 있는 아이디인 경우, 글수정 버튼 활성화
+* `or`를 사용하는 상황: 프리미엄 회원이거나 광고를 본 경우, 영상 시청 가능
 
 5. 소괄호() 연산자
 ```py
 roundBracket1 = 1 + 2 * 3
 roundBracket2 = (1 + 2) * 3
 roundBracket3 = ((1 + 2) * 3)
+print(roundBracket1, roundBracket2, roundBracket3)
 ```
 * ❕ `소괄호 연산자`는 `사칙 연산자`보다 우선 순위를 갖는다.
-* ❔ 문제: `소괄호 연산자` 안에서 `true`와 `false`를 `일치 연산자`로 연산 후에 상수 `y`에 넣고, `y`를 `print`로 찍어 보기
+* ❔ 문제: `소괄호 연산자` 안에서 `True`와 `False`를 `동일 연산자`로 연산 후에 변수 `y`에 넣고, `y`를 `print`로 찍어 보기
 * <details><summary>정답</summary>
 
   ```py
-  y = (true === false)
+  y = (True == False)
   print(y)
   ```
 </details>
