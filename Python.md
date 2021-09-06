@@ -4,7 +4,7 @@
 ### 변수를 사용하는 이유
 1. 자료형 데이터를 보관 할 수 있고, 자유롭게 값을 수정 할 수 있다.
 
-variable.html
+variable.py
 ```py
 // 변수 Create
 v1 = True
@@ -40,36 +40,35 @@ print(v1, v2, v3)
 
 2. `디버깅 모드`에서 연산의 과정을 볼 수 있다.
 ```py
-debugger;
-console.log(1 + 2 + 3);
-let num1 = 1;
-let num2 = 2;
-let num3 = 3;
-let sum1 = num1 + num2;
-let sum2 = sum1 + num3;
-console.log(sum2);
+print(1 + 2 + 3)
+num1 = 1
+num2 = 2
+num3 = 3
+sum1 = num1 + num2
+sum2 = sum1 + num3
+print(sum2)
 ```
 * breakpoint 설명
 
 3. 변수 수정으로 프로그램 전체를 수정 가능하다.
 ```py
-let calc = 100;
-console.log(calc + 10);
-console.log(calc - 10);
-console.log(calc * 10);
-console.log(calc / 10);
+calc = 100
+print(calc + 10)
+print(calc - 10)
+print(calc * 10)
+print(calc / 10)
 ```
 * ❔ 변수 `calc` 값 수정해 보기
 
 ### 한줄에 변수 여러개 선언하기 (선언문)
 ```py
-let a, b, c;
+a = 1, b = 2, c = 3
+print(a, b, c)
 ```
-* ❔ 문제: console.log(a); 한다면
 * ❔ 문제: 한줄로 변수 `a, b, c`에 각각 `1, 2, 3` 넣어 보기
 * <details><summary>정답</summary>
 
   ```py
-  let a = 1, b = 2, c = 3;
+  a, b, c = 1, 2, 3
   ```
 </details>
