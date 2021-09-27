@@ -47,3 +47,37 @@ urlpatterns = [
     path('kakao_app/', views.kakao_app, name='kakao_app'),
     path('', views.root),
 ```
+
+## 카카오 연동 라이브러리 설치
+```sh
+pipenv install django-allauth
+```
+
+kakao_login/settings.py
+```py
+INSTALLED_APPS = [
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.kakao',
+```
+```py
+# Kakao login 설정
+AUTHENTICATION_BACKENDS = ( 
+    # 'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+SITE_ID = 1 
+LOGIN_REDIRECT_URL = '/'
+```
+
+kakao_login/urls.py
+```diff
+- from django.urls import path
++ from django.urls import path, include
+```
+```py
+urlpatterns = [
+    path('accounts/', include('allauth.urls')),
+```
