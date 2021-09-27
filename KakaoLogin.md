@@ -17,6 +17,7 @@ python manage.py startapp kakao_app
 kakao_app/templates/kakao_app.html
 ```html
 <form method="post">
+    {% csrf_token %}
     <button>카카오 로그인</button>
 </form>
 ```
