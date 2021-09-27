@@ -13,13 +13,10 @@ code .
 python manage.py startapp kakao_app
 ```
 
-## 카카오 연동 페이지 만들기
+## 카카오 연동 페이지 - 만들기
 kakao_app/templates/kakao_app.html
 ```html
-<form method="post">
-    {% csrf_token %}
-    <button>카카오 로그인</button>
-</form>
+카카오 로그인 페이지
 ```
 
 kakao_app/views.py
@@ -115,4 +112,35 @@ SOCIAL ACCOUNTS -> Social applications -> Add
     Secret key: 카카오 개발자 페이지의 Client Secret 코드
     Sites: http://127.0.0.1:8000 -> Chosen sites으로 이동
     Save
+```
+
+## 카카오 연동 페이지 - 로그인 기능
+kakao_app/templates/kakao_app.html
+```html
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% if user.is_authenticated %}
+안녕하세요, {{ user.username }}님
+<a
+    href="{% url 'logout' %}"
+    onclick="window.open('https://accounts.kakao.com/logout?continue=https://accounts.kakao.com/weblogin/account')"
+>(로그아웃)</a>
+{% else %}
+<a href="{% provider_login_url 'kakao' %}">카카오 로그인</a>
+{% endif %}
+```
+
+kakao_app/views.py
+```py
+from django.contrib import auth
+
+def logout(request):
+    auth.logout(request)
+    return redirect('kakao_app')
+```
+
+kakao_login/urls.py
+```py
+path('logout/', views.logout, name='logout'),
 ```
