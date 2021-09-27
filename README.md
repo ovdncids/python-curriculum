@@ -68,17 +68,20 @@ Pipfile.lock
 python manage.py runserver
 ```
 
-<!--
-## VSCode debug
+## VSCode debug 모드
 https://code.visualstudio.com/docs/python/tutorial-django
 
-```
+<!--
 Python 확장 프로그램 설치
 python -m venv env (폴더가 생기는데 디버깅 후에는 지워도 되는거 같음)
+-->
+```sh
+pipenv --venv
 VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> (Pipenv가 적용된 해당 버전 선택)
 디버그 탭 -> 실행 및 디버그 -> python -> Django (python 메뉴가 없으면 django를 한번 실행 시킨다.)
+그래도 없으면 -> launch.json 만들기 -> Python -> Django
+# debug 모드가 실행 된다면 VSCode를 다시 실행 시켜서, 다음에도 debug 모드가 실행 되는지 확인
 ```
--->
 
 ## Members 앱 생성
 ```sh
