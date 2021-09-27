@@ -81,3 +81,38 @@ kakao_login/urls.py
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
 ```
+
+### 카카오 개발자 페이지에 앱 생성
+* https://developers.kakao.com
+```sh
+내 애플리케이션 -> 애플리케이션 추가하기 -> 앱 이름: django login test1
+
+생성한 애플리케이션으로 이동
+요약 정보 -> REST API 키 (Django에서 Client id로 사용됨)
+플랫폼 -> Web 플랫폼 등록 -> http://127.0.0.1:8000
+카카오 로그인 -> 활성화 설정 -> 활성화
+카카오 로그인 -> Redirect URI -> http://127.0.0.1:8000/accounts/kakao/login/callback/
+카카오 로그인, 동의 항목 -> 닉네임 -> 필수 동의 (회원 로그인 목적 입니다.)
+카카오 로그인, 보안 -> Client Secret -> 코드 생성 (생성된 코드는 Django에서 Secret key로 사용됨)
+```
+
+## Admin 페이지 만들기
+```sh
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+* http://127.0.0.1:8000/admin
+```sh
+SITES -> Sites -> example.com -> Domain name: http://127.0.0.1:8000
+SITES -> Sites -> example.com -> Display name: http://127.0.0.1:8000
+```
+```sh
+SOCIAL ACCOUNTS -> Social applications -> Add
+    Provider: Kakao
+    Name: Kakao
+    Client id: 카카오 개발자 페이지의 REST API 키
+    Secret key: 카카오 개발자 페이지의 Client Secret 코드
+    Sites: http://127.0.0.1:8000 -> Chosen sites으로 이동
+    Save
+```
