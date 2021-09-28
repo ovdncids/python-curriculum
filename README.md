@@ -85,6 +85,8 @@ https://code.visualstudio.com/docs/python/tutorial-django
 # VSCode 확장: Python 설치 되었는지 확인
 # pipenv가 설치 되었을 경우 현재 버전 확인
   pipenv --venv
+    # 새로운 터미널에서 버전 확인만 하고 끄자: pipenv shell 실행 전의 명령은 무조건 pyenv의 영향을 받는다.
+
 VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> 올바른 버전 선택
   # VSCode 왼쪽 하단의 선택된 python 정보가 올바른지 확인
 디버그 탭 -> launch.json 만들기 -> Python -> Django
