@@ -23,6 +23,16 @@ python -m django --version
 django-admin --version
 ```
 
+### django-admin 실행이 안 된다면
+```sh
+pip list
+  # 설치된 패키지 리스트를 볼 수 있다.
+pip show Django
+  # Django의 설치 정보, 경로등을 볼 수 있다.
+
+python {Django 경로}/bin/django-admin.py --version
+```
+
 ## 프로젝트 생성
 https://docs.djangoproject.com/ko/2.1/intro/tutorial01/
 ```sh
@@ -72,23 +82,18 @@ python manage.py runserver
 https://code.visualstudio.com/docs/python/tutorial-django
 
 ```sh
-pipenv --venv
-  pipenv 경로와 VSCode 왼쪽 하단의 python 정보다 같은지 확인
-  # 다르면: VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> (Pipenv가 적용된 해당 버전 선택)
+# VSCode 확장: Python 설치 되었는지 확인
+# pipenv가 설치 되었을 경우 현재 버전 확인
+  pipenv --venv
+VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> 올바른 버전 선택
+  # VSCode 왼쪽 하단의 선택된 python 정보가 올바른지 확인
 디버그 탭 -> launch.json 만들기 -> Python -> Django
   .vscode/launch.json 파일이 생성됨
   디버깅 시작 버튼 누르기
-  # 안되면: 서버 실행 되는지, python 버전 맞는지 확인
+  # 안되면: Django 서버 실행 되는지, python 버전 맞는지 확인
 
 # debug 모드가 실행 된다면 VSCode를 다시 실행 시켜서, debug 모드가 실행 되는지 확인
 ```
-<!--
-### debug 모드가 안될 경우
-Python 확장 프로그램 설치
-python -m venv env (폴더가 생기는데 디버깅 후에는 지워도 되는거 같음)
-
-디버그 탭 -> 실행 및 디버그 -> python -> Django (python 메뉴가 없으면 django를 한번 실행 시킨다.)
--->
 
 ## Members 앱 생성
 ```sh
