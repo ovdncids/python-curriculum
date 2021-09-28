@@ -35,6 +35,7 @@ members.append(Member(name='권명순', age=10))
 
 @app.get('/api/v1/members')
 def members_read():
+# def members_read(name: Optional[str] = Query(None), age: Optional[int] = Query(None)):
     return {
         'result': 'read',
         'members': members
