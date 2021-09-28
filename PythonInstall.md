@@ -75,13 +75,18 @@ pip install pipenv
   # Pipenv 설치
 ```
 ```sh
-pipenv --venv
-  # 가상 경로를 볼 수 있다.
 pipenv --python 3.8.3
-  # python 버전을 선택 할 수 있다.
+  # 환경설정에 있는 버전을 선택 한다.
+pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
+  # pyenv의 버전을 선택 할 수 있다.
 pipenv shell
   # 해당 경로를 가상환경으로 선택한다.
   # 새로운 shell이 시작 된다.
+pipenv --venv
+  # 현재의 가상 경로를 볼 수 있다.
+pipenv --rm
+  # pipenv 환경 설정을 지운다.
+  # 잘 안지워지면 해당 설정 파일을 직접 지운다.
 pipenv install django
   # 패키지 설치
 pipenv graph
