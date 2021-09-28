@@ -84,6 +84,8 @@ pipenv shell
   # 새로운 shell이 시작 된다.
 pipenv install django
   # 패키지 설치
+pipenv graph
+  # 설치된 패키지를 볼 수 있다.
 exit
   # 가상환경 종료
 ```
