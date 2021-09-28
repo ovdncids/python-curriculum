@@ -30,7 +30,7 @@ pip list
 pip show django
   # Django의 설치 정보, 경로등을 볼 수 있다. (Location 정보가 중요)
 
-python {Location: .../site-packages}../Scripts/django-admin --version
+python {Location: 경로/site-packages}../Scripts/django-admin --version
 ```
 
 ## 프로젝트 생성
