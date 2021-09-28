@@ -10,7 +10,7 @@ python manage.py migrate
 ## Django 설치
 https://www.djangoproject.com/download/
 ```sh
-pip install Django==3.2
+pip install django==3.2
 # OR
 pipenv install django
 ```
@@ -27,10 +27,10 @@ django-admin --version
 ```sh
 pip list
   # 설치된 패키지 리스트를 볼 수 있다.
-pip show Django
-  # Django의 설치 정보, 경로등을 볼 수 있다.
+pip show django
+  # Django의 설치 정보, 경로등을 볼 수 있다. (Location 정보가 중요)
 
-python {Django 경로}/bin/django-admin.py --version
+python {Location: .../site-packages}../Scripts/django-admin --version
 ```
 
 ## 프로젝트 생성
