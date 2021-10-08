@@ -187,3 +187,33 @@ print(roundBracket1, roundBracket2, roundBracket3)
   print(y)
   ```
 </details>
+
+## if문(제어문 > 조건문)
+1. 기본 구조
+```js
+if (조건1):
+  # 조건1이 참인 경우 실행
+elif (조건2):
+  # 조건2가 참인 경우 실행
+elif (조건3):
+  # 조건3이 참인 경우 실행
+  # else if는 여러게 사용 가능
+else:
+  # 해당 되는 조건이 없을 경우 실행
+```
+* 예제
+```js
+if1 = 1
+if (if1 == 1):
+  print('참1')
+elif (if1 == 2 or if1 == 3):
+  print('참2 또는 참3')
+elif (if1 == 4 and True):
+  print('참4')
+else:
+  print('거짓')
+```
+* 조건은 주로 연산자를 사용해서 `Boolean` 형식으로 받는다.
+* `if1` 값을 수정하여 `참2 또는 참3`이 나오게 만들기
+* `if1` 값을 수정하여 `참4`이 나오게 만들기
+* `if1` 값을 수정하여 `거짓`이 나오게 만들기
