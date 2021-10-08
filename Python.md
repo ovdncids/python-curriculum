@@ -190,7 +190,7 @@ print(roundBracket1, roundBracket2, roundBracket3)
 
 ## if문(제어문 > 조건문)
 1. 기본 구조
-```js
+```py
 if (조건1):
   # 조건1이 참인 경우 실행
 elif (조건2):
@@ -202,7 +202,7 @@ else:
   # 해당 되는 조건이 없을 경우 실행
 ```
 * 예제
-```js
+```py
 if1 = 1
 if (if1 == 1):
   print('참1')
@@ -217,3 +217,38 @@ else:
 * `if1` 값을 수정하여 `참2 또는 참3`이 나오게 만들기
 * `if1` 값을 수정하여 `참4`이 나오게 만들기
 * `if1` 값을 수정하여 `거짓`이 나오게 만들기
+
+2. 거짓 조건 비교 하기
+* ❕ 거짓 조건은 `False`, `0`, `None`, `''` 이고, 나머지는 모두 참인 조건이 된다.
+```py
+d1 = False
+d2 = None
+condition1 = d1 == d2
+condition2 = False
+if (condition2):
+  print('참')
+else:
+  print('거짓')
+```
+* ❔ 문제: 조건이 `1 == 1`인 `if`문을 만들고, 참인 경우 `print('참');`을 찍어 보기
+* <details><summary>정답</summary>
+
+  ```py
+  if (1 == 1):
+    print('참')
+  ```
+</details>
+
+### 3항 연산자
+```py
+condition3 = 'a' if 1 == 1 else'b'
+print(condition3)
+```
+* ❔ 문제: 조건이 `2 == 3`인 `3항 연산자`문을 만들고, 참인 경우 `'c'` 거짓인 경우 `'d'`를 `condition4` 상수에 넣어 보기
+* <details><summary>정답</summary>
+
+  ```py
+  condition4 = 'c' if 2 == 3 else'd'
+  print(condition4)
+  ```
+</details>
