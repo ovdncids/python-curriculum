@@ -252,3 +252,123 @@ print(condition3)
   print(condition4)
   ```
 </details>
+
+## 배열
+### 배열을 사용하는 이유
+1. 순차적인 반복 작업에 사용한다. (주로 동일한 데이터 타입으로 묶인 경우가 많다.)
+2. 숫자(index)를 바탕으로 해당 데이터에 접근 한다.
+
+### 배열 선언
+array.py
+```py
+array1 = []
+array2 = [1, 2, 3]
+print(array1, array2)
+```
+https://t1.daumcdn.net/blogfile/fs8/27_25_21_25_0O7Ul_IMAGE_0_42.jpg?original&filename=42.jpg
+
+### 배열의 CRUD
+```py
+// 배열 Create
+array1.append(1)
+array1.append('2')
+array1.append('삼')
+
+// 배열 Read
+array1[0]
+a1 = array1[0]
+a2 = array1[1]
+a3 = array1[2]
+
+// 배열 Update
+array1[0] = None
+array1[1] = False
+array1[2] = [1, 2, 3]
+
+// 배열 Delete
+array1.remove(array1[0])
+array1.remove(array1[1])
+array1.remove(array1[2])
+```
+* ❔ `Python Console 창`에서 `배열의 CRUD` 실행 해보기 (터미널에서 `python`)
+
+### 배열의 크기
+```py
+length1 = len(array1)
+length2 = len(array2)
+lastIndex = len(array2) - 1
+lastValue = array2[lastIndex]
+print(lastIndex, lastValue)
+```
+* ❕ `lastValue`는 `array2` 배열의 마지막 요소의 값을 받는다.
+
+### 배열의 성격
+```py
+let arr1 = []
+let arr2 = []
+// quiz1
+if (arr1) {
+  const result = '참'
+  console.log(result)
+} else {
+  const result = '거짓'
+  console.log(result)
+}
+const quiz2 = arr1 === arr2
+const quiz3 = arr1[5]
+// quiz4
+arr1[9] = 10
+```
+* ❔ `빈 배열`은 참일까 거짓일까?
+* ❔ 문제: `arr1`와 `arr2`는 같을까?
+* <details><summary>정답</summary>
+
+  https://ovdncids.github.io/javascript-curriculum/images/memory.png
+  ```
+  배열은 선언과 동시에 별도의 `메모리 공간`에 존재하고, 변수는 단지 해당 배열이 있는 `메모리 주소`를 가지고 있다.
+  따라서 `arr1`과 `arr2`는 서로 다른 배열의 주소를 가지므로 같지 않다.
+  만약 `arr1` 변수의 값을 변화 시킨다면, `메모리 주소`를 잃어 버리므로 해당 배열은 더이상 접근할 수 없게 된다.
+  ```
+</details>
+
+* ❔ 해당 배열이 가진 `length`보다 큰 `index`를 `Read` 한다면?
+* ❔ 해당 배열이 가진 `length`보다 큰 `index`를 `Update` 한다면?
+
+### 익명 배열
+```py
+console.log([1, 2, 3])
+```
+* 해당 배열의 `메모리 주소`를 누구도 받지 않으므로 재사용 할 수 없다.
+
+### 배열 실습
+* 1 부터 5까지 더하기(total 변수를 만들어서 한번씩 더해서 만듬)
+```py
+const testArray1 = [1, 2, 3, 4, 5]
+let total1 = testArray1[0]
+total1 = total1 + testArray1[1]
+total1 = total1 + testArray1[2]
+total1 += testArray1[3]
+total1 += testArray1[4]
+```
+
+* `testArray1` 평균 구하기
+```py
+const avg = total1 / testArray1.length
+```
+
+* `testArray1` 홀수만 더하기
+```py
+const odd1 = testArray1[0] + testArray1[2] + testArray1[4]
+```
+
+* `testArray1` 짝수만 더하기
+```py
+const even1 = testArray1[1] + testArray1[3]
+```
+
+* 홀수만 지우기
+```py
+testArray1.splice(0, 1)
+testArray1.splice(1, 1)
+testArray1.splice(2, 1)
+```
