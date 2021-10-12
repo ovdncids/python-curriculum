@@ -290,7 +290,7 @@ array1.remove(array1[0])
 array1.remove(array1[1])
 array1.remove(array1[2])
 ```
-* ❔ `Python Console 창`에서 `배열의 CRUD` 실행 해보기 (터미널에서 `python`)
+* ❔ `Python Console 창`에서 `배열의 CRUD` 실행 해보기 (터미널에서 `python` 실행)
 
 ### 배열의 크기
 ```py
@@ -304,19 +304,20 @@ print(lastIndex, lastValue)
 
 ### 배열의 성격
 ```py
-let arr1 = []
-let arr2 = []
-// quiz1
-if (arr1) {
-  const result = '참'
-  console.log(result)
-} else {
-  const result = '거짓'
-  console.log(result)
-}
-const quiz2 = arr1 === arr2
-const quiz3 = arr1[5]
-// quiz4
+arr1 = []
+arr2 = []
+# quiz1
+if (arr1):
+  result = '참'
+  print(result)
+else:
+  result = '거짓'
+  print(result)
+
+quiz2 = arr1 == arr2
+quiz3 = arr1 is arr2
+quiz4 = arr1[5]
+#quiz5
 arr1[9] = 10
 ```
 * ❔ `빈 배열`은 참일까 거짓일까?
@@ -331,44 +332,49 @@ arr1[9] = 10
   ```
 </details>
 
-* ❔ 해당 배열이 가진 `length`보다 큰 `index`를 `Read` 한다면?
-* ❔ 해당 배열이 가진 `length`보다 큰 `index`를 `Update` 한다면?
+* ❔ 해당 배열이 가진 `len`보다 큰 `index`를 `Read` 한다면?
+* ❔ 해당 배열이 가진 `len`보다 큰 `index`를 `Update` 한다면?
 
 ### 익명 배열
 ```py
-console.log([1, 2, 3])
+print([1, 2, 3])
 ```
 * 해당 배열의 `메모리 주소`를 누구도 받지 않으므로 재사용 할 수 없다.
 
 ### 배열 실습
 * 1 부터 5까지 더하기(total 변수를 만들어서 한번씩 더해서 만듬)
 ```py
-const testArray1 = [1, 2, 3, 4, 5]
-let total1 = testArray1[0]
+testArray1 = [1, 2, 3, 4, 5]
+total1 = testArray1[0]
 total1 = total1 + testArray1[1]
 total1 = total1 + testArray1[2]
 total1 += testArray1[3]
 total1 += testArray1[4]
+print(total1)
 ```
 
 * `testArray1` 평균 구하기
 ```py
-const avg = total1 / testArray1.length
+avg = total1 / len(testArray1)
+print(avg)
 ```
 
 * `testArray1` 홀수만 더하기
 ```py
-const odd1 = testArray1[0] + testArray1[2] + testArray1[4]
+odd1 = testArray1[0] + testArray1[2] + testArray1[4]
+print(odd1)
 ```
 
 * `testArray1` 짝수만 더하기
 ```py
-const even1 = testArray1[1] + testArray1[3]
+even1 = testArray1[1] + testArray1[3]
+print(even1)
 ```
 
 * 홀수만 지우기
 ```py
-testArray1.splice(0, 1)
-testArray1.splice(1, 1)
-testArray1.splice(2, 1)
+testArray1.remove(testArray1[0])
+testArray1.remove(testArray1[1])
+testArray1.remove(testArray1[2])
+print(testArray1)
 ```
