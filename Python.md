@@ -6,20 +6,20 @@
 
 variable.py
 ```py
-// 변수 Create
+# 변수 Create
 v1 = True
 v2 = 100
 v3 = 'abc'
 
-// 변수 Read
+# 변수 Read
 print(v1, v2, v3)
 
-// 변수 Update
+# 변수 Update
 v1 = False
 v2 = -10
 v3 = 'def'
 
-// 변수 Read
+# 변수 Read
 print(v1, v2, v3)
 ```
 * 자료형에는 `Boolean`(True, False), `Number`(숫자), `String`(문자) 3가지가 주로 쓰인다.
@@ -269,23 +269,23 @@ https://t1.daumcdn.net/blogfile/fs8/27_25_21_25_0O7Ul_IMAGE_0_42.jpg?original&fi
 
 ### 배열의 CRUD
 ```py
-// 배열 Create
+# 배열 Create
 array1.append(1)
 array1.append('2')
 array1.append('삼')
 
-// 배열 Read
+# 배열 Read
 array1[0]
 a1 = array1[0]
 a2 = array1[1]
 a3 = array1[2]
 
-// 배열 Update
+# 배열 Update
 array1[0] = None
 array1[1] = False
 array1[2] = [1, 2, 3]
 
-// 배열 Delete
+# 배열 Delete
 array1.remove(array1[0])
 array1.remove(array1[1])
 array1.remove(array1[2])
@@ -506,13 +506,13 @@ diff2 = ++index
 function.py
 1. 기본 구조
 ```py
-// 함수 선언부
+# 함수 선언부
 def 함수명(인자1, 인자2, ...):
   실행문
   ...
   return 반환값
 
-// 함수 호출부
+# 함수 호출부
 반환받는상수 = 함수명(인수1, 인수2, ...)
 ```
 
@@ -615,7 +615,7 @@ func6(lambda: print('abc'))
 
   ```py
   parameter1()
-  // 인수로 함수를 넘기고, 인자로 호출시키는 함수를 `콜백 함수`(Callback function)라 한다.
+  # 인수로 함수를 넘기고, 인자로 호출시키는 함수를 `콜백 함수`(Callback function)라 한다.
   ```
 </details>
 
@@ -638,16 +638,16 @@ membersFunction.html
 * [데모](https://ovdncids.github.io/javascript-curriculum/membersFunction.html)
 * Console 창에서 호출
 ```py
-// Create
+# Create
 membersCreate('홍길동')
 
-// Read
+# Read
 membersRead()
 
-// Update
+# Update
 membersUpdate(0, '김유신')
 
-// Delete
+# Delete
 membersDelete(0)
 ```
 
