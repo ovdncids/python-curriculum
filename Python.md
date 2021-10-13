@@ -395,11 +395,13 @@ for 증가변수 in [문자 또는 배열 또는 객체]:
 ```py
 for index1 in range(0, 5):
   print(index1)
+  # pass
 
 # list1 = list(range(0, 5))
 # print(list1)
 # print(index1)
 ```
+* `pass`는 `for문`은 반복 되지만 실행문이 없을때 사용한다
 
 2. break
 ```py
@@ -665,6 +667,18 @@ membersUpdate(0, '김유신')
 
 # Delete
 membersDelete(0)
+```
+
+* `Python Console 창`에서 실행
+```py
+import membersFunction
+
+membersFunction
+membersFunction.members
+membersFunction.membersCreate('홍길동')
+membersFunction.membersRead()
+membersFunction.membersUpdate(0, '김유신')
+membersFunction.membersDelete(0)
 ```
 
 * `배열의 CRUD`를 참조 하여, `membersFunction2.py` 파일을 생성하고, 처음 부터 코딩 해보기
