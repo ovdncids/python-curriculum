@@ -496,3 +496,192 @@ diff1 = index++
 diff2 = ++index
 ```
 * ❕ `Python`은 증감 연산자를 지원하지 않는다
+
+## 함수
+### 함수를 사용하는 이유
+1. 여러줄에 걸쳐 실행되던 동일한 작업을, 함수 호출 한줄로 동일한 결과를 만들어 낼 수 있다. `DRY`: (Don't repeat yourself)
+2. 반복됐던 만큼 코드양이 줄어 가독성을 높일 수 있다.
+
+### 함수 문법
+function.py
+1. 기본 구조
+```py
+// 함수 선언부
+def 함수명(인자1, 인자2, ...):
+  실행문
+  ...
+  return 반환값
+
+// 함수 호출부
+반환받는상수 = 함수명(인수1, 인수2, ...)
+```
+
+* 예제
+```py
+def func1(parameter1, parameter2):
+  sum1 = parameter1 + parameter2
+  return sum1
+
+print(func1)
+returned1 = func1('argument1', 'argument2')
+print(returned1)
+```
+* `breakpoint`로 진행 확인
+* `실행`과 `호출`의 차이 설명하기
+* `func1(1, 2)` `호출` 해보기
+* ❔ 함수 안에 `return`이 없다면 `returned1`의 값은?
+* ❔ `argument2`를 넘기지 않는다면?
+* `parameter1`은 함수 내부적으로 `parameter1 = 인수1` 이렇게 작동 한다.
+* ❔ `parameter2`를 지운다면?
+* ❔ 문제: `print('함수 호출')`이라는 실행문을 가진 `함수` `f1`을 만들고, 해당 `함수` 호출 시키기
+* <details><summary>정답</summary>
+
+  ```py
+  def f1():
+    print('함수 호출')
+  f1()
+  ```
+</details>
+
+2. 인수에 자료형 데어터 넘기기
+```py
+v1 = 'a'
+def func2(parameter1):
+  compare1 = v1 == parameter1
+  parameter1 = 'b'
+  compare2 = v1 == parameter1
+  print(compare1, compare2)
+
+func2(v1)
+```
+* ❔ `compare1`, `compare2`는 `참`일까, `거짓`일까?
+
+3. 인수에 배열 넘기기
+```py
+v2 = []
+def func3(parameter1):
+  compare1 = v2 == parameter1
+  compare2 = v2 is parameter1
+  parameter1.append('a')
+  v2.append('b')
+  compare3 = v2 == parameter1
+  compare4 = v2 is parameter1
+  print(compare1, compare2, compare3, compare4)
+
+func3(v2)
+```
+* ❔ `compare1`, `compare2`, `compare3`, `compare4`는 `참`일까, `거짓`일까?
+
+4. 인수에 함수 넘기기
+```py
+def v3():
+  print('v3')
+
+def v4():
+  print('v4')
+
+def func4(parameter1):
+  compare1 = v3 == parameter1
+  compare2 = v3 is parameter1
+  parameter1 = v4
+  compare3 = v3 == parameter1
+  compare4 = v3 is parameter1
+  parameter1 = v3
+  compare5 = v3 == parameter1
+  compare6 = v3 is parameter1
+  print(compare1, compare2, compare3, compare4, compare5, compare6)
+
+func4(v3)
+
+```
+* ❔ `compare1`, `compare2`, `compare3`, `compare4`, `compare5`, `compare6`는 `참`일까, `거짓`일까?
+
+5. 익명 함수
+```py
+func5 = lambda x : x
+v5 = func5(123)
+print(v5)
+```
+* 익명 함수를 인수로 넘기기
+```py
+def func6(parameter1):
+  print(parameter1)
+  # 익명함수 호출
+
+func6(lambda: print('abc'))
+```
+* ❔ 문제: `인수`로 넘긴 `익명 함수`를, `인자`로 호출 시키기
+* <details><summary>정답</summary>
+
+  ```py
+  parameter1()
+  // 인수로 함수를 넘기고, 인자로 호출시키는 함수를 `콜백 함수`(Callback function)라 한다.
+  ```
+</details>
+
+6. 라이브러리: 특정 함수들의 모음 (calendar, random)
+```py
+import calendar
+print(calendar.calendar(2015))
+
+import random
+print(random.random())
+```
+
+### 함수 실습 (회원 CRUD 만들기)
+membersFunction.html
+```html
+<script>
+</script>
+```
+
+* [데모](https://ovdncids.github.io/javascript-curriculum/membersFunction.html)
+* Console 창에서 호출
+```py
+// Create
+membersCreate('홍길동')
+
+// Read
+membersRead()
+
+// Update
+membersUpdate(0, '김유신')
+
+// Delete
+membersDelete(0)
+```
+
+1. Create
+```py
+const members = []
+
+const membersCreate = function(member) {
+  members.push(member)
+  return members
+}
+```
+
+2. Read
+```py
+const membersRead = function() {
+  return members
+}
+```
+
+3. Delete
+```py
+const membersDelete = function(index) {
+  members.splice(index, 1)
+  return members
+}
+```
+
+4. Update
+```py
+const membersUpdate = function(index, member) {
+  members[index] = member
+  return members
+}
+```
+
+* `배열의 CRUD`를 참조 하여, `membersFunction2.html` 파일을 생성하고, 처음 부터 코딩 해보기
