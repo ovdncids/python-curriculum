@@ -630,13 +630,6 @@ print(random.random())
 
 ### 함수 실습 (회원 CRUD 만들기)
 membersFunction.html
-```html
-<script>
-</script>
-```
-
-* [데모](https://ovdncids.github.io/javascript-curriculum/membersFunction.html)
-* Console 창에서 호출
 ```py
 # Create
 membersCreate('홍길동')
