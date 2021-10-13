@@ -241,7 +241,7 @@ else:
 
 ### 3항 연산자
 ```py
-condition3 = 'a' if 1 == 1 else'b'
+condition3 = 'a' if 1 == 1 else 'b'
 print(condition3)
 ```
 * ❔ 문제: 조건이 `2 == 3`인 `3항 연산자`문을 만들고, 참인 경우 `'c'` 거짓인 경우 `'d'`를 `condition4` 상수에 넣어 보기
@@ -378,3 +378,121 @@ testArray1.remove(testArray1[1])
 testArray1.remove(testArray1[2])
 print(testArray1)
 ```
+
+## for문(제어문 > 반복문)
+### for문을 사용하는 이유
+1. 반복 작업을 한곳으로 묶기 위해 사용함 (주로 배열이 사용 된다.)
+2. 주로 게시판에 목록을 보여줄때 주로 사용함
+
+### for문 문법
+for.py
+1. 기본 구조
+```py
+for 증가변수 in [문자 또는 배열 또는 객체]:
+  실행문
+```
+* 예제
+```py
+for index1 in range(0, 5):
+  print(index1)
+
+# list1 = list(range(0, 5))
+# print(list1)
+# print(index1)
+```
+
+2. break
+```py
+for index2 in range(0, 5):
+  print(index2)
+  break
+```
+
+3. continue
+```py
+for index3 in range(0, 5):
+  if index3 == 2:
+    continue
+  print(index3)
+```
+
+### 홀수와 짝수 표현하기
+```py
+for index4 in range(1, 11):
+  if index4 % 2 == 1:
+    print('숫자 ' + str(index4) + '은 홀수 입니다.')
+  else:
+    print('숫자 ' + str(index4) + '은 짝수 입니다.')
+  # oddEven = '홀수' if index4 % 2 else '짝수'
+  # print('숫자 ' + str(index4) + '은 '+ oddEven + ' 입니다.')
+```
+
+### 총합 더하기
+```py
+total1 = 0
+for index4 in range(1, 6):
+  total1 = total1 + index4
+  # total1 += index4
+  print(total1)
+
+print(total1, index4)
+```
+* ❔ `total1 = 0`을 주석 처리 한다면
+* VSCode에서 `index4`, `total1` 마우스 오버해보기, Ctrl(또는 command) 키를 눌러서 해당 변수 이동)
+
+* ❔ 문제: `total1`의 `평균` 값을 구해 `avg1` 변수에 넣고, `avg1`을 `print`로 찍어 보기
+* <details><summary>정답</summary>
+
+  ```py
+  avg1 = total1 / index4
+  print(avg1)
+  ```
+  `total1 / 5 ` 이렇게 바로 나누었다면, 나중에 프로그램이 1에서 10까지로 변한다면, `5`값을 `2군데`에서 수정 해야 한다.
+</details>
+
+### for문에서 배열 사용하기
+```py
+array1 = [1, 2, 3]
+for index5 in array1:
+  print(index5)
+
+print(index5)
+```
+* ❔ 문제: `array2 변수`에 `빈 배열`을 넣고, 위에 for문을 이용해 `array2` 배열을 `[1, 2, 3]`으로 만들고, `array2`를 for문이 끝나고 `print`로 찍어 보기
+* <details><summary>정답</summary>
+
+  ```py
+  array1 = [1, 2, 3]
+  array2 = []
+  for index6 in array1:
+    array2.append(index6)
+
+  print(array2)
+  ```
+</details>
+
+* ❕ 결과적으로 `array2`는 `array1`을 복사하였다.
+* ❔ `array1 is array2` 참일까요?
+* ❕ 메모리 설명
+```py
+array3 = [1, 2, 3]
+array4 = array3
+```
+* ❔ `array3 is array4` 참일까?
+```py
+array3 = 3
+array4 = 4
+```
+* ❔ 문제: `array3`에서 사용하던 배열에 다시 접근할 수 있을까?
+* <details><summary>정답</summary>
+
+  없다. (배열은 `상수`를 사용 하면 안전 하지만, `Python`은 상수를 지원하지 않는다)
+</details>
+
+### index++와 ++index의 차이
+```py
+index = 0
+diff1 = index++
+diff2 = ++index
+```
+* ❕ `Python`은 증감 연산자를 지원하지 않는다
