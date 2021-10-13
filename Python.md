@@ -598,7 +598,7 @@ func4(v3)
 
 5. 익명 함수
 ```py
-func5 = lambda x : x
+func5 = lambda x: x
 v5 = func5(123)
 print(v5)
 ```
@@ -629,7 +629,30 @@ print(random.random())
 ```
 
 ### 함수 실습 (회원 CRUD 만들기)
-membersFunction.html
+membersFunction.py
+```py
+members = []
+
+# Create
+def membersCreate(member):
+  members.append(member)
+  return members
+
+# Read
+def membersRead():
+  return members
+
+# Delete
+def membersDelete(index):
+  members.remove(members[index])
+  return members
+
+# Update
+def membersUpdate(index, member):
+  members[index] = member
+  return members
+```
+
 ```py
 # Create
 membersCreate('홍길동')
@@ -644,37 +667,4 @@ membersUpdate(0, '김유신')
 membersDelete(0)
 ```
 
-1. Create
-```py
-const members = []
-
-const membersCreate = function(member) {
-  members.push(member)
-  return members
-}
-```
-
-2. Read
-```py
-const membersRead = function() {
-  return members
-}
-```
-
-3. Delete
-```py
-const membersDelete = function(index) {
-  members.splice(index, 1)
-  return members
-}
-```
-
-4. Update
-```py
-const membersUpdate = function(index, member) {
-  members[index] = member
-  return members
-}
-```
-
-* `배열의 CRUD`를 참조 하여, `membersFunction2.html` 파일을 생성하고, 처음 부터 코딩 해보기
+* `배열의 CRUD`를 참조 하여, `membersFunction2.py` 파일을 생성하고, 처음 부터 코딩 해보기
