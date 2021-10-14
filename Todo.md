@@ -1,4 +1,4 @@
-# Session7
+# Todo
 ## Todo 만들기
 todos/models.py
 ```py
