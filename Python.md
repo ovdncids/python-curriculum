@@ -705,8 +705,8 @@ object.py
 1. 기본 구조
 ```py
 오브젝트명 = {
-  키1: 값1,
-  키2: 값2  
+  '키1': 값1,
+  '키2': 값2  
 }
 ```
 
@@ -829,42 +829,86 @@ membersDelete(0)
 1. 오브젝트를 만들기 위해서 클래스를 생성한다.
 2. 오브젝트는 붕어빵, 클래스는 붕어빵 기계라고 생각하면 쉽다. (붕어빵 기계 하나가 하루에 100개 이상의 붕어빵을 만들수 있다.)
 
-### 배열과 오브젝트의 차이점
-* ❕ 배열은 숫자(index)로 요소에 접근하고, 오브젝트는 문자(key)로 요소에 접근한다.
-
-### 오브젝트 문법
-object.py
+### 클래스 문법
+class.py
 1. 기본 구조
 ```py
-오브젝트명 = {
-  키1: 값1,
-  키2: 값2  
+class 클래스명:
+  키1 = 값1
+  키2 = 값2
 }
 ```
 
-https://ovdncids.github.io/javascript-curriculum/images/object.jpeg
-
 * 예제
 ```py
-def func7():
-  print(object1, object2)
+class Class1:
+  pass
 
-object1 = {}
-object2 = {
-  'key1': '값1',
-  'key2': [1, 2, 3],
-  'key3': func7,
-  'key4': {
+class Class2:
+  key1 = '값1'
+  key2 = [1, 2, 3]
+  def key3(self):
+    print(self.key1)
+  key4 = {
     'k1': 'v1',
     'k2': 'v2'
   }
-}
+
+object1 = Class1()
+object2 = Class2()
 ```
 
 ### 오브젝트의 CRUD
 ```py
 # 오브젝트 Create
-object1['key1'] = 1
-object1['key2'] = '2'
-object1['key3'] = '삼'
+object1.key1 = 1
+object1.key2 = '2'
+object1.key3 = '삼'
 
+# 오브젝트 Read
+object1.key1
+o1 = object1.key1
+o2 = object1.key2
+o3 = object1.key3
+
+# 오브젝트 Update
+object1.key1 = []
+object1.key2 = object2.key3
+object1.key3 = {
+  'k1': 'v1',
+  'k2': 'v2'
+}
+
+# 오브젝트 Delete
+del object1.key1
+del object1.key2
+del object1.key3
+
+print(object1)
+```
+
+#### `Python Console 창`에서 `오브젝트의 CRUD` 호출 해보기
+```py
+from class import object1, object2
+```
+
+#### `object2` 활용
+* ❔ `object2.key2` 배열의 `length` 구하기
+* ❔ `object2.key3` 함수 호출 시키기
+* ❔ `object2.key4` 오브젝트의 `k1`키 삭제 하기
+<!--
+`del object2.key3` 삭제 할때 에러가 발생할 경우
+`object2.key3 = None` 먼저 실행 후 삭제 한다.
+-->
+* ❔ `object2.key5` 선언 되지 않은 `key5` 읽기
+
+* ❕ `키`이름에 대한 규칙
+```
+`영문, 숫자, _`를 자유롭게 조합해서 쓸 수 있다.
+숫자를 앞으로 사용 불가 (1a, 2b, ...)
+```
+
+<!--
+for in 문 안됨 (How to make a class Iterable & create Iterator Class for it)
+* https://thispointer.com/python-how-to-make-a-class-iterable-create-iterator-class-for-it
+-->
