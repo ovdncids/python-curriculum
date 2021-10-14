@@ -911,4 +911,31 @@ from class import object1, object2
 <!--
 for in 문 안됨 (How to make a class Iterable & create Iterator Class for it)
 * https://thispointer.com/python-how-to-make-a-class-iterable-create-iterator-class-for-it
+확인 안 해봄
 -->
+
+## try catch문(제어문 > 예외처리문)
+### try catch문을 사용하는 이유?
+1. 에러가 발생할 경우 처리를 위해 사용한다
+2. try문 밖에서 에러가 발생할 경우 프로그램 진행이 멈추지만, try문 안에서 발생할 경우 프로그램이 계속 진행 된다.
+
+* 기본 구조
+```py
+try:
+  실행문
+  ...
+except Exception as 에러객체:
+  # try block에서 에러가 발생할 경우 실행
+  실행문
+  ...
+```
+* 예제
+```py
+try:
+  t1
+  print('진행 가능1?')
+except Exception as e:
+  print(e)
+
+print('진행 가능2?')
+```
