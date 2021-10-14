@@ -1,6 +1,6 @@
 # Summary
 
-* [Python 설정](PythonInstall.md)
+* [Python 설치](PythonInstall.md)
 
 * [Python 기초](Python.md)
 
