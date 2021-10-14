@@ -14,27 +14,23 @@ cd flask-study
 code .
 ```
 
+## 개발 모드
+```sh
+# Mac
+export FLASK_ENV=development
+# Windows
+set FLASK_ENV=development
+```
+
+## 파일 생성
 app.py
 ```py
-from typing import List, Optional
-from pydantic import BaseModel
 from flask import Flask, render_template
 app = Flask(__name__)
 
-class Member(BaseModel):
-    name: str
-    age: Optional[int]
-
-members: List[Member] = []
-members.append(Member(name='홍길동', age=39))
-members.append(Member(name='김삼순', age=33))
-members.append(Member(name='홍명보', age=44))
-members.append(Member(name='박지삼', age=22))
-members.append(Member(name='권명순', age=10))
-
-@app.route("/members")
+@app.route('/membersRead')
 def members_read():
-    return render_template('members.html', members=members)
+    return render_template('members.html')
 ```
 
 templates/members.html
@@ -50,7 +46,7 @@ templates/members.html
 <body>
     <div>
         <header>
-            <h1>Spring Boot MVC study</h1>
+            <h1>Flask study</h1>
         </header>
         <hr />
         <div class="container">
@@ -80,8 +76,10 @@ templates/members.html
                                     <td>홍길동</td>
                                     <td>20</td>
                                     <td>
-                                        <button>Update</button>
-                                        <button>Delete</button>
+                                        <form method="POST">
+                                            <button>Update</button>
+                                            <button>Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </tbody>
@@ -167,6 +165,95 @@ input[type=text] {
   border-top: 1px solid rgb(118, 118, 118);
   min-width: 100px;
 }
+```
+
+## 서버 실행
+```sh
+flask run
+```
+* http://127.0.0.1:5000/membersRead
+
+## 회원(Members) CRUD
+### Read
+app.py
+```py
+from typing import List, Optional
+from pydantic import BaseModel
+from flask import Flask, render_template
+app = Flask(__name__)
+
+class Member(BaseModel):
+    name: str
+    age: Optional[int]
+
+members: List[Member] = []
+members.append(Member(name='홍길동', age=39))
+members.append(Member(name='김삼순', age=33))
+members.append(Member(name='홍명보', age=44))
+members.append(Member(name='박지삼', age=22))
+members.append(Member(name='권명순', age=10))
+
+@app.route('/membersRead', methods=['GET'])
+def members_read():
+    return render_template('members.html', members=enumerate(members))
+```
+
+templates/members.html
+```diff
+<tr>
+    <td>홍길동</td>
+    <td>20</td>
+    <td>
+        <button>Update</button>
+        <button>Delete</button>
+    </td>
+</tr>
+```
+```html
+{% for index, member in members %}
+<tr>
+    <td>{{ member.name }}</td>
+    <td>{{ member.age }}</td>
+    <td>
+        <button>Update</button>
+        <button>Delete</button>
+    </td>
+</tr>
+{% endfor%}
+```
+
+### Create
+app.py
+```diff
+- from flask import Flask, render_template
++ from flask import Flask, render_template, request
+```
+```py
+@app.route('/membersCreate', methods=['POST'])
+def members_create():
+    member = Member(
+        name = request.form['name'],
+        age = request.form['age']
+    )
+    members.append(member)
+    return '<script>document.location.href = "/membersRead";</script>'
+```
+
+### Delete
+app.py
+```py
+@app.route('/membersDelete/<int:index>', methods=['POST'])
+def members_delete(index):
+    del members[index]
+    return '<script>document.location.href = "/membersRead";</script>'
+```
+
+templates/members.html
+```diff
+- <button>Delete</button>
+```
+```html
+<button onclick="this.form.action = '/membersDelete/{{index}}';">Delete</button>
 ```
 
 ## 실행
