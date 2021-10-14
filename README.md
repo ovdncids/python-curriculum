@@ -6,4 +6,6 @@
 
 * [FastAPI](FastAPI.md)
 
+* [Flask](Flask.md)
+
 * [Crawling](Crawling.md)
