@@ -388,20 +388,18 @@ print(testArray1)
 for.py
 1. 기본 구조
 ```py
-for 증가변수 in [문자 또는 배열 또는 객체]:
+for 증가변수 in [문자 또는 배열 또는 (딕셔너리 객체)]:
   실행문
 ```
 * 예제
 ```py
 for index1 in range(0, 5):
   print(index1)
-  # pass
 
 # list1 = list(range(0, 5))
 # print(list1)
 # print(index1)
 ```
-* `pass`는 `for문`은 반복 되지만 실행문이 없을때 사용한다
 
 2. break
 ```py
@@ -857,6 +855,7 @@ class Class2:
 object1 = Class1()
 object2 = Class2()
 ```
+* `pass`는 `class문` 안에 내용이 없을때 사용한다
 
 ### 오브젝트의 CRUD
 ```py
