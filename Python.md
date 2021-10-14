@@ -675,10 +675,142 @@ import membersFunction
 
 membersFunction
 membersFunction.members
-membersFunction.membersCreate('홍길동')
-membersFunction.membersRead()
-membersFunction.membersUpdate(0, '김유신')
-membersFunction.membersDelete(0)
+
+membersCreate = membersFunction.membersCreate
+membersRead = membersFunction.membersRead
+membersUpdate = membersFunction.membersUpdate
+membersDelete = membersFunction.membersDelete
 ```
 
 * `배열의 CRUD`를 참조 하여, `membersFunction2.py` 파일을 생성하고, 처음 부터 코딩 해보기
+
+## 오브젝트 (객체)
+### 오브젝트를 사용하는 이유
+1. 효율적인 관리를 위해 여러 변수를 한곳에 묶어서 사용한다.
+
+### 배열과 오브젝트의 차이점
+* ❕ 배열은 숫자(index)로 요소에 접근하고, 오브젝트는 문자(key)로 요소에 접근한다.
+
+### 오브젝트 문법
+object.py
+1. 기본 구조
+```py
+오브젝트명 = {
+  키1: 값1,
+  키2: 값2  
+}
+```
+
+https://ovdncids.github.io/javascript-curriculum/images/object.jpeg
+
+* 예제
+```py
+def func7():
+  print(object1, object2)
+
+object1 = {}
+object2 = {
+  'key1': '값1',
+  'key2': [1, 2, 3],
+  'key3': func7,
+  'key4': {
+    'k1': 'v1',
+    'k2': 'v2'
+  }
+}
+```
+
+### 오브젝트의 CRUD
+```py
+# 오브젝트 Create
+object1['key1'] = 1
+object1['key2'] = '2'
+object1['key3'] = '삼'
+
+# 오브젝트 Read
+object1['key1']
+o1 = object1['key1']
+o2 = object1['key2']
+o3 = object1['key3']
+
+# 오브젝트 Update
+object1['key1'] = []
+object1['key2'] = func7
+object1['key3'] = {
+  'k1': 'v1',
+  'k2': 'v2'
+}
+
+# 오브젝트 Delete
+del object1['key1']
+del object1['key2']
+del object1['key3']
+
+print(object1)
+```
+
+#### `Python Console 창`에서 `오브젝트의 CRUD` 호출 해보기
+```py
+import object
+
+object
+object1 = object.object1
+object2 = object.object2
+```
+
+* 좀더 쉽게 가져오는 방법
+```py
+from object import object1, object2
+```
+
+#### `object2` 활용
+* ❔ `object2['key2']` 배열의 `length` 구하기
+* ❔ `object2['key3']` 함수 호출 시키기
+* ❔ `object2['key4']` 오브젝트의 `k1`키 삭제 하기
+* ❔ `object2['key5']` 선언 되지 않은 `key5` 읽기
+
+* ❕ `키`이름에 대한 규칙
+```
+키는 문자로 받아서 자유롭게 조합이 가능하다
+```
+
+### 오브젝트의 for in문
+```py
+for v1 in object2:
+  value1 = object2[v1]
+  print(v1)
+  print(value1)
+  print(object2['v1'])
+```
+
+### Object의 멤버 변수의 수 구하기
+```py
+count = leng(object2)
+print(count)
+```
+
+### 오브젝트 실습 (회원 CRUD 사용)
+* `Python Console 창`에서 `회원 CRUD` 호출 해보기
+```py
+from membersFunction import membersCreate, membersRead, membersUpdate, membersDelete
+```
+```py
+# Create
+membersCreate({
+  'name': '홍길동',
+  'age': 20
+})
+
+# Read
+membersRead()
+
+# Update
+membersUpdate(0, {
+  'name': '김유신',
+  'age': 30
+})
+
+# Delete
+membersDelete(0)
+```
+* `회원 CRUD` 안보고 Console 창에서 CRUD 호출 해보기
