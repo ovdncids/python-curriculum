@@ -480,7 +480,16 @@ print(index5)
 array3 = [1, 2, 3]
 array4 = array3
 ```
-* ❔ `array3 is array4` 참일까?
+* ❔ 문제: `array3 is array4` 참일까?
+* <details><summary>정답</summary>
+
+  ```py
+  print(id(array3))
+  print(id(array4))
+  ```
+  메모리 주소값이 같아서 `array3`과 `array4`는 서로 같다.
+</details>
+
 ```py
 array3 = 3
 array4 = 4
@@ -814,3 +823,48 @@ membersUpdate(0, {
 membersDelete(0)
 ```
 * `회원 CRUD` 안보고 Console 창에서 CRUD 호출 해보기
+
+## 클래스
+### 클래스를 사용하는 이유
+1. 오브젝트를 만들기 위해서 클래스를 생성한다.
+2. 오브젝트는 붕어빵, 클래스는 붕어빵 기계라고 생각하면 쉽다. (붕어빵 기계 하나가 하루에 100개 이상의 붕어빵을 만들수 있다.)
+
+### 배열과 오브젝트의 차이점
+* ❕ 배열은 숫자(index)로 요소에 접근하고, 오브젝트는 문자(key)로 요소에 접근한다.
+
+### 오브젝트 문법
+object.py
+1. 기본 구조
+```py
+오브젝트명 = {
+  키1: 값1,
+  키2: 값2  
+}
+```
+
+https://ovdncids.github.io/javascript-curriculum/images/object.jpeg
+
+* 예제
+```py
+def func7():
+  print(object1, object2)
+
+object1 = {}
+object2 = {
+  'key1': '값1',
+  'key2': [1, 2, 3],
+  'key3': func7,
+  'key4': {
+    'k1': 'v1',
+    'k2': 'v2'
+  }
+}
+```
+
+### 오브젝트의 CRUD
+```py
+# 오브젝트 Create
+object1['key1'] = 1
+object1['key2'] = '2'
+object1['key3'] = '삼'
+
