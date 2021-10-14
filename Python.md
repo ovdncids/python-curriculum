@@ -693,7 +693,7 @@ membersDelete = membersFunction.membersDelete
 
 * `배열의 CRUD`를 참조 하여, `membersFunction2.py` 파일을 생성하고, 처음 부터 코딩 해보기
 
-## 오브젝트 (객체)
+## 오브젝트 (딕셔너리 객체)
 ### 오브젝트를 사용하는 이유
 1. 효율적인 관리를 위해 여러 변수를 한곳에 묶어서 사용한다.
 
@@ -826,7 +826,7 @@ membersDelete(0)
 
 ## 클래스
 ### 클래스를 사용하는 이유
-1. 오브젝트를 만들기 위해서 클래스를 생성한다.
+1. `인스턴스 오브젝트`를 만들기 위해서 `클래스`를 생성한다.
 2. 오브젝트는 붕어빵, 클래스는 붕어빵 기계라고 생각하면 쉽다. (붕어빵 기계 하나가 하루에 100개 이상의 붕어빵을 만들수 있다.)
 
 ### 클래스 문법
@@ -911,7 +911,8 @@ from class import object1, object2
 <!--
 for in 문 안됨 (How to make a class Iterable & create Iterator Class for it)
 * https://thispointer.com/python-how-to-make-a-class-iterable-create-iterator-class-for-it
-확인 안 해봄
+* https://goodthings4me.tistory.com/58
+Class는 전체 멤버에 대한 Iterate는 지원 하지 않지만, 하나의 멤버에 대해서는 __iter__, __next__ 사용해서 만들 수 있다.
 -->
 
 ## try catch문(제어문 > 예외처리문)
