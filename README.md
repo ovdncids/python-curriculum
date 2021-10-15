@@ -4,8 +4,8 @@
 
 * [DJango](DJango.md)
 
-* [FastAPI](FastAPI.md)
-
 * [Flask](Flask.md)
+
+* [FastAPI](FastAPI.md)
 
 * [Crawling](Crawling.md)
