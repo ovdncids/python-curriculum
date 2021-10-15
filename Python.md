@@ -286,10 +286,13 @@ array1[1] = False
 array1[2] = [1, 2, 3]
 
 # 배열 Delete
-array1.remove(array1[0])
-array1.remove(array1[1])
-array1.remove(array1[2])
+del array1[0]
+del array1[1]
+del array1[2]
 ```
+<!--
+array1.remove(array1[0])
+-->
 * ❔ `Python Console 창`에서 `배열의 CRUD` 실행 해보기 (터미널에서 `python` 실행)
 
 ### 배열의 크기
