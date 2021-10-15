@@ -378,12 +378,38 @@ def search():
     )
 ```
 
-## 실행
-```sh
-flask run
+## route 파일 나누기
+* https://stackoverflow.com/questions/11994325/how-to-divide-flask-app-into-multiple-py-files
+
+routes/search.py
+```py
+from flask import render_template, request, Blueprint
+
+search_page = Blueprint('search_page', __name__, template_folder='templates')
+
+@search_page.route('/search', methods=['GET'])
+def search():
+    q = request.args.get('q') or ''
+    searchMembers = []
+    for member in searchMembers:
+        if not q or (q in member.name):
+            searchMembers.append(member)
+    return render_template(
+        'search.html',
+        members=enumerate(searchMembers),
+        result="Search",
+        q=q
+    )
 ```
 
-<!--
-TODO: route 파일 나누기
-https://stackoverflow.com/questions/11994325/how-to-divide-flask-app-into-multiple-py-files
--->
+app.py
+```diff
+- @app.route('/search', methods=['GET'])
+```
+```py
+from routes.search import search_page
+
+app = Flask(__name__)
+app.register_blueprint(search_page)
+```
+* ❔ `Member, members` 부분 `models/members.py` 파일로 빼기
