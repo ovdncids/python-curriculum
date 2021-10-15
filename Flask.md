@@ -211,14 +211,16 @@ templates/members.html
 ```
 ```html
 {% for index, member in members %}
-<tr>
-    <td>{{ member.name }}</td>
-    <td>{{ member.age }}</td>
-    <td>
-        <button>Update</button>
-        <button>Delete</button>
-    </td>
-</tr>
+    <form method="POST">
+    <tr>
+        <td>{{ member.name }}</td>
+        <td>{{ member.age }}</td>
+        <td>
+            <button>Update</button>
+            <button>Delete</button>
+        </td>
+    </tr>
+    </form>
 {% endfor%}
 ```
 
@@ -254,6 +256,30 @@ templates/members.html
 ```
 ```html
 <button onclick="this.form.action = '/membersDelete/{{index}}';">Delete</button>
+```
+
+### Update
+app.py
+```py
+@app.route('/membersUpdate/<int:index>', methods=['POST'])
+def members_update(index):
+    members[index] = Member(
+        name = request.form['name'],
+        age = request.form['age']
+    )
+    return '<script>document.location.href = "/membersRead";</script>'
+```
+
+templates/members.html
+```diff
+- <td>{{ member.name }}</td>
+- <td>{{ member.age }}</td>
++ <td><input type="text" name="name" placeholder="Name" value="{{ member.name }}" /></td>
++ <td><input type="text" name="age" placeholder="Age" value="{{ member.age }}" /></td>
+```
+```diff
+- <button>Update</button>
++ <button onclick="this.form.action = '/membersUpdate/{{index}}';">Update</button>
 ```
 
 ## 실행
