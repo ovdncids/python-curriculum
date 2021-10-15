@@ -221,7 +221,7 @@ templates/members.html
         </td>
     </tr>
     </form>
-{% endfor%}
+{% endfor %}
 ```
 
 ### Create
@@ -234,8 +234,8 @@ app.py
 @app.route('/membersCreate', methods=['POST'])
 def members_create():
     member = Member(
-        name = request.form['name'],
-        age = request.form['age']
+        name=request.form['name'],
+        age=request.form['age']
     )
     members.append(member)
     return '<script>document.location.href = "/membersRead";</script>'
@@ -264,8 +264,8 @@ app.py
 @app.route('/membersUpdate/<int:index>', methods=['POST'])
 def members_update(index):
     members[index] = Member(
-        name = request.form['name'],
-        age = request.form['age']
+        name=request.form['name'],
+        age=request.form['age']
     )
     return '<script>document.location.href = "/membersRead";</script>'
 ```
@@ -282,7 +282,108 @@ templates/members.html
 + <button onclick="this.form.action = '/membersUpdate/{{index}}';">Update</button>
 ```
 
+## 검색(Search) 
+### Search 페이지 Markup 적용
+templates/search.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <header>
+            <h1>Flask study</h1>
+        </header>
+        <hr />
+        <div class="container">
+            <nav class="nav">
+                <ul>
+                    <li><h2><a href="/membersRead">Members</a></h2></li>
+                    <li><h2><a href="/search" class="active">Search</a></h2></li>
+                </ul>
+            </nav>
+            <hr />
+            <section class="contents">
+                <div>
+                    <h3>{{result}}</h3>
+                    <hr class="d-block" />
+                    <div>
+                        <form>
+                            <input type="text" placeholder="Search" name="q" />
+                            <button>Search</button>
+                        </form>
+                    </div>
+                    <hr class="d-block" />
+                    <div>
+                        <table class="table-search">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for index, member in members %}
+                                <tr>
+                                    <td>{{ member.name }}</td>
+                                    <td>{{ member.age }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <hr />
+        </div>
+        <footer>Copyright</footer>
+    </div>
+</body>
+</html>
+```
+
+app.py
+```py
+@app.route('/search', methods=['GET'])
+def search():
+    return render_template('search.html', members=enumerate(members), result="Search")
+```
+
+### Search 검색 기능 적용
+templates/search.html
+```diff
+- <input type="text" placeholder="Search" name="q" />
++ <input type="text" placeholder="Search" name="q" value="{{q}}" />
+```
+
+app.py
+```py
+@app.route('/search', methods=['GET'])
+def search():
+    q = request.args.get('q') or ''
+    searchMembers = []
+    for member in members:
+        if not q or (q in member.name):
+            searchMembers.append(member)
+    return render_template(
+        'search.html',
+        members=enumerate(searchMembers),
+        result="Search",
+        q=q
+    )
+```
+
 ## 실행
 ```sh
 flask run
 ```
+
+<!--
+TODO: route 파일 나누기
+https://stackoverflow.com/questions/11994325/how-to-divide-flask-app-into-multiple-py-files
+-->
