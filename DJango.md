@@ -93,6 +93,7 @@ VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> 올바른 
   .vscode/launch.json 파일이 생성됨
   디버깅 시작 버튼 누르기
   # 안되면: Django 서버 실행 되는지, python 버전 맞는지 확인
+  # ${workspaceFolder}\manage.py <- 경로가 맞는지 
 
 # debug 모드가 실행 된다면 VSCode를 다시 실행 시켜서, debug 모드가 실행 되는지 확인
 ```
