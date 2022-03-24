@@ -385,6 +385,8 @@ testArray1.remove(testArray1[2])
 print(testArray1)
 ```
 
+* ❔ 문제: 짝수만 지우기
+
 ## for문(제어문 > 반복문)
 ### for문을 사용하는 이유
 1. 반복 작업을 한곳으로 묶기 위해 사용함 (주로 배열이 사용 된다.)
