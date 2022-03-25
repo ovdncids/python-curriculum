@@ -432,7 +432,7 @@ for index4 in range(1, 11):
   else:
     print('숫자 ' + str(index4) + '은 짝수 입니다.')
   # oddEven = '홀수' if index4 % 2 else '짝수'
-  # print('숫자 ' + str(index4) + '은 '+ oddEven + ' 입니다.')
+  # print('숫자 ' + str(index4) + '은 ' + oddEven + ' 입니다.')
 ```
 
 ### 총합 더하기
