@@ -446,7 +446,7 @@ for index4 in range(1, 6):
 print(total1, index4)
 ```
 * ❔ `total1 = 0`을 주석 처리 한다면
-* Ctrl(또는 command) 키를 눌러서 해당 변수 이동
+* VSCode에서 `index4`, `total1` 마우스 오버해보기, Ctrl(또는 command) 키를 눌러서 해당 변수 이동)
 
 * ❔ 문제: `total1`의 `평균` 값을 구해 `avg1` 변수에 넣고, `avg1`을 `print`로 찍어 보기
 * <details><summary>정답</summary>
