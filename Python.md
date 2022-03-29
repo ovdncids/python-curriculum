@@ -562,7 +562,7 @@ print(returned1)
   ```
 </details>
 
-2. 인수에 자료형 데어터 넘기기
+2. 인수에 자료형 데이터 넘기기
 ```py
 v1 = 'a'
 def func2(parameter1):
