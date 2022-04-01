@@ -839,6 +839,7 @@ membersDelete(0)
 
 ### 클래스 문법
 class.py
+
 1. 기본 구조
 ```py
 class 클래스명:
