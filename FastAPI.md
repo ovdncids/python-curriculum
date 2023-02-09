@@ -22,38 +22,38 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-class Member(BaseModel):
+class User(BaseModel):
     name: str
     age: Optional[int]
 
-members: List[Member] = []
-members.append(Member(name='홍길동', age=39))
-members.append(Member(name='김삼순', age=33))
-members.append(Member(name='홍명보', age=44))
-members.append(Member(name='박지삼', age=22))
-members.append(Member(name='권명순', age=10))
+users: List[User] = []
+users.append(User(name='홍길동', age=39))
+users.append(User(name='김삼순', age=33))
+users.append(User(name='홍명보', age=44))
+users.append(User(name='박지삼', age=22))
+users.append(User(name='권명순', age=10))
 
-@app.get('/api/v1/members')
-def members_read():
-# def members_read(name: Optional[str] = Query(None), age: Optional[int] = Query(None)):
+@app.get('/api/v1/users')
+def users_read():
+# def users_read(name: Optional[str] = Query(None), age: Optional[int] = Query(None)):
     return {
         'result': 'read',
-        'members': members
+        'users': users
     }
 
-@app.post('/api/v1/members')
-def members_create(member: Member):
-    members.append(member)
+@app.post('/api/v1/users')
+def users_create(user: User):
+    users.append(user)
     return {'result': 'created'}
 
-@app.delete('/api/v1/members/{index}')
-def members_delete(index: int):
-    del members[index]
+@app.delete('/api/v1/users/{index}')
+def users_delete(index: int):
+    del users[index]
     return {'result': 'deleted'}
 
-@app.patch('/api/v1/members/{index}')
-def members_update(index: int, member: Member):
-    members[index] = member
+@app.patch('/api/v1/users/{index}')
+def users_update(index: int, user: User):
+    users[index] = user
     return {'result': 'updated'}
 ```
 

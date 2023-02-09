@@ -98,44 +98,44 @@ VSCode -> Ctrl(Command) + Shift + p -> >Python: Select Interpreter -> 올바른 
 # debug 모드가 실행 된다면 VSCode를 다시 실행 시켜서, debug 모드가 실행 되는지 확인
 ```
 
-## Members 앱 생성
+## Users 앱 생성
 ```sh
-python manage.py startapp members
+python manage.py startapp users
 ```
 
-### Members 앱 페이지 만들기
-members/views.py
+### Users 앱 페이지 만들기
+users/views.py
 ```py
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-def members_read(request):
+def users_read(request):
     return HttpResponse("Hello, world.")
 
 def root(request):
-    return redirect('members/')
+    return redirect('users/')
 ```
 
-### Members 앱 페이지와 라우터 연결
+### Users 앱 페이지와 라우터 연결
 django_study/urls.py
 ```py
-from members import views as views
+from users import views as views
 
 urlpatterns = [
-    path('members/', views.members_read, name='members'),
+    path('users/', views.users_read, name='users'),
     path('', views.root),
 ```
 
-### Members 앱 페이지와 HTML 연결
-members/views.py
+### Users 앱 페이지와 HTML 연결
+users/views.py
 ```diff
 - return HttpResponse("Hello, world.")
 ```
 ```py
-return render(request, 'members.html')
+return render(request, 'users.html')
 ```
 
-members/templates/members.html
+users/templates/users.html
 ```html
 Hello, world.
 ```
@@ -143,11 +143,11 @@ Hello, world.
 django_study/settings.py
 ```py
 INSTALLED_APPS = [
-    'members',
+    'users',
 ```
 
-### Members 앱 Markup
-members/templates/members.html
+### Users 앱 Markup
+users/templates/users.html
 ```py
 <!DOCTYPE html>
 <html lang="en">
@@ -167,14 +167,14 @@ members/templates/members.html
         <div class="container">
             <nav class="nav">
                 <ul>
-                    <li><h2>Members</h2></li>
+                    <li><h2>Users</h2></li>
                     <li><h2>Search</h2></li>
                 </ul>
             </nav>
             <hr />
             <section class="contents">
                 <div>
-                    <h3>Members</h3>
+                    <h3>Users</h3>
                     <p>Contents</p>
                 </div>
             </section>
@@ -186,7 +186,7 @@ members/templates/members.html
 </html>
 ```
 
-members/static/index.css
+users/static/index.css
 ```css
 * {
     margin: 0;
@@ -258,8 +258,8 @@ input[type=text] {
 # 404가 나오면 서버 재시작
 ```
 
-### Members 앱 Header, Nav, Footer 나누기
-members/templates/members.html
+### Users 앱 Header, Nav, Footer 나누기
+users/templates/users.html
 ```diff
 - <header>
 -     <h1>Django study</h1>
@@ -267,7 +267,7 @@ members/templates/members.html
 
 - <nav class="nav">
 -     <ul>
--         <li><h2>Members</h2></li>
+-         <li><h2>Users</h2></li>
 -         <li><h2>Search</h2></li>
 -     </ul>
 - </nav>
@@ -278,21 +278,21 @@ members/templates/members.html
 {% include "include/header.html" %}
 ```
 
-members/templates/include/header.html
+users/templates/include/header.html
 ```html
 <header>
     <h1>Django study</h1>
 </header>
 ```
 
-### Members 앱 Search 페이지 만들기
-members/views.py
+### Users 앱 Search 페이지 만들기
+users/views.py
 ```py
 def search(request):
     return render(request, 'search.html')
 ```
 
-members/templates/search.html
+users/templates/search.html
 ```py
 <!DOCTYPE html>
 <html lang="en">
@@ -332,52 +332,52 @@ urlpatterns = [
 
 **주소 창에서 URL 경로 바꾸어 보기**
 
-members/views.py
+users/views.py
 ```diff
-- return render(request, 'members.html')
+- return render(request, 'users.html')
 - return render(request, 'search.html')
 ```
 ```py
-return render(request, 'members.html', {'active_members': 'active'})
+return render(request, 'users.html', {'active_users': 'active'})
 return render(request, 'search.html', {'active_search': 'active'})
 ```
 
-members/templates/include/nav.html
+users/templates/include/nav.html
 ```py
-<li><h2><a href="{% url 'members' %}" class="{{active_members}}">Members</a></h2></li>
+<li><h2><a href="{% url 'users' %}" class="{{active_users}}">Users</a></h2></li>
 <li><h2><a href="{% url 'search' %}" class="{{active_search}}">Search</a></h2></li>
 ```
 
-### Members 앱 Create
-members/views.py
+### Users 앱 Create
+users/views.py
 ```py
-members = []
+users = []
 
-def members_create(request):
-    members.append({
+def users_create(request):
+    users.append({
       'name': request.POST['name'],
       'age': request.POST['age'],
     })
-    print('Done members_create', members)
-    return redirect('members/')
+    print('Done users_create', users)
+    return redirect('users/')
 ```
 
 django_study/urls.py
 ```py
 urlpatterns = [
-    path('members_create', views.members_create, name='members_create'),
+    path('users_create', views.users_create, name='users_create'),
 ```
 
-members/templates/members.html
+users/templates/users.html
 ```diff
 - <div>
--     <h3>Members</h3>
+-     <h3>Users</h3>
 -     <p>Contents</p>
 - </div>
 ```
 ```py
 <div>
-    <h3>Members</h3>
+    <h3>Users</h3>
     <hr class="d-block" />
     <div>
         <h4>Read</h4>
@@ -402,7 +402,7 @@ members/templates/members.html
         </table>
     </div>
     <hr class="d-block" />
-    <form method="post" action="{% url 'members_create' %}">
+    <form method="post" action="{% url 'users_create' %}">
         {% csrf_token %}
         <h4>Create</h4>
         <input type="text" name="name" placeholder="Name" />
@@ -412,13 +412,13 @@ members/templates/members.html
 </div>
 ```
 
-### Members 앱 Read
-members/views.py
+### Users 앱 Read
+users/views.py
 ```diff
-- members = []
+- users = []
 ```
 ```py
-members = [{
+users = [{
     'name': '홍길동',
     'age': 20
 }, {
@@ -427,16 +427,16 @@ members = [{
 }]
 ```
 ```diff
-- return render(request, 'members.html', {'active_members': 'active'})
+- return render(request, 'users.html', {'active_users': 'active'})
 ```
 ```py
-return render(request, 'members.html', {
-    'active_members': 'active',
-    'members': members,
+return render(request, 'users.html', {
+    'active_users': 'active',
+    'users': users,
 })
 ```
 
-members/templates/members.html
+users/templates/users.html
 ```diff
 - <tr>
 -     <td>홍길동</td>
@@ -448,10 +448,10 @@ members/templates/members.html
 - </tr>
 ```
 ```py
-{% for member in members %}
+{% for user in users %}
 <tr>
-    <td>{{member.name}}</td>
-    <td>{{member.age}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.age}}</td>
     <td>
         <button>Update</button>
         <button>Delete</button>
@@ -460,30 +460,30 @@ members/templates/members.html
 {% endfor %}
 ```
 
-### Members 앱 Update
-members/views.py
+### Users 앱 Update
+users/views.py
 ```py
-def members_update(request, index):
-    members[index] = {
+def users_update(request, index):
+    users[index] = {
       'name': request.POST['name'],
       'age': request.POST['age'],
     }
-    print('Done members_update', members)
-    return redirect('/members/')
+    print('Done users_update', users)
+    return redirect('/users/')
 ```
 
 django_study/urls.py
 ```py
 urlpatterns = [
-    path('members_update/<int:index>', views.members_update, name='members_update'),
+    path('users_update/<int:index>', views.users_update, name='users_update'),
 ```
 
-members/templates/members.html
+users/templates/users.html
 ```diff
-- {% for member in members %}
+- {% for user in users %}
 - <tr>
--     <td>{{member.name}}</td>
--     <td>{{member.age}}</td>
+-     <td>{{user.name}}</td>
+-     <td>{{user.age}}</td>
 -     <td>
 -         <button>Update</button>
 -         <button>Delete</button>
@@ -492,14 +492,14 @@ members/templates/members.html
 - {% endfor %}
 ```
 ```py
-{% for member in members %}
+{% for user in users %}
 <form method="post">
     {% csrf_token %}
     <tr>
-        <td><input type="text" name="name" value="{{member.name}}" placeholder="Name" /></td>
-        <td><input type="text" name="age" value="{{member.age}}" placeholder="Age" /></td>
+        <td><input type="text" name="name" value="{{user.name}}" placeholder="Name" /></td>
+        <td><input type="text" name="age" value="{{user.age}}" placeholder="Age" /></td>
         <td>
-            <button onclick=this.form.action='{% url "members_update" forloop.counter0 %}'>Update</button>
+            <button onclick=this.form.action='{% url "users_update" forloop.counter0 %}'>Update</button>
             <button>Delete</button>
         </td>
     </tr>
@@ -507,33 +507,33 @@ members/templates/members.html
 {% endfor %}
 ```
 
-### Members 앱 Delete
-members/views.py
+### Users 앱 Delete
+users/views.py
 ```py
-def members_delete(request, index):
-    del members[index]
-    print('Done members_delete', members)
-    return redirect('/members/')
+def users_delete(request, index):
+    del users[index]
+    print('Done users_delete', users)
+    return redirect('/users/')
 ```
 
 django_study/urls.py
 ```py
 urlpatterns = [
-    path('members_delete/<int:index>', views.members_delete, name='members_delete'),
+    path('users_delete/<int:index>', views.users_delete, name='users_delete'),
 ```
 
-members/templates/members.html
+users/templates/users.html
 ```diff
 - <button>Delete</button>
 ```
 ```py
-<button onclick=this.form.action='{% url "members_delete" forloop.counter0 %}'>Delete</button>
+<button onclick=this.form.action='{% url "users_delete" forloop.counter0 %}'>Delete</button>
 ```
 
-## Members Database 생성
-members/models.py
+## Users Database 생성
+users/models.py
 ```py
-class Member(models.Model):
+class User(models.Model):
     name = models.CharField(max_length=200)
     age = models.IntegerField(default=0)
 
@@ -541,54 +541,54 @@ class Member(models.Model):
         return self.name + ', ' + str(self.age)
 ```
 
-### Members Database Migration
+### Users Database Migration
 ```sh
-python manage.py makemigrations members
+python manage.py makemigrations users
 ```
-* members/migrations/0001_initial.py 파일이 생성됨
+* users/migrations/0001_initial.py 파일이 생성됨
 
 ```sh
 python manage.py migrate
 # Migration 적용 확인
-python manage.py showmigrations members
+python manage.py showmigrations users
 ```
-* `members/migrations/0001_initial.py`을 바탕으로 Database정보를 `db.sqlite3` 파일에 입력함
-* ❕ 만약 Migration 도중 에러가 난다면 `db.sqlite3` 또는 `members/migrations/0001_initial.py` 파일을 지우고 다시 실행 해야함
+* `users/migrations/0001_initial.py`을 바탕으로 Database정보를 `db.sqlite3` 파일에 입력함
+* ❕ 만약 Migration 도중 에러가 난다면 `db.sqlite3` 또는 `users/migrations/0001_initial.py` 파일을 지우고 다시 실행 해야함
 
-### Members Database Terminal에서 CRUD
+### Users Database Terminal에서 CRUD
 ```sh
 # /django_tutorial/settings.py 파일을 import 하고 python을 실행한 것과 같다.
 python manage.py shell
 ```
 ```py
-from members.models import Member
+from users.models import User
 
 # Create
-member = Member(name='홍길동', age='20')
-member
-member.save()
-member = Member(name='춘향이', age='16')
-member.save()
+user = User(name='홍길동', age='20')
+user
+user.save()
+user = User(name='춘향이', age='16')
+user.save()
 
 # 현재 DB의 정보 받아 오기
-Member.objects.all()
+User.objects.all()
 
 # Read
-member = Member.objects.get(id=1)
-member.name
-member.age
+user = User.objects.get(id=1)
+user.name
+user.age
 
 # Update
-member.name = '이순신'
-member.age = 32
-member.save()
+user.name = '이순신'
+user.age = 32
+user.save()
 
 # Delete
-member.delete()
+user.delete()
 
-# Search Members
-Member.objects.filter(name='춘향이')
-Member.objects.filter(name__contains='향').count()
+# Search Users
+User.objects.filter(name='춘향이')
+User.objects.filter(name__contains='향').count()
 ```
 
 * ❕ `.save()` 또는 `.delete()` 메소드를 실행해야 DB에 적용됨
@@ -597,15 +597,15 @@ Member.objects.filter(name__contains='향').count()
 Ctrl(Command) + p
 >SQLite: Open Database
 # db.sqlite3 선택
-# 왼쪽 SQLITE EXPLORER > db.sqlite3 > members_members > Show Table
+# 왼쪽 SQLITE EXPLORER > db.sqlite3 > users_users > Show Table
 
 >SQLite: Close Database
 ```
 
-### Members Database Read
-members/views.py
+### Users Database Read
+users/views.py
 ```diff
-- members = [{
+- users = [{
 -     'name': '홍길동',
 -     'age': 20
 - }, {
@@ -614,65 +614,65 @@ members/views.py
 - }]
 ```
 ```py
-from .models import Member
+from .models import User
 ```
 ```diff
-def members_read(request):
--   'members': members,
-+   'members': Member.objects.all(),
+def users_read(request):
+-   'users': users,
++   'users': User.objects.all(),
 ```
 
-### Members Database Create
-members/views.py
+### Users Database Create
+users/views.py
 ```diff
-- def members_create(request):
+- def users_create(request):
 ```
 ```py
-def members_create(request):
-    id = Member.objects.create(
+def users_create(request):
+    id = User.objects.create(
       name = request.POST['name'],
       age = request.POST['age'],
     )
-    print('Done members_create', Member.objects.get(id=id.pk))
-    return redirect('members/')
+    print('Done users_create', User.objects.get(id=id.pk))
+    return redirect('users/')
 ```
 
-### Members Database Update
-members/views.py
+### Users Database Update
+users/views.py
 ```diff
-- def members_update(request, index):
+- def users_update(request, index):
 ```
 ```py
-def members_update(request, index):
-    member = Member.objects.get(id=index)
-    member.name = request.POST['name']
-    member.age = request.POST['age']
-    member.save()
-    print('Done members_update', member)
-    return redirect('/members/')
+def users_update(request, index):
+    user = User.objects.get(id=index)
+    user.name = request.POST['name']
+    user.age = request.POST['age']
+    user.save()
+    print('Done users_update', user)
+    return redirect('/users/')
 ```
 
-members/templates/members.html
+users/templates/users.html
 ```diff
 - forloop.counter0
-+ member.id
++ user.id
 ```
 
-### Members Database Delete
-members/views.py
+### Users Database Delete
+users/views.py
 ```diff
-- def members_delete(request, index):
+- def users_delete(request, index):
 ```
 ```py
-def members_delete(request, index):
-    member = Member.objects.get(id=index)
-    member.delete()
-    print('Done members_delete', member)
-    return redirect('/members/')
+def users_delete(request, index):
+    user = User.objects.get(id=index)
+    user.delete()
+    print('Done users_delete', user)
+    return redirect('/users/')
 ```
 
 ### Search Database
-members/views.py
+users/views.py
 ```diff
 - def search(request):
 ```
@@ -683,11 +683,11 @@ def search(request):
     return render(request, 'search.html', {
       'active_search': 'active',
       'q': q,
-      'members': Member.objects.filter(name__contains=q),
+      'users': User.objects.filter(name__contains=q),
     })
 ```
 
-members/templates/search.html
+users/templates/search.html
 ```diff
 - <div>
 -     <h3>Search</h3>
@@ -714,10 +714,10 @@ members/templates/search.html
                 </tr>
             </thead>
             <tbody>
-                {% for member in members %}
+                {% for user in users %}
                 <tr>
-                    <td>{{member.name}}</td>
-                    <td>{{member.age}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.age}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -731,11 +731,11 @@ members/templates/search.html
 python manage.py createsuperuser
 ```
 
-members/admin.py
+users/admin.py
 ```py
-from .models import Member
+from .models import User
 
-admin.site.register(Member)
+admin.site.register(User)
 ```
 
 http://127.0.0.1:8000/admin

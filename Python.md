@@ -660,58 +660,58 @@ print(random.random())
 ```
 
 ### 함수 실습 (회원 CRUD 만들기)
-membersFunction.py
+usersFunction.py
 ```py
-members = []
+users = []
 
 # Create
-def membersCreate(member):
-  members.append(member)
-  return members
+def usersCreate(user):
+  users.append(user)
+  return users
 
 # Read
-def membersRead():
-  return members
+def usersRead():
+  return users
 
 # Delete
-def membersDelete(index):
-  members.remove(members[index])
-  return members
+def usersDelete(index):
+  users.remove(users[index])
+  return users
 
 # Update
-def membersUpdate(index, member):
-  members[index] = member
-  return members
+def usersUpdate(index, user):
+  users[index] = user
+  return users
 ```
 
 ```py
 # Create
-membersCreate('홍길동')
+usersCreate('홍길동')
 
 # Read
-membersRead()
+usersRead()
 
 # Update
-membersUpdate(0, '김유신')
+usersUpdate(0, '김유신')
 
 # Delete
-membersDelete(0)
+usersDelete(0)
 ```
 
 * `Python Console 창`에서 실행
 ```py
-import membersFunction
+import usersFunction
 
-membersFunction
-membersFunction.members
+usersFunction
+usersFunction.users
 
-membersCreate = membersFunction.membersCreate
-membersRead = membersFunction.membersRead
-membersUpdate = membersFunction.membersUpdate
-membersDelete = membersFunction.membersDelete
+usersCreate = usersFunction.usersCreate
+usersRead = usersFunction.usersRead
+usersUpdate = usersFunction.usersUpdate
+usersDelete = usersFunction.usersDelete
 ```
 
-* `배열의 CRUD`를 참조 하여, `membersFunction2.py` 파일을 생성하고, 처음 부터 코딩 해보기
+* `배열의 CRUD`를 참조 하여, `usersFunction2.py` 파일을 생성하고, 처음 부터 코딩 해보기
 
 ## 오브젝트 (딕셔너리 객체)
 ### 오브젝트를 사용하는 이유
@@ -821,26 +821,26 @@ print(count)
 ### 오브젝트 실습 (회원 CRUD 사용)
 * `Python Console 창`에서 `회원 CRUD` 호출 해보기
 ```py
-from membersFunction import membersCreate, membersRead, membersUpdate, membersDelete
+from usersFunction import usersCreate, usersRead, usersUpdate, usersDelete
 ```
 ```py
 # Create
-membersCreate({
+usersCreate({
   'name': '홍길동',
   'age': 20
 })
 
 # Read
-membersRead()
+usersRead()
 
 # Update
-membersUpdate(0, {
+usersUpdate(0, {
   'name': '김유신',
   'age': 30
 })
 
 # Delete
-membersDelete(0)
+usersDelete(0)
 ```
 * `회원 CRUD` 안보고 Console 창에서 CRUD 호출 해보기
 

@@ -28,19 +28,19 @@ app.py
 from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route('/membersRead')
-def members_read():
-    return render_template('members.html')
+@app.route('/usersRead')
+def users_read():
+    return render_template('users.html')
 ```
 
-templates/members.html
+templates/users.html
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members</title>
+    <title>Users</title>
     <link href="{{ url_for('static', filename='css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -52,14 +52,14 @@ templates/members.html
         <div class="container">
             <nav class="nav">
                 <ul>
-                    <li><h2><a href="/membersRead" class="active">Members</a></h2></li>
+                    <li><h2><a href="/usersRead" class="active">Users</a></h2></li>
                     <li><h2><a href="/search">Search</a></h2></li>
                 </ul>
             </nav>
             <hr />
             <section class="contents">
                 <div>
-                    <h3>Members</h3>
+                    <h3>Users</h3>
                     <hr class="d-block" />
                     <div>
                         <h4>Read</h4>
@@ -88,7 +88,7 @@ templates/members.html
                     <hr class="d-block" />
                     <div>
                         <h4>Create</h4>
-                        <form method="POST" action="/membersCreate">
+                        <form method="POST" action="/usersCreate">
                             <input type="text" name="name" placeholder="Name" />
                             <input type="text" name="age" placeholder="Age" />
                             <button>Create</button>
@@ -171,9 +171,9 @@ input[type=text] {
 ```sh
 flask run
 ```
-* http://127.0.0.1:5000/membersRead
+* http://127.0.0.1:5000/usersRead
 
-## 회원(Members) CRUD
+## 회원(Users) CRUD
 ### Read
 app.py
 ```py
@@ -182,23 +182,23 @@ from pydantic import BaseModel
 from flask import Flask, render_template
 app = Flask(__name__)
 
-class Member(BaseModel):
+class User(BaseModel):
     name: str
     age: Optional[int]
 
-members: List[Member] = []
-members.append(Member(name='홍길동', age=39))
-members.append(Member(name='김삼순', age=33))
-members.append(Member(name='홍명보', age=44))
-members.append(Member(name='박지삼', age=22))
-members.append(Member(name='권명순', age=10))
+users: List[User] = []
+users.append(User(name='홍길동', age=39))
+users.append(User(name='김삼순', age=33))
+users.append(User(name='홍명보', age=44))
+users.append(User(name='박지삼', age=22))
+users.append(User(name='권명순', age=10))
 
-@app.route('/membersRead', methods=['GET'])
-def members_read():
-    return render_template('members.html', members=enumerate(members))
+@app.route('/usersRead', methods=['GET'])
+def users_read():
+    return render_template('users.html', users=enumerate(users))
 ```
 
-templates/members.html
+templates/users.html
 ```diff
 <tr>
     <td>홍길동</td>
@@ -210,11 +210,11 @@ templates/members.html
 </tr>
 ```
 ```html
-{% for index, member in members %}
+{% for index, user in users %}
     <form method="POST">
     <tr>
-        <td>{{ member.name }}</td>
-        <td>{{ member.age }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.age }}</td>
         <td>
             <button>Update</button>
             <button>Delete</button>
@@ -231,55 +231,55 @@ app.py
 + from flask import Flask, render_template, request
 ```
 ```py
-@app.route('/membersCreate', methods=['POST'])
-def members_create():
-    member = Member(
+@app.route('/usersCreate', methods=['POST'])
+def users_create():
+    user = User(
         name=request.form['name'],
         age=request.form['age']
     )
-    members.append(member)
-    return '<script>document.location.href = "/membersRead";</script>'
+    users.append(user)
+    return '<script>document.location.href = "/usersRead";</script>'
 ```
 
 ### Delete
 app.py
 ```py
-@app.route('/membersDelete/<int:index>', methods=['POST'])
-def members_delete(index):
-    del members[index]
-    return '<script>document.location.href = "/membersRead";</script>'
+@app.route('/usersDelete/<int:index>', methods=['POST'])
+def users_delete(index):
+    del users[index]
+    return '<script>document.location.href = "/usersRead";</script>'
 ```
 
-templates/members.html
+templates/users.html
 ```diff
 - <button>Delete</button>
 ```
 ```html
-<button onclick="this.form.action = '/membersDelete/{{index}}';">Delete</button>
+<button onclick="this.form.action = '/usersDelete/{{index}}';">Delete</button>
 ```
 
 ### Update
 app.py
 ```py
-@app.route('/membersUpdate/<int:index>', methods=['POST'])
-def members_update(index):
-    members[index] = Member(
+@app.route('/usersUpdate/<int:index>', methods=['POST'])
+def users_update(index):
+    users[index] = User(
         name=request.form['name'],
         age=request.form['age']
     )
-    return '<script>document.location.href = "/membersRead";</script>'
+    return '<script>document.location.href = "/usersRead";</script>'
 ```
 
-templates/members.html
+templates/users.html
 ```diff
-- <td>{{ member.name }}</td>
-- <td>{{ member.age }}</td>
-+ <td><input type="text" name="name" placeholder="Name" value="{{ member.name }}" /></td>
-+ <td><input type="text" name="age" placeholder="Age" value="{{ member.age }}" /></td>
+- <td>{{ user.name }}</td>
+- <td>{{ user.age }}</td>
++ <td><input type="text" name="name" placeholder="Name" value="{{ user.name }}" /></td>
++ <td><input type="text" name="age" placeholder="Age" value="{{ user.age }}" /></td>
 ```
 ```diff
 - <button>Update</button>
-+ <button onclick="this.form.action = '/membersUpdate/{{index}}';">Update</button>
++ <button onclick="this.form.action = '/usersUpdate/{{index}}';">Update</button>
 ```
 
 ## 검색(Search) 
@@ -303,7 +303,7 @@ templates/search.html
         <div class="container">
             <nav class="nav">
                 <ul>
-                    <li><h2><a href="/membersRead">Members</a></h2></li>
+                    <li><h2><a href="/usersRead">Users</a></h2></li>
                     <li><h2><a href="/search" class="active">Search</a></h2></li>
                 </ul>
             </nav>
@@ -328,10 +328,10 @@ templates/search.html
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for index, member in members %}
+                            {% for index, user in users %}
                                 <tr>
-                                    <td>{{ member.name }}</td>
-                                    <td>{{ member.age }}</td>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.age }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -351,7 +351,7 @@ app.py
 ```py
 @app.route('/search', methods=['GET'])
 def search():
-    return render_template('search.html', members=enumerate(members), result="Search")
+    return render_template('search.html', users=enumerate(users), result="Search")
 ```
 
 ### Search 검색 기능 적용
@@ -366,13 +366,13 @@ app.py
 @app.route('/search', methods=['GET'])
 def search():
     q = request.args.get('q') or ''
-    searchMembers = []
-    for member in members:
-        if not q or (q in member.name):
-            searchMembers.append(member)
+    searchUsers = []
+    for user in users:
+        if not q or (q in user.name):
+            searchUsers.append(user)
     return render_template(
         'search.html',
-        members=enumerate(searchMembers),
+        users=enumerate(searchUsers),
         result="Search",
         q=q
     )
@@ -390,13 +390,13 @@ search_page = Blueprint('search_page', __name__, template_folder='templates')
 @search_page.route('/search', methods=['GET'])
 def search():
     q = request.args.get('q') or ''
-    searchMembers = []
-    for member in searchMembers:
-        if not q or (q in member.name):
-            searchMembers.append(member)
+    searchUsers = []
+    for user in searchUsers:
+        if not q or (q in user.name):
+            searchUsers.append(user)
     return render_template(
         'search.html',
-        members=enumerate(searchMembers),
+        users=enumerate(searchUsers),
         result="Search",
         q=q
     )
@@ -412,4 +412,4 @@ from routes.search import search_page
 app = Flask(__name__)
 app.register_blueprint(search_page)
 ```
-* ❔ `Member, members` 부분 `models/members.py` 파일로 빼기
+* ❔ `User, users` 부분 `models/users.py` 파일로 빼기
