@@ -1,5 +1,7 @@
 # Python
 
+* [Install](PythonInstall.md)
+
 * [Python](Python.md)
 
 * [DJango](DJango.md)
