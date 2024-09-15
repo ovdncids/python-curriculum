@@ -10,6 +10,8 @@
 # pyenv 설치
 brew install pyenv
 
+# 1회성 설정
+eval "$(pyenv init -)"
 # pyenv 설정 zsh셸
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
 # pyenv 설정 bash셸
