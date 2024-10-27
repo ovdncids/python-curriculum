@@ -45,6 +45,7 @@ pyenv install --patch 3.7.4 < <(curl -sSL https://github.com/python/cpython/comm
 
 ### 윈도우
 * https://github.com/pyenv-win/pyenv-win
+* https://github.com/pyenv-win/pyenv-win/blob/master/docs/installation.md#pyenv-win-zip
 ```sh
 다운로드 pyenv-win
 C:\Users\사용자\.pyenv 폴더에 풀기
