@@ -33,6 +33,8 @@ pyenv versions
 pyenv global 3.7.4
 # 해당 경로 마다 버전 변경
 pyenv local 3.7.4
+# 버전 해제
+프로젝트에서 해당 (pyenv-local?) 파일 삭제
 ```
 
 #### Mac Big Sur
@@ -95,6 +97,7 @@ pipenv graph
   # 설치된 패키지를 볼 수 있다.
 exit
   # 가상환경 종료
+  # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (pip-lock?) 파일 삭제
 ```
 
 ### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
