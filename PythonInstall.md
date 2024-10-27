@@ -10,17 +10,6 @@
 # pyenv 설치
 brew install pyenv
 
-# 1회성 설정
-eval "$(pyenv init -)"
-# pyenv 설정 zsh셸
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-# pyenv 설정 bash셸
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-  # .bashrc는 bash명령을 실행 하면 실행 된다
-# or
-echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
-  # .bash_profile는 새로운 셸을 실행 하면 실행 된다
-
 # 우선 설치 사항
 sudo xcode-select --install
 brew install zlib
@@ -34,7 +23,18 @@ pyenv global 3.7.4
 # 해당 경로 마다 버전 변경
 pyenv local 3.7.4
 # 버전 해제
-해당 프로젝트에서 (pyenv-local?) 파일 삭제
+해당 프로젝트에서 `.python-version` 파일 삭제
+
+# 1회성 Python 버전 설정
+eval "$(pyenv init -)"
+# pyenv 설정 zsh셸
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+# pyenv 설정 bash셸
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+  # .bashrc는 bash명령을 실행 하면 실행 된다
+# or
+echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+  # .bash_profile는 새로운 셸을 실행 하면 실행 된다
 ```
 
 #### Mac Big Sur
@@ -94,10 +94,10 @@ pipenv --rm
 pipenv install django
   # 패키지 설치
 pipenv graph
-  # 설치된 패키지를 볼 수 있다.
+  # 설치된 패키지를 볼 수 있다. (pip freeze)
 exit
   # 가상환경 종료
-  # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (pip-lock?) 파일 삭제
+  # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (Pipfile, Pipfile.lock) 파일 삭제
 ```
 
 ### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
