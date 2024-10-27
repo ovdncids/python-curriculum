@@ -34,7 +34,7 @@ pyenv global 3.7.4
 # 해당 경로 마다 버전 변경
 pyenv local 3.7.4
 # 버전 해제
-프로젝트에서 해당 (pyenv-local?) 파일 삭제
+해당 프로젝트에서 (pyenv-local?) 파일 삭제
 ```
 
 #### Mac Big Sur
