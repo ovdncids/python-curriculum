@@ -17,7 +17,7 @@ C++를 사용한 데스크톱 개발만 체크
 
 ## alanine_dipeptide_tutorial.ipynb
 ### pip install numpy==1.23.5
-* python 3.12 버전은 numpy가 이미 설치되어 있다.
+* python 3.12 버전은 `numpy`가 이미 설치되어 있다.
 ```diff
 - pip install numpy==1.23.5
 + pip install numpy
