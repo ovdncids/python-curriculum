@@ -98,7 +98,7 @@ pipenv install django
   # 패키지 설치
 pipenv graph
   # 설치된 패키지를 볼 수 있다. (pip freeze)
-exit
+deactivate
   # 가상환경 종료
   # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (Pipfile, Pipfile.lock) 파일 삭제
 ```
