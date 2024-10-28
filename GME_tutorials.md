@@ -2,6 +2,7 @@
 * https://github.com/xuhuihuang/GME_tutorials/tree/main
 
 ## msmbuilder2022
+* https://github.com/msmbuilder/msmbuilder2022
 ```sh
 pip install git+https://github.com/msmbuilder/msmbuilder2022.git
 ```
