@@ -17,7 +17,7 @@ C++를 사용한 데스크톱 개발만 체크
 ```
 
 ### fastcluster 오류
-* python 3.11 버전으로 `msmbuilder2022` 설치
+* `python 3.11` 버전으로 `msmbuilder2022` 설치
 
 ## alanine_dipeptide_tutorial.ipynb
 ### pip install numpy==1.23.5
