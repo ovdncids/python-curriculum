@@ -16,7 +16,7 @@ C++를 사용한 데스크톱 개발만 체크
 설치 후 재부팅
 ```
 
-### fastcluster 오류
+### Windows - fastcluster 오류
 * `python 3.11` 버전으로 `msmbuilder2022` 설치
 
 ## alanine_dipeptide_tutorial.ipynb
