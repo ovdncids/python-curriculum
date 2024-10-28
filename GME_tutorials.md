@@ -1,4 +1,4 @@
-# GME_tutorials
+# GME_tutorials - Python 3.11.9
 * https://github.com/xuhuihuang/GME_tutorials/tree/main
 
 ## msmbuilder2022
@@ -16,13 +16,9 @@ C++를 사용한 데스크톱 개발만 체크
 설치 후 재부팅
 ```
 
-### Windows - fastcluster 오류
-* `python 3.11` 버전으로 `msmbuilder2022` 설치
+## python 3.12 관련 오류
+### fastcluster
+* Windows `python 3.12` 버전은 `msmbuilder2022` 설치 시 `fastcluster` 오류 발생 한다.
 
-## alanine_dipeptide_tutorial.ipynb
 ### pip install numpy==1.23.5
-* python 3.12 버전은 `numpy`가 이미 설치되어 있다.
-```diff
-- pip install numpy==1.23.5
-+ pip install numpy
-```
+* `python 3.12` 버전은 내장된 `numpy` 라이브러리가 1.23.5 보다 높아서, `villin_headpiece_tutorial.ipynb` 파일 `igme.top_outputs` 함수에서 `numpy` 관련 오류가 발생한다.
