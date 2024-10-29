@@ -22,8 +22,6 @@ pyenv versions
 pyenv global 3.7.4
 # 해당 경로 마다 버전 변경
 pyenv local 3.7.4
-# 버전 선택
-pyenv shell 3.7.4
 # 버전 해제
 해당 프로젝트에서 `.python-version` 파일 삭제
 
@@ -73,6 +71,8 @@ pyenv global 3.7.4
 # 해당 경로 마다 버전 변경
 pyenv local 3.7.4
   # 하지만 cmd가 열리고 처음 python 또는 pyenv가 실행 된 경로의 버전으로 cmd 끝날때 까지 적용 된다
+# 버전 선택
+pyenv shell 3.7.4
 ```
 
 ## Pipenv
