@@ -10,5 +10,9 @@ pip install --upgrade notebook
 pip install jupyter
 
 jupyter --help
-# 안되면 source ~/.profile
+## 안되면
+source ~/.profile
+
+# notebook.ipynb 파일이 있는 디렉토리로 이동
+jupyter lab
 ```
