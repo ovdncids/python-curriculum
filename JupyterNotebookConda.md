@@ -38,6 +38,8 @@ conda --version
 conda create -n python3.10.12 python=3.10.12
 # conda 가상환경 사용
 conda activate python3.10.12
+# conda 가상환경 종료
+conda deactivate
 ```
 
 ### M1에서 /lib64/ld-linux-x86-64.so.2 오류 발생시
