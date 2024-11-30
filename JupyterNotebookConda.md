@@ -23,7 +23,7 @@ jupyter lab --allow-root --ip=0.0.0.0 --port=8888
 # Anaconda3 (conda 22.9.0)
 ## Ubuntu 18.04, 20.04, 22.04
 * https://jongsky.tistory.com/21
-* Anaconda3는 python 가상환경을 제공하므로 python을 미리 설치 할 필요 없다.
+* `Anaconda3`는 `python 가상환경`을 제공하므로 `python`을 미리 설치 할 필요 없다.
 ```sh
 apt update
 curl --output anaconda.sh https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
