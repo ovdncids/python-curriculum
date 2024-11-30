@@ -20,6 +20,6 @@ jupyter lab --allow-root --ip=0.0.0.0
 ## --ip=0.0.0.0 = 외부에서 접속 가능.
 ```
 
-# Anaconda3 conda 22.9.0
+# Anaconda3 (conda 22.9.0)
 ## Python3.10.12에서 설치
 * https://jongsky.tistory.com/21
