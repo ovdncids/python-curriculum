@@ -21,21 +21,22 @@ jupyter lab --allow-root --ip=0.0.0.0 --port=8888
 ```
 
 # Anaconda3 (conda 22.9.0)
-## Ubuntu 22.04, Python 3.10.12에서 설치
+## Ubuntu 18.04, 20.04, 22.04
 * https://jongsky.tistory.com/21
+* Anaconda3는 python 가상환경을 제공하므로 python을 미리 설치 할 필요 없다.
 ```sh
+apt update
 curl --output anaconda.sh https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
 # 정상적인 파일인지 확인
 sha256sum anaconda.sh
 bash anaconda.sh
-sudo vi ~/.bashrc
-# Anaconda3 (conda 22.9.0)
-export PATH=~/anaconda3/bin:~/anaconda3/condabin:$PATH
+echo "# Anaconda3 (conda 22.9.0)" >> ~/.bashrc
+echo "export PATH=~/anaconda3/bin:~/anaconda3/condabin:$PATH" >> ~/.bashrc
 source ~/.bashrc
 conda --version
-# conda 가상 환경 생성
+# conda 가상환경 생성
 conda create -n python3.10.12 python=3.10.12
-# conda 가상 환경 사용
+# conda 가상환경 사용
 conda activate python3.10.12
 ```
 
