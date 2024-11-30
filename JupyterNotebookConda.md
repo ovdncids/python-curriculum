@@ -23,6 +23,21 @@ jupyter lab --allow-root --ip=0.0.0.0
 # Anaconda3 (conda 22.9.0)
 ## Ubuntu 22.04, Python 3.10.12에서 설치
 * https://jongsky.tistory.com/21
+```sh
+curl --output anaconda.sh https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
+# 정상적인 파일인지 확인
+sha256sum anaconda.sh
+bash anaconda.sh
+sudo vi ~/.bashrc
+# Anaconda3 (conda 22.9.0)
+export PATH=~/anaconda3/bin:~/anaconda3/condabin:$PATH
+source ~/.bashrc
+conda --version
+# conda 가상 환경 생성
+conda create -n python3.10.12 python=3.10.12
+# conda 가상 환경 사용
+conda activate python3.10.12
+```
 
 ### M1에서 /lib64/ld-linux-x86-64.so.2 오류 발생시
 * https://stackoverflow.com/questions/68630526/lib64-ld-linux-x86-64-so-2-no-such-file-or-directory-error
