@@ -40,6 +40,10 @@ conda create -n python3.10.12 python=3.10.12
 conda activate python3.10.12
 # conda 가상환경 종료
 conda deactivate
+# conda 가상환경 리스트
+conda info --envs
+# conda 가상환경 삭제
+conda remove --name python3.10.12 --all
 ```
 
 ### M1에서 /lib64/ld-linux-x86-64.so.2 오류 발생시
@@ -48,3 +52,9 @@ conda deactivate
 docker run --platform linux/x86_64 -it --name ubuntu-22.04 -p 8888:8888 ubuntu:22.04
 ## --platform linux/x86_64 = AMD64용 ubuntu:22.04을 설치한다.
 ```
+
+## Anaconda3 (conda 24.9.2) - Docker Image
+```sh
+docker run -it --name anaconda3 -p 8888:8888 continuumio/anaconda3
+```
+* `Python 3.12.7` 가상환경이 설치되어 있다.
