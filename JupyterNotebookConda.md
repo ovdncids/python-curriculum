@@ -23,3 +23,9 @@ jupyter lab --allow-root --ip=0.0.0.0
 # Anaconda3 (conda 22.9.0)
 ## Ubuntu 22.04, Python 3.10.12에서 설치
 * https://jongsky.tistory.com/21
+
+### M1에서 /lib64/ld-linux-x86-64.so.2 오류 발생시
+```sh
+docker run --platform linux/x86_64 -it --name ubuntu-22.04 -p 8888:8888 ubuntu:22.04
+## --platform linux/x86_64 = AMD64용 ubuntu:22.04을 설치한다.
+```
