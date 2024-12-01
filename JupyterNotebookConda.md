@@ -55,6 +55,9 @@ docker run --platform linux/x86_64 -it --name ubuntu-22.04 -p 8888:8888 ubuntu:2
 
 ## Anaconda3 (conda 24.9.2) - Docker Image
 ```sh
+# Anaconda3 (3.69 GB)
 docker run -it --name anaconda3 -p 8888:8888 continuumio/anaconda3
+# Miniconda3 (554.47 MB)
+docker run -it --name miniconda3 -p 8888:8888 continuumio/miniconda3
 ```
 * `Python 3.12.7` 가상환경이 설치되어 있다.
