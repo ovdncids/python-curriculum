@@ -54,6 +54,8 @@ docker run --platform linux/x86_64 -it --name ubuntu-22.04 -p 8888:8888 ubuntu:2
 ```
 
 ## Anaconda3 (conda 24.9.2) - Docker Image
+* [continuumio/anaconda3](https://hub.docker.com/r/continuumio/anaconda3?uuid=5e4011a2-db0d-4643-a964-29e2cc16147b%0A)
+* [continuumio/miniconda3](https://hub.docker.com/r/continuumio/miniconda3?uuid=5e4011a2-db0d-4643-a964-29e2cc16147b%0A)
 ```sh
 # Anaconda3 (3.69 GB)
 docker run -it --name anaconda3 -p 8888:8888 continuumio/anaconda3
