@@ -23,7 +23,7 @@ pyenv versions
 pyenv global 3.7.4
 # 해당 경로 마다 버전 변경 (`.python-version` 파일이 생성, 수정)
 pyenv local 3.7.4
-# 버전 변경 (버전만 변경되고 `.python-version` 파일과는 상관이 없음)
+# 버전 변경 (버전만 변경되고 `.python-version` 파일은 수정 하지 않음)
 pyenv shell 3.7.4
 # 버전 해제
 pyenv local --unset
@@ -93,12 +93,12 @@ pip install pipenv
 ```
 ```sh
 pipenv --python 3.8.3
-  # 환경설정에 있는 버전을 선택 한다.
+  # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
 pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
-  # pyenv의 버전을 선택 할 수 있다.
+  # 강제로 해당 경로의 버전을 선택한다.
 pipenv shell
   # 해당 경로를 가상환경으로 선택한다.
-  # 새로운 shell이 시작 된다.
+  # 새로운 shell이 시작 된다. (`pip list`의 라이브러리도 초기화되어 시작된다.)
 pipenv --venv
   # 현재의 가상 경로를 볼 수 있다.
 pipenv --rm
