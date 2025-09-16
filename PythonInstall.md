@@ -1,9 +1,10 @@
 # Python 설치
 
-## Pyenv
+## Pyenv (Node.js의 NVM과 비슷함)
 * 여러 버전의 Python을 설치 할 수 있다.
 
 ### Mac
+* ❕ `Mac`은 `system`의 `Python3`에 직접 `pip3 install pipenv`와 같이 `system 패키지` 설치를 막는다. (운영체제 동작 및 보안에 문제 때문에)
 * https://github.com/pyenv/pyenv
 * http://taewan.kim/post/python_virtual_env
 ```sh
@@ -20,10 +21,13 @@ pyenv install 3.7.4
 pyenv versions
 # 글로벌 버전 변경
 pyenv global 3.7.4
-# 해당 경로 마다 버전 변경
+# 해당 경로 마다 버전 변경 (`.python-version` 파일이 생성, 수정)
 pyenv local 3.7.4
+# 버전 변경 (버전만 변경되고 `.python-version` 파일과는 상관이 없음)
+pyenv shell 3.7.4
 # 버전 해제
-해당 프로젝트에서 `.python-version` 파일 삭제
+pyenv local --unset
+  # 해당 프로젝트에서 `.python-version` 파일이 삭제 된다.
 
 # 1회성 Python 버전 선택
 eval "$(pyenv init -)"
@@ -35,13 +39,18 @@ echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 # or
 echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
   # .bash_profile는 새로운 셸을 실행 하면 실행 된다
+
+pip list
+  # pip install로 설치되어 있는 라이브러리를 볼 수 있다.
 ```
 
+<!--
 #### Mac Big Sur
 * https://github.com/pyenv/pyenv/issues/1643
 ```sh
 pyenv install --patch 3.7.4 < <(curl -sSL https://github.com/python/cpython/commit/8ea6353.patch)
 ```
+-->
 
 ### 윈도우
 * https://github.com/pyenv-win/pyenv-win
@@ -75,7 +84,7 @@ pyenv local 3.7.4
 pyenv shell 3.7.4
 ```
 
-## Pipenv
+## Pipenv (node_modules와 비슷함)
 * 가상환경으로 해당 경로를 선택 하고 종료 할 수 있다.
 * 가상환경만의 패키지를 설치 한다.
 ```sh
