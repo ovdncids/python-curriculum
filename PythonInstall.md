@@ -43,6 +43,20 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 pip list
   # pip install로 설치되어 있는 라이브러리를 볼 수 있다.
 ```
+* <details><summary>M1 - <code>brew install zlib</code></summary>
+
+  ```sh
+  vi ~/.zshrc
+
+  # Python zlib
+  export LDFLAGS="-L/opt/homebrew/opt/zlib/lib -L/opt/homebrew/opt/bzip2/lib -L/opt/homebrew/opt/ncurses/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/zlib/include -I/opt/homebrew/opt/bzip2/include -I/opt/homebrew/opt/ncurses/include"
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig:/opt/homebrew/opt/bzip2/lib/pkgconfig:/opt/homebrew/opt/ncurses/lib/pkgconfig"
+
+  source ~/.zshrc
+  brew install zlib
+  ```
+</details>
 
 <!--
 #### Mac Big Sur
