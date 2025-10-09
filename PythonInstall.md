@@ -100,7 +100,7 @@ pyenv shell 3.7.4
 ```
 
 ## Pipenv (node_modules와 비슷함)
-* 가상환경으로 해당 경로를 선택 하고 종료 할 수 있다.
+* 가상환경으로 해당 경로를 선택, 종료 할 수 있다.
 * 가상환경만의 패키지를 설치 한다.
 ```sh
 pip install pipenv
