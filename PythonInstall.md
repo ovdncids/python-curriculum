@@ -118,7 +118,7 @@ pipenv --venv
   # 현재의 가상 경로를 볼 수 있다.
 pipenv --rm
   # pipenv 환경 설정을 지운다.
-  # 잘 안지워지면 해당 설정 파일을 직접 지운다.
+  # 잘 안지워지면 `설정 경로`와 `Pipfile` 파일을 직접 지운다.
 pipenv install django
   # 패키지 설치
 pipenv graph
