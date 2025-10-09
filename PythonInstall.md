@@ -1,4 +1,5 @@
 # Python 설치
+* `3.10.18` 가장 안정적, `3.11.13` 새로운 프로젝트, `3.12.11` 이상은 아직 안정적이지 않음, 이전은 유지보수
 
 ## Pyenv (Node.js의 NVM과 비슷함)
 * 여러 버전의 Python을 설치 할 수 있다.
@@ -16,16 +17,16 @@ sudo xcode-select --install
 brew install zlib
 brew install xz
 # python 설치
-pyenv install 3.7.4
+pyenv install 3.10.18
 
 # 설치된 버전들 보기
 pyenv versions
 # 글로벌 버전 변경
-pyenv global 3.7.4
+pyenv global 3.10.18
 # 해당 경로 마다 버전 변경 (`.python-version` 파일이 생성, 수정)
-pyenv local 3.7.4
+pyenv local 3.10.18
 # 버전 변경 (버전만 변경되고 `.python-version` 파일은 수정 하지 않음)
-pyenv shell 3.7.4
+pyenv shell 3.10.18
 # 버전 해제
 pyenv local --unset
   # 해당 프로젝트에서 `.python-version` 파일이 삭제 된다.
@@ -44,20 +45,6 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 pip list
   # pip install로 설치되어 있는 라이브러리를 볼 수 있다.
 ```
-* <details><summary>M1 - <code>brew install zlib</code> 설치 안 될때</summary>
-
-  ```sh
-  vi ~/.zshrc
-
-  # Python zlib
-  export LDFLAGS="-L/opt/homebrew/opt/zlib/lib -L/opt/homebrew/opt/bzip2/lib -L/opt/homebrew/opt/ncurses/lib"
-  export CPPFLAGS="-I/opt/homebrew/opt/zlib/include -I/opt/homebrew/opt/bzip2/include -I/opt/homebrew/opt/ncurses/include"
-  export PKG_CONFIG_PATH="/opt/homebrew/opt/zlib/lib/pkgconfig:/opt/homebrew/opt/bzip2/lib/pkgconfig:/opt/homebrew/opt/ncurses/lib/pkgconfig"
-
-  source ~/.zshrc
-  brew install zlib
-  ```
-</details>
 
 <!--
 #### Mac Big Sur
@@ -88,15 +75,15 @@ pyenv --version
 pyenv rehash
 
 # python 설치
-pyenv install 3.7.4
+pyenv install 3.10.18
 pyenv versions
 # 글로벌 버전 변경
-pyenv global 3.7.4
+pyenv global 3.10.18
 # 해당 경로 마다 버전 변경
-pyenv local 3.7.4
+pyenv local 3.10.18
   # 하지만 cmd가 열리고 처음 python 또는 pyenv가 실행 된 경로의 버전으로 cmd 끝날때 까지 적용 된다
 # 버전 선택
-pyenv shell 3.7.4
+pyenv shell 3.10.18
 ```
 
 ## Pipenv (node_modules와 비슷함)
@@ -107,7 +94,7 @@ pip install pipenv
   # Pipenv 설치
 ```
 ```sh
-pipenv --python 3.8.3
+pipenv --python 3.11.13
   # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
 pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
   # 강제로 해당 경로의 버전을 선택한다.
