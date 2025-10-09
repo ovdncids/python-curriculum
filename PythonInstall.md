@@ -14,6 +14,7 @@ brew install pyenv
 # 우선 설치 사항
 sudo xcode-select --install
 brew install zlib
+brew install xz
 # python 설치
 pyenv install 3.7.4
 
