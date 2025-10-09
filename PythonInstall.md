@@ -44,7 +44,7 @@ echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 pip list
   # pip install로 설치되어 있는 라이브러리를 볼 수 있다.
 ```
-* <details><summary>M1 - <code>brew install zlib</code></summary>
+* <details><summary>M1 - <code>brew install zlib</code> 설치 안 될때</summary>
 
   ```sh
   vi ~/.zshrc
