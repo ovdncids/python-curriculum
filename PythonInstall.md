@@ -74,6 +74,8 @@ pyenv --version
 # home directory에서 pyenv설정
 pyenv rehash
 
+# python 설치 가능한 버전 확인
+pyenv install --list
 # python 설치
 pyenv install 3.10.18
 pyenv versions
