@@ -63,7 +63,7 @@ C:\Users\사용자\.pyenv 폴더에 풀기
 환경 변수 > 시스템 변수 > Path > 
   C:\Users\사용자\.pyenv\pyenv-win\bin
 
-# 사용자 변수에 추가
+# 사용자 변수에 추가 (PowerShell)
 [System.Environment]::SetEnvironmentVariable('PYENV',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
 [System.Environment]::SetEnvironmentVariable('PYENV_ROOT',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
 [System.Environment]::SetEnvironmentVariable('PYENV_HOME',$env:USERPROFILE + "\.pyenv\pyenv-win\","User")
