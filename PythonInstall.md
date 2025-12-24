@@ -55,6 +55,7 @@ pyenv install --patch 3.7.4 < <(curl -sSL https://github.com/python/cpython/comm
 -->
 
 ### 윈도우
+* `윈도우`는 `Mac`보다 낮은 버전 설치를 지원하고, 높은 버전은 `Python 소스`를 빌드해서 설치해야 한다.
 * https://github.com/pyenv-win/pyenv-win
 * https://github.com/pyenv-win/pyenv-win/blob/master/docs/installation.md#pyenv-win-zip
 ```sh
@@ -77,15 +78,15 @@ pyenv rehash
 # python 설치 가능한 버전 확인
 pyenv install --list
 # python 설치
-pyenv install 3.10.18
+pyenv install 3.10.11
 pyenv versions
 # 글로벌 버전 변경
-pyenv global 3.10.18
+pyenv global 3.10.11
 # 해당 경로 마다 버전 변경
-pyenv local 3.10.18
+pyenv local 3.10.11
   # 하지만 cmd가 열리고 처음 python 또는 pyenv가 실행 된 경로의 버전으로 cmd 끝날때 까지 적용 된다
 # 버전 선택
-pyenv shell 3.10.18
+pyenv shell 3.10.11
 ```
 
 ## Pipenv (node_modules와 비슷함)
