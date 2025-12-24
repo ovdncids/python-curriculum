@@ -123,3 +123,11 @@ https://github.com/pypa/pipenv/issues/876
 ```sh
 python -m pipenv shell
 ```
+
+### VSCode > Run and Debug > pipenv --venv 경로가 다른곳으로 실행 되는 경우
+.vscode/settings.json
+```sh
+{
+    "python.defaultInterpreterPath": "{pipenv --venv 경로}\\Scripts\\python.exe"
+}
+```
