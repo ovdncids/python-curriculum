@@ -132,7 +132,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 # 현재 세션의 보안 정색 보기
 Get-ExecutionPolicy -List
 # 가상 환경 실행
-{가상 환경 경로}/Scripts/activate.ps1
+{pipenv --venv 경로}/Scripts/activate.ps1
 ```
 
 ### VSCode > Run and Debug > pipenv --venv 경로가 다른곳으로 실행 되는 경우
