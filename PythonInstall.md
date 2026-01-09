@@ -99,7 +99,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Get-ExecutionPolicy -List
 ```
 
-## Poetry
+## Poetry (NPM과 Yarn이 섞인 느낌)
 * https://python-poetry.org/docs/#installing-with-the-official-installer
 
 ### Windows
@@ -113,6 +113,8 @@ Get-ExecutionPolicy -List
 poetry new poetry-study
 # 이미 존재하는 프로젝트
 poetry init
+# 환경 정보
+poetry env info
 # 기존 프로젝트 설치 (pyproject.toml 락파일을 바탕으로 가상환경에 라이브러리를 설치함, npm install과 비슷함)
 poetry install
 # 확인용 (잘 안씀)
@@ -122,7 +124,7 @@ poetry add numpy
 # 개발용으로 라이브러리 설치
 poetry add --group dev ipython
 # IPython 실행
-poetry run ipython
+poetry run ipython ./tests/__init__.py
 ```
 
 * <details><summary>Pipenv (이제 사용하지 않음)</summary>
