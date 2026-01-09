@@ -127,10 +127,13 @@ python -m pipenv shell
 ### Windows에서 python 실행후 >>> 프롬프트에서 위, 아래키 안 먹는 경우
 * PowerShell로 실행해서 가상환경 까지 PowerShell로 들어가서 python 실행
 ```sh
-# 보안 정책 수정
+# 보안 정책 수정 (둘중 하나는 됨)
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
 # 현재 세션의 보안 정색 보기
 Get-ExecutionPolicy -List
+
 # 가상 환경 실행
 {pipenv --venv 경로}/Scripts/activate.ps1
 ```
