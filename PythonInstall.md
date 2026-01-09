@@ -89,59 +89,84 @@ pyenv local 3.10.11
 pyenv shell 3.10.11
 ```
 
-## Pipenv (node_modules와 비슷함)
-* 가상환경으로 해당 경로를 선택, 종료 할 수 있다.
-* 가상환경만의 패키지를 설치 한다.
-```sh
-pip install pipenv
-  # Pipenv 설치
-```
-```sh
-pipenv --python 3.11.13
-  # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
-pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
-  # 강제로 해당 경로의 버전을 선택한다.
-pipenv shell
-  # 해당 경로를 가상환경으로 선택한다.
-  # 새로운 shell이 시작 된다. (`pip list`의 라이브러리도 초기화되어 시작된다.)
-pipenv --venv
-  # 현재의 가상 경로를 볼 수 있다.
-pipenv --rm
-  # pipenv 환경 설정을 지운다.
-  # 잘 안지워지면 `가상환경 경로`와 `Pipfile` 파일을 직접 지운다.
-pipenv install django
-  # 패키지 설치
-pipenv graph
-  # 설치된 패키지를 볼 수 있다. (pip freeze)
-deactivate 또는 exit
-  # 가상환경 종료
-  # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (Pipfile, Pipfile.lock) 파일 삭제
-```
-
-### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
-https://github.com/pypa/pipenv/issues/876
-```sh
-python -m pipenv shell
-```
-
-### Windows에서 python 실행후 >>> 프롬프트에서 위, 아래키 안 먹는 경우
-* PowerShell로 실행해서 가상환경 까지 PowerShell로 들어가서 python 실행
-```sh
+#### PowerShell 오류
+```ps1
 # 보안 정책 수정 (둘중 하나는 됨)
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 # 현재 세션의 보안 정색 보기
 Get-ExecutionPolicy -List
-
-# 가상 환경 실행
-{pipenv --venv 경로}/Scripts/activate.ps1
 ```
 
-### VSCode > Run and Debug > pipenv --venv 경로가 다른곳으로 실행 되는 경우
-.vscode/settings.json
+## Poetry
+* https://python-poetry.org/docs/#installing-with-the-official-installer
+
+### Windows
 ```sh
-{
-    "python.defaultInterpreterPath": "{pipenv --venv 경로}\\Scripts\\python.exe"
-}
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 ```
+* 설치후 `PATH` 관련 문구 확인. (`PATH` 추가 후 VSCode 재시작)
+
+```sh
+# 새로운 프로젝트
+poetry new poetry-study
+# 이미 존재하는 프로젝트
+poetry init
+# 기존 프로젝트 설치 (pyproject.toml 락파일을 바탕으로 가상환경에 라이브러리를 설치함, npm install과 비슷함)
+poetry install
+# 확인용 (잘 안씀)
+poetry shell
+# 라이브러리 설치
+poetry add numpy
+# 개발용으로 라이브러리 설치
+poetry add --group dev ipython
+# IPython 실행
+poetry run ipython
+```
+
+* <details><summary>Pipenv (이제 사용하지 않음)</summary>
+
+  ## Pipenv (node_modules와 비슷함)
+  * 가상환경으로 해당 경로를 선택, 종료 할 수 있다.
+  * 가상환경만의 패키지를 설치 한다.
+  ```sh
+  pip install pipenv
+    # Pipenv 설치
+  ```
+  ```sh
+  pipenv --python 3.11.13
+    # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
+  pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
+    # 강제로 해당 경로의 버전을 선택한다.
+  pipenv shell
+    # 해당 경로를 가상환경으로 선택한다.
+    # 새로운 shell이 시작 된다. (`pip list`의 라이브러리도 초기화되어 시작된다.)
+  pipenv --venv
+    # 현재의 가상 경로를 볼 수 있다.
+  pipenv --rm
+    # pipenv 환경 설정을 지운다.
+    # 잘 안지워지면 `가상환경 경로`와 `Pipfile` 파일을 직접 지운다.
+  pipenv install django
+    # 패키지 설치
+  pipenv graph
+    # 설치된 패키지를 볼 수 있다. (pip freeze)
+  deactivate 또는 exit
+    # 가상환경 종료
+    # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (Pipfile, Pipfile.lock) 파일 삭제
+  ```
+  
+  ### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
+  https://github.com/pypa/pipenv/issues/876
+  ```sh
+  python -m pipenv shell
+  ```
+  
+  ### VSCode > Run and Debug > pipenv --venv 경로가 다른곳으로 실행 되는 경우
+  .vscode/settings.json
+  ```sh
+  {
+      "python.defaultInterpreterPath": "{pipenv --venv 경로}\\Scripts\\python.exe"
+  }
+  ```
+</details>
