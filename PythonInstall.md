@@ -109,11 +109,13 @@ Get-ExecutionPolicy -List
 * 설치후 `PATH` 관련 문구 확인. (`PATH` 추가 후 VSCode 재시작)
 
 ```sh
+# 명령어 리스트
+poetry list
 # 새로운 프로젝트
 poetry new poetry-study
 # 이미 존재하는 프로젝트
 poetry init
-# 환경 정보
+# 가상 환경 정보
 poetry env info
 # 기존 프로젝트 설치 (pyproject.toml 락파일을 바탕으로 가상환경에 라이브러리를 설치함, npm install과 비슷함)
 poetry install
@@ -123,6 +125,8 @@ poetry shell
 poetry add numpy
 # 개발용으로 라이브러리 설치
 poetry add --group dev ipython
+# 현재 가상환경에 설치된 라이브러리 보기
+poetry show
 # IPython 실행
 poetry run ipython ./tests/__init__.py
 ```
