@@ -99,7 +99,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 Get-ExecutionPolicy -List
 ```
 
-## Poetry (NPM과 Yarn이 섞인 느낌)
+## Poetry@2.2.1 (NPM과 Yarn이 섞인 느낌)
 * https://python-poetry.org/docs/#installing-with-the-official-installer
 
 ### Windows
