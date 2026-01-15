@@ -119,8 +119,10 @@ poetry init
 poetry env info
 # 기존 프로젝트 설치 (pyproject.toml 락파일을 바탕으로 가상환경에 라이브러리를 설치함, npm install과 비슷함)
 poetry install
-# 확인용 (잘 안씀)
+# 가상 환경 들어가기(확인용, 잘 안씀)
 poetry shell
+# 가상 환경 나가기
+deactivate
 # 라이브러리 설치
 poetry add numpy
 # 개발용으로 라이브러리 설치
