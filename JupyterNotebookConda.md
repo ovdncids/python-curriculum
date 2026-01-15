@@ -20,6 +20,13 @@ jupyter lab --allow-root --ip=0.0.0.0 --port=8888
 ## --ip=0.0.0.0 = 외부에서 접속 가능.
 ```
 
+## Python 3.10.11, Poetry@2.2.1, JupyterLab@4.5.2
+```sh
+poetry init
+poetry add --group dev jupyterlab
+poetry run jupyter lab
+```
+
 # Anaconda3 (conda 22.9.0)
 ## Ubuntu 18.04, 20.04, 22.04
 * https://jongsky.tistory.com/21
