@@ -1,4 +1,5 @@
 # 수학식 (Math expression)
+* https://datascienceschool.net/02%20mathematics/00.00%20%EC%86%8C%EA%B0%9C%EC%9D%98%20%EA%B8%80.html
 
 ## 그리스 문자 (Greek letters)
 ### 조판 언어 (LaTeX commands)
@@ -50,3 +51,32 @@ $$
 $$
 \\{ x_1, x_2 \\}
 $$
+
+# 선형 대수 (Linear Algebra)
+```sh
+# Python@3.10.11, Poetry@2.2.1
+poetry add "numpy<2.0"
+poetry add scikit-learn
+# 사이킷런 라이브러리, 예제 데이터들의 집합
+poetry add "scikit-learn<1.8"
+```
+
+## 용어
+### 실수 (Real number)
+* 정수, 분수, 무리수 등을 포함한 모든 숫자
+
+$$
+\mathbb{R}
+$$
+
+### 묶음 (Tuple)
+
+### 스칼라 (Scalar)
+* 실수 하나
+
+### 벡터 (Vector)
+* 스칼라의 집합.
+* `{1980, 1210, 169, 46}` 이는 `4차원(4-dimensinal) 벡터`이고 순서가 중요 하다.
+```py
+np.array([1980, 1210, 169, 46])
+```
