@@ -22,7 +22,8 @@ jupyter lab --allow-root --ip=0.0.0.0 --port=8888
 
 ## Python 3.10.11, Poetry@2.2.1, JupyterLab@4.5.2
 ```sh
-poetry init
+poetry new Jupyter-study
+cd Jupyter-study
 poetry add --group dev jupyterlab
 poetry run jupyter lab
 ```
