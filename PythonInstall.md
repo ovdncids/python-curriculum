@@ -126,6 +126,7 @@ deactivate
 # 라이브러리 설치
 poetry add numpy
 poetry add "numpy<2.0"
+poetry add matplotlib
 # 개발용으로 라이브러리 설치
 poetry add --group dev ipython
 # 현재 가상환경에 설치된 라이브러리 보기
