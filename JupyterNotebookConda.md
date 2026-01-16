@@ -20,7 +20,7 @@ jupyter lab --allow-root --ip=0.0.0.0 --port=8888
 ## --ip=0.0.0.0 = 외부에서 접속 가능.
 ```
 
-## Python 3.10.11, Poetry@2.2.1, JupyterLab@4.5.2
+## Python 3.10.11, Poetry 2.2.1, JupyterLab 4.5.2
 ```sh
 poetry new Jupyter-study
 cd Jupyter-study
