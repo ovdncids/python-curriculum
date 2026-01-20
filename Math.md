@@ -63,8 +63,7 @@ np.random.randint(10, size=10)
 poetry add "numpy<2.0"
 poetry add matplotlib
 poetry add imageio
-# 사이킷런 라이브러리, 예제 데이터들의 집합
-poetry add "scikit-learn<1.8"
+poetry add "scikit-learn<1.8"  # 사이킷런 라이브러리, 예제 데이터들의 집합
 
 import math
 import numpy as np
@@ -179,7 +178,6 @@ print("tan으로 θ를 구하면: ", tan_theta_deg, "도")  # 36.86989764584402
 theta = math.radians(336.86989764584402)
 print(math.tan(theta))  # 0.75
 ```
-
 
 ### 유사도 (Similarity)
 * 두 벡터의 닮은 정도를 정량적으로 나타낸 값
