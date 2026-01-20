@@ -61,9 +61,16 @@ np.random.randint(10, size=10)
 ```sh
 # Python@3.10.11, Poetry@2.2.1
 poetry add "numpy<2.0"
-poetry add scikit-learn
+poetry add matplotlib
+poetry add imageio
 # 사이킷런 라이브러리, 예제 데이터들의 집합
 poetry add "scikit-learn<1.8"
+
+import math
+import numpy as np
+import matplotlib.pylab as plt
+import imageio.v2 as imageio
+from sklearn.datasets import load_iris
 ```
 
 ## 용어
@@ -126,10 +133,53 @@ np.array([1, 2, 3]) + 1
 ### 내적 (Inner Product, Dot Product)
 * 같은 위치에 있는 성분끼리 곱해 모두 더한것
 ```py
-a = np.array([1, 2, 3])
-b = np.array([4, 5, 6])
-np.dot(a, b)
+i1 = np.array([1, 2, 3])
+i2 = np.array([4, 5, 6])
+np.dot(i1, i2)
 # 또는
-a @ b
+i1 @ i2
 # 1 * 4 + 2 * 5 + 3 * 6 = 32
+
+# 평균 구하기
+d1 = np.arange(10)
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+length = len(x)
+d2 = np.ones(length)
+# [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+d2 @ x / length
+# 4.5
+d1.mean()
+# 4.5
 ```
+
+### 사인 (Sin), 코사인 (Cos[Co-: 보충]), 탄젠트 (기울기: Tangent)
+* θ: 각도, 세타 (Theta)
+* 직각삼각형의 높이: 𝑎 = 6, 밑변: 𝑏 = 8, 빗변: h = 10
+* sin(θ): 빗변 대비 높이 비율: 6 / 10 = 0.6
+* cos(θ): 빗변 대비 밑변 비율: 8 / 10 = 0.8
+* tan(θ): 밑변 대비 높이 비율: 6 / 8 = 0.75
+```py
+a = 6  # 높이
+b = 8  # 밑변
+h = 10  # 빗변
+sin_theta = a / h
+cos_theta = b / h
+tan_theta = a / b
+sin_theta_deg = math.degrees(math.asin(sin_theta))
+cos_theta_deg = math.degrees(math.acos(cos_theta))
+tan_theta_deg = math.degrees(math.atan(tan_theta))
+print("sin(θ) =", sin_theta)  # 0.6
+print("cos(θ) =", cos_theta)  # 0.8
+print("tan(θ) =", tan_theta)  # 0.75
+print("sin으로 θ를 구하면: ", sin_theta_deg, "도")  # 36.86989764584402
+print("cos으로 θ를 구하면: ", cos_theta_deg, "도")  # 36.86989764584401
+print("tan으로 θ를 구하면: ", tan_theta_deg, "도")  # 36.86989764584402
+```
+```py
+theta = math.radians(336.86989764584402)
+print(math.tan(theta))  # 0.75
+```
+
+
+### 유사도 (Similarity)
+* 두 벡터의 닮은 정도를 정량적으로 나타낸 값
