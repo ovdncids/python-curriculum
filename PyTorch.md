@@ -9,13 +9,13 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 # Poetry
 poetry source add pytorch https://download.pytorch.org/whl/cpu --priority supplemental
 poetry add torch torchvision torchaudio --source pytorch
+
+# M1
+poetry add "torch<2.8" "torchvision<0.15" "torchaudio<2.8"
 ```
 
 * GPU (M1 안됨)
 ```sh
-# pip
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-
 # Poetry
 poetry source add pytorch https://download.pytorch.org/whl/cu118 --priority supplemental
 poetry add torch torchvision torchaudio --source pytorch
