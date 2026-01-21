@@ -33,14 +33,8 @@ pyenv local --unset
 
 # 1회성 Python 버전 선택
 eval "$(pyenv init -)"
-# pyenv 설정 zsh셸
+# Pyenv 설정 zsh셸
 echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-# pyenv 설정 bash셸
-echo 'eval "$(pyenv init -)"' >> ~/.bashrc
-  # .bashrc는 bash명령을 실행 하면 실행 된다
-# or
-echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
-  # .bash_profile는 새로운 셸을 실행 하면 실행 된다
 
 pip list
   # pip install로 설치되어 있는 라이브러리를 볼 수 있다.
@@ -102,7 +96,16 @@ Get-ExecutionPolicy -List
 ## Poetry@2.2.1 (NPM과 Yarn이 섞인 느낌)
 * https://python-poetry.org/docs/#installing-with-the-official-installer
 
-### Windows
+### Mac 2.3.1
+```sh
+curl -sSL https://install.python-poetry.org | python3 -
+
+vi ~/.zshrc
+# Poetry
+export PATH="/Users/semin/.local/bin:$PATH"
+```
+
+### Windows 2.2.1
 ```sh
 (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python -
 ```
