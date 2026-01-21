@@ -3,14 +3,20 @@
 ## 설치
 * CPU
 ```sh
+# pip
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
-poetry add torch torchvision torchaudio
+
+# Poetry
+poetry source add pytorch https://download.pytorch.org/whl/cpu --priority supplemental
+poetry add torch torchvision torchaudio --source pytorch
 ```
 
-* GPU
+* GPU (M1 안됨)
 ```sh
+# pip
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
+# Poetry
 poetry source add pytorch https://download.pytorch.org/whl/cu118 --priority supplemental
 poetry add torch torchvision torchaudio --source pytorch
 ```
