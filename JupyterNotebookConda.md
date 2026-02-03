@@ -28,6 +28,10 @@ poetry add --group dev jupyterlab
 poetry run jupyter lab
 ```
 
+## Debug 모드
+1. 우측 상단에 벌래 모양 아이콘 클릭 후 오랜지 색으로 변하면 코드 번호 보임. (번호 클릭으로 브레이크 포인트 안 찍히면 브라우저 내렸다 올림)
+2. 실행 > 우측에 벌래 모양 탭에서 변수 확인
+
 # Anaconda3 (conda 22.9.0)
 ## Ubuntu 18.04, 20.04, 22.04
 * https://jongsky.tistory.com/21
