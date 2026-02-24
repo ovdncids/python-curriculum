@@ -102,7 +102,9 @@ curl -sSL https://install.python-poetry.org | python3 -
 
 vi ~/.zshrc
 # Poetry
-export PATH="/Users/semin/.local/bin:$PATH"
+export PATH="/Users/{사용자}/.local/bin:$PATH"
+# or
+export PATH="/root/.local/bin:$PATH"
 ```
 
 ### Windows 2.2.1
