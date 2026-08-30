@@ -3,6 +3,61 @@
 * https://www.python.org/ftp/python/3.11.9
 * `3.10.11` 가장 안정적, `3.11.9` 새로운 프로젝트, `3.12.10` 이상은 아직 안정적이지 않음, 이전은 유지보수
 
+## uv@0.12.7 (이거 하나로 끝)
+* https://docs.astral.sh/uv/getting-started/features
+* `프로젝트.venv 폴더`에 `해당 버전 python`과 `라이브러리`를 관리한다.
+* `python 명령`은 `uv`를 통해서 사용한다.
+
+### Mac
+```sh
+brew install uv
+```
+
+### 윈도우 (PowerShell)
+```sh
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+```sh
+# python 버전 관리
+uv python list
+uv python install 3.12.10
+
+# 새 프로젝트
+mkdir fastapi-project
+cd fastapi-project
+
+# 프로젝트에서 python 버전 선택 (.python-version 파일 생성, 해당 버전 없으면 설치)
+uv python pin 3.12.10
+
+# 프로젝트 생성 (pyproject.toml 파일과 기본 폴더 구조 생성, .python-version 파일이 없으면 최상위 버전으로 생성)
+uv init
+# 프로젝트 환경 초기화 (uv.lock 파일 생성, .venv/bin = 해당 버전 python, .venv/lib = 라이브러리) 
+uv sync
+
+# 라이브러리 설치
+uv add fastapi
+uv add uvicorn
+
+# src/fastapi_project/main.py
+https://github.com/ovdncids/python-curriculum/blob/master/FastAPI.md
+
+# 프로젝트 실행
+uv run uvicorn fastapi_project.main:app --reload
+
+# 프로젝트 라이브러리 트리
+uv tree
+
+# 프로젝트 빌드 (.venv/dist 폴더에 .whl과 .tar.gz로 프로젝트 빌드)
+uv build
+
+# 프로젝트 배포 (PyPI 또는 사설 Nexus에 배포)
+uv publish
+
+# 프로젝트 라이브러리 외의 라이브러리 사용 (프로젝트/.ruff_cache 폴더 생성, ruff는 문법 검사)
+uv tool run ruff check .
+```
+
 ## Pyenv (Node.js의 NVM과 비슷함)
 * 여러 버전의 Python을 설치 할 수 있다.
 
@@ -122,7 +177,7 @@ poetry list
 # 이미 존재하는 프로젝트
 poetry init
 # 새로운 프로젝트 (poetry install 까지 완료 됨)
-poetry new poetry_study
+poetry new poetry-study
 
 # 가상 환경 정보
 poetry env info
