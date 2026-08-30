@@ -121,13 +121,14 @@ poetry list
 
 # 이미 존재하는 프로젝트
 poetry init
-# 가상 환경 정보 (정보가 뜨면 이미 가상 환경)
-poetry env info
-# 기존 프로젝트 설치 (pyproject.toml 락파일을 바탕으로 가상환경에 라이브러리를 설치함, npm install과 비슷함)
-poetry install
-
 # 새로운 프로젝트 (poetry install 까지 완료 됨)
-poetry new poetry-study
+poetry new poetry_study
+
+# 가상 환경 정보
+poetry env info
+# 가상 환경 생성 (pyproject.toml, poetry.lock 파일을 바탕으로 가상 환경 생성 후 라이브러리 설치)
+poetry install
+  # poetry install 하지 않으면 (ModuleNotFoundError: No module named 'poetry_study' 만날 수 있다.)
 
 # 가상 환경 들어가기 (Poetry@2.x부터 사용 X)
 poetry shell
