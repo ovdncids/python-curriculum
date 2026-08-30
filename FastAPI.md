@@ -17,8 +17,8 @@ code .
 main.py
 ```py
 from typing import List, Optional
-from pydantic import BaseModel
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
