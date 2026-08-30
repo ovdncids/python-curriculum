@@ -60,9 +60,36 @@ uv publish
 uv tool run ruff check .
 ```
 
-* <details><summary>Pyenv</summary>
+### Debug
+.vscode/launch.json
+```json
+{
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "fastapi-project-debug",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "fastapi_project.main:app",
+        "--reload",
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ],
+      "jinja": true
+    }
+  ]
+}
+```
+* VSCode > Run And Debug 탭 > fastapi-project-debug > 시작 아이콘
 
-  ## Pyenv (Node.js의 NVM과 비슷함)
+## Pyenv@2.6.20, Poetry@2.2.1
+* <details><summary>Pyenv@2.6.20</summary>
+
+  ## Pyenv@2.6.20 (Node.js의 NVM과 비슷함)
   * 여러 버전의 Python을 설치 할 수 있다.
   
   ### Mac
@@ -211,48 +238,47 @@ uv tool run ruff check .
   ```
 </details>
 
-* <details><summary>Pipenv (이제 사용하지 않음)</summary>
+<!--
+## Pipenv (node_modules와 비슷함)
+* 가상환경으로 해당 경로를 선택, 종료 할 수 있다.
+* 가상환경만의 패키지를 설치 한다.
+```sh
+pip install pipenv
+  # Pipenv 설치
+```
+```sh
+pipenv --python 3.11.9
+  # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
+pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
+  # 강제로 해당 경로의 버전을 선택한다.
+pipenv shell
+  # 해당 경로를 가상환경으로 선택한다.
+  # 새로운 shell이 시작 된다. (`pip list`의 라이브러리도 초기화되어 시작된다.)
+pipenv --venv
+  # 현재의 가상 경로를 볼 수 있다.
+pipenv --rm
+  # pipenv 환경 설정을 지운다.
+  # 잘 안지워지면 `가상환경 경로`와 `Pipfile` 파일을 직접 지운다.
+pipenv install django
+  # 패키지 설치
+pipenv graph
+  # 설치된 패키지를 볼 수 있다. (pip freeze)
+deactivate 또는 exit
+  # 가상환경 종료
+  # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (Pipfile, Pipfile.lock) 파일 삭제
+```
 
-  ## Pipenv (node_modules와 비슷함)
-  * 가상환경으로 해당 경로를 선택, 종료 할 수 있다.
-  * 가상환경만의 패키지를 설치 한다.
-  ```sh
-  pip install pipenv
-    # Pipenv 설치
-  ```
-  ```sh
-  pipenv --python 3.11.9
-    # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
-  pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
-    # 강제로 해당 경로의 버전을 선택한다.
-  pipenv shell
-    # 해당 경로를 가상환경으로 선택한다.
-    # 새로운 shell이 시작 된다. (`pip list`의 라이브러리도 초기화되어 시작된다.)
-  pipenv --venv
-    # 현재의 가상 경로를 볼 수 있다.
-  pipenv --rm
-    # pipenv 환경 설정을 지운다.
-    # 잘 안지워지면 `가상환경 경로`와 `Pipfile` 파일을 직접 지운다.
-  pipenv install django
-    # 패키지 설치
-  pipenv graph
-    # 설치된 패키지를 볼 수 있다. (pip freeze)
-  deactivate 또는 exit
-    # 가상환경 종료
-    # 가상환경 설정을 해제 하려면 해당 프로젝트에서 (Pipfile, Pipfile.lock) 파일 삭제
-  ```
-  
-  ### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
-  https://github.com/pypa/pipenv/issues/876
-  ```sh
-  python -m pipenv shell
-  ```
-  
-  ### VSCode > Run and Debug > pipenv --venv 경로가 다른곳으로 실행 되는 경우
-  .vscode/settings.json
-  ```sh
-  {
-      "python.defaultInterpreterPath": "{pipenv --venv 경로}\\Scripts\\python.exe"
-  }
-  ```
-</details>
+### Windows에서 Pipenv shell 이후 `up/down arrow`으로 명령 히스트로가 동작 하지 않을때
+https://github.com/pypa/pipenv/issues/876
+```sh
+python -m pipenv shell
+```
+
+### VSCode > Run and Debug > pipenv --venv 경로가 다른곳으로 실행 되는 경우
+.vscode/settings.json
+```sh
+{
+    "python.defaultInterpreterPath": "{pipenv --venv 경로}\\Scripts\\python.exe"
+}
+```
+-->
