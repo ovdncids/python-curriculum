@@ -1,5 +1,6 @@
 # Python 설치
-* `3.10.18` 가장 안정적, `3.11.13` 새로운 프로젝트, `3.12.11` 이상은 아직 안정적이지 않음, 이전은 유지보수
+* https://www.python.org/ftp/python/3.11.9
+* `3.10.18` 가장 안정적, `3.11.9` 새로운 프로젝트, `3.12.11` 이상은 아직 안정적이지 않음, 이전은 유지보수
 
 ## Pyenv (Node.js의 NVM과 비슷함)
 * 여러 버전의 Python을 설치 할 수 있다.
@@ -150,7 +151,7 @@ poetry run ipython ./tests/__init__.py
     # Pipenv 설치
   ```
   ```sh
-  pipenv --python 3.11.13
+  pipenv --python 3.11.9
     # ❕ `pyenv versions`에 있는 버전을 선택 한다. 선택하지 않으면 `system` 버전이 선택될 수 있다.
   pipenv --python "C:\Users\Administrator\.pyenv\pyenv-win\versions\3.9.4\python.exe"
     # 강제로 해당 경로의 버전을 선택한다.
