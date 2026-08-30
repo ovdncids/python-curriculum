@@ -9,8 +9,8 @@ pip install uvicorn[standard]
 
 ## 프로젝트 생성
 ```sh
-mkdir fastapi-study
-cd fastapi-study
+mkdir fastapi-project
+cd fastapi-project
 code .
 ```
 
