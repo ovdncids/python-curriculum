@@ -118,18 +118,22 @@ export PATH="/root/.local/bin:$PATH"
 ```sh
 # 명령어 리스트
 poetry list
-# 새로운 프로젝트
-poetry new poetry-study
+
 # 이미 존재하는 프로젝트
 poetry init
-# 가상 환경 정보
+# 가상 환경 정보 (정보가 뜨면 이미 가상 환경)
 poetry env info
 # 기존 프로젝트 설치 (pyproject.toml 락파일을 바탕으로 가상환경에 라이브러리를 설치함, npm install과 비슷함)
 poetry install
-# 가상 환경 들어가기(확인용, 잘 안씀)
+
+# 새로운 프로젝트 (poetry install 까지 완료 됨)
+poetry new poetry-study
+
+# 가상 환경 들어가기 (Poetry@2.x부터 사용 X)
 poetry shell
 # 가상 환경 나가기
 deactivate
+
 # 라이브러리 설치
 poetry add numpy
 poetry add "numpy<2.0"
@@ -138,6 +142,7 @@ poetry add matplotlib
 poetry add --group dev ipython
 # 현재 가상환경에 설치된 라이브러리 보기
 poetry show
+
 # IPython 실행
 poetry run ipython ./tests/__init__.py
 ```
