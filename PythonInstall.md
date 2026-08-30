@@ -1,6 +1,7 @@
 # Python 설치
+* https://www.python.org/downloads
 * https://www.python.org/ftp/python/3.11.9
-* `3.10.18` 가장 안정적, `3.11.9` 새로운 프로젝트, `3.12.11` 이상은 아직 안정적이지 않음, 이전은 유지보수
+* `3.10.11` 가장 안정적, `3.11.9` 새로운 프로젝트, `3.12.10` 이상은 아직 안정적이지 않음, 이전은 유지보수
 
 ## Pyenv (Node.js의 NVM과 비슷함)
 * 여러 버전의 Python을 설치 할 수 있다.
@@ -18,16 +19,16 @@ sudo xcode-select --install
 brew install zlib
 brew install xz
 # python 설치
-pyenv install 3.10.18
+pyenv install 3.10.11
 
 # 설치된 버전들 보기
 pyenv versions
 # 글로벌 버전 변경
-pyenv global 3.10.18
+pyenv global 3.10.11
 # 해당 경로 마다 버전 변경 (`.python-version` 파일이 생성, 수정)
-pyenv local 3.10.18
+pyenv local 3.10.11
 # 버전 변경 (버전만 변경되고 `.python-version` 파일은 수정 하지 않음)
-pyenv shell 3.10.18
+pyenv shell 3.10.11
 # 버전 해제
 pyenv local --unset
   # 해당 프로젝트에서 `.python-version` 파일이 삭제 된다.
