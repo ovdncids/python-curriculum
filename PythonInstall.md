@@ -17,6 +17,8 @@ brew install uv
 
 ### 윈도우 (PowerShell)
 ```cmd
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+또는
 irm https://astral.sh/uv/install.ps1 | iex
 ```
 
