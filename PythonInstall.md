@@ -16,10 +16,11 @@ brew install uv
 ```
 
 ### 윈도우 (PowerShell)
-```sh
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```cmd
+irm https://astral.sh/uv/install.ps1 | iex
 ```
 
+## uv 명령어
 ```sh
 # python 버전 관리
 uv python list
@@ -46,6 +47,12 @@ https://github.com/ovdncids/python-curriculum/blob/master/FastAPI.md
 
 # 프로젝트 실행
 uv run uvicorn fastapi_project.main:app --reload
+```
+* http://127.0.0.1:8000/docs
+
+```sh
+# .venv 안의 Python 실행
+uv run python --version
 
 # 프로젝트 라이브러리 트리
 uv tree
@@ -59,7 +66,6 @@ uv publish
 # 프로젝트 라이브러리 외의 라이브러리 사용 (프로젝트/.ruff_cache 폴더 생성, ruff는 문법 검사)
 uv tool run ruff check .
 ```
-* http://127.0.0.1:8000/docs
 
 ### Debug
 .vscode/launch.json
