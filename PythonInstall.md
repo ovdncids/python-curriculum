@@ -91,6 +91,7 @@ uv tool run ruff check .
   ]
 }
 ```
+* VSCode > 확장 프로그램 > Python, Python Debugger 설치
 * VSCode > Run And Debug 탭 > fastapi-project-debug > 시작 아이콘
 
 ## Pyenv@2.6.20, Poetry@2.2.1
