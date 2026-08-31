@@ -59,6 +59,7 @@ uv publish
 # 프로젝트 라이브러리 외의 라이브러리 사용 (프로젝트/.ruff_cache 폴더 생성, ruff는 문법 검사)
 uv tool run ruff check .
 ```
+* http://127.0.0.1:8000/docs
 
 ### Debug
 .vscode/launch.json
