@@ -2,7 +2,7 @@
 ## 단독 설치
 * https://www.python.org/downloads
 * https://www.python.org/ftp/python/3.11.9
-* `3.10.11` 가장 안정적, `3.11.9` 새로운 프로젝트, `3.12.10` 이상은 아직 안정적이지 않음, 이전은 유지보수
+* 슬슬 레거시 `3.10.11`, 가장 안정적 `3.11.9`, `3.12.10`, 새로운 프로젝트 `3.13.15`, 위는 아직 안정적이지 않음
 
 ## uv@0.12.7
 * https://docs.astral.sh/uv/getting-started/features
