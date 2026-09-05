@@ -96,6 +96,22 @@ uv tool run ruff check .
 * VSCode > 확장 프로그램 > Python, Python Debugger 설치
 * VSCode > Run And Debug 탭 > fastapi-project-debug > 시작 아이콘
 
+### warning: `VIRTUAL_ENV={이전 uv 프로젝트}/.venv` does not match
+* 원인 VSCode Python 확장 프르그램에서 terminal 실행할때 자동으로 `source {이전 uv 프로젝트}/.venv/bin/activate` 실행 시킴
+```sh
+uv run which python
+# warning: 뜸
+
+echo $VIRTUAL_ENV
+# {이전 uv 프로젝트}/.venv
+
+unset VIRTUAL_ENV
+echo $VIRTUAL_ENV
+
+uv run which python
+# warning 사라지고 현재 프로젝트 경로 보임
+```
+
 ## Pyenv@2.6.20, Poetry@2.2.1
 * <details><summary>Pyenv@2.6.20</summary>
 
