@@ -96,6 +96,13 @@ uv tool run ruff check .
 * VSCode > 확장 프로그램 > Python, Python Debugger 설치
 * VSCode > Run And Debug 탭 > fastapi-project-debug > 시작 아이콘
 
+### HTTPS localhost 인증서
+```cmd
+"C:\Program Files\Git\usr\bin\openssl.exe" req -x509 -newkey rsa:2048 -nodes -keyout key.pem -out cert.pem -days 365 -subj "/CN=localhost"
+@rem key.pem, cert.pem 파일 ./certs 폴더로 이동
+uv run uvicorn fastapi_project.main:app --host 0.0.0.0 --port 8443 --ssl-keyfile ./certs/key.pem --ssl-certfile ./certs/cert.pem
+```
+
 ### warning: `VIRTUAL_ENV={이전 uv 프로젝트}/.venv` does not match
 * 원인 VSCode Python 확장 프르그램에서 terminal 실행할때 자동으로 `source {이전 uv 프로젝트}/.venv/bin/activate` 실행 시킴
 ```sh
